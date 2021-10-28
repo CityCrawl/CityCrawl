@@ -7,7 +7,15 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Views\Images\CCLogo.png" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Folder Include="Models\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Views\Images\CCLogo.png" />
   </ItemGroup>
 
 </Project>
