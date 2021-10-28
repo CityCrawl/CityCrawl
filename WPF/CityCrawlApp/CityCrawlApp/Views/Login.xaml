@@ -1,0 +1,40 @@
+﻿<Window x:Class="CityCrawlApp.Views.Login"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:CityCrawlApp.Views"
+        mc:Ignorable="d"
+        Title="Login" Height="230" Width="250"
+        Background="{DynamicResource ResourceKey=BackgroundLogin}">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="4*"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+
+        <StackPanel>
+            <TextBox Margin="0,30,0,40"
+                     Width="140"
+                     x:Name="EmailLoginTextBox"
+                />
+            <TextBox Margin="0,0,0,30"
+                     Width="140"
+                     x:Name="PasswordLoginTextBox"
+            />
+            <Button Height="20"
+                    Width="60"
+                    Margin="0,10,0,0"
+                    Content="Login"
+                    FontWeight="Bold"
+                    Background="#FF56F7FA"
+                    x:Name="LoginValidButton"
+                />
+        </StackPanel>
+
+        <Image Grid.Row="1"
+               HorizontalAlignment="Right"
+               Source="Images/CCLogo.png" 
+               Margin="0,0,5,2"/>
+    </Grid>
+</Window>
