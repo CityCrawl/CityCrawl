@@ -33,7 +33,7 @@
               Background="{DynamicResource ResourceKey=BackgroundColor}">
             <MenuItem Padding="0,0,0,0" HorizontalAlignment="Center" Width="37" Height="27">
                 <MenuItem.Header>
-                    <Image Source="Images/menu2.png" Width="35" Height="25" HorizontalAlignment="Left"></Image>
+                    <Image Source="Images/menu.png" Width="35" Height="25" HorizontalAlignment="Left"></Image>
                 </MenuItem.Header>
                 <MenuItem Header="_Vis profil" Command="{Binding ShowProfile}"/>
                 <MenuItem Header="_Tilmeld pubcrawl" Command="{Binding RegisterPubCrawl}"/>
