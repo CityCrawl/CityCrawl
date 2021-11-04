@@ -9,13 +9,13 @@ using CityCrawlApp.Views;
 
 namespace CityCrawlApp.ViewModels
 {
-    public class LoginViewModel : BindableBase
+    public class TilmeldPubcrawlViewModel : BindableBase
     {
-        private DelegateCommand login;
-        public DelegateCommand Login =>
-            login ?? (login = new DelegateCommand(ExecuteLogin));
+        private DelegateCommand visProfil;
+        public DelegateCommand VisProfil =>
+            visProfil ?? (visProfil = new DelegateCommand(ExecuteVisProfil));
 
-        void ExecuteLogin()
+        void ExecuteVisProfil()
         {
             var vmMinProfil = new MinProfilViewModel();
             var dialog = new MinProfil(vmMinProfil);

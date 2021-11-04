@@ -17,11 +17,12 @@ namespace CityCrawlApp.Views
     /// <summary>
     /// Interaction logic for RegisterPubcrawl.xaml
     /// </summary>
-    public partial class RegisterPubcrawl : Window
+    public partial class TilmeldPubcrawl : Window
     {
-        public RegisterPubcrawl()
+        public TilmeldPubcrawl(ViewModels.TilmeldPubcrawlViewModel vmTilmeld)
         {
             InitializeComponent();
+            DataContext = vmTilmeld;
         }
     }
 }

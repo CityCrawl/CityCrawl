@@ -7,7 +7,15 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Views\Images\bubbles.png" />
     <None Remove="Views\Images\CCLogo.png" />
+    <None Remove="Views\Images\HildasBeerBar.png" />
+    <None Remove="Views\Images\JazzItUp.png" />
+    <None Remove="Views\Images\menu.png" />
+    <None Remove="Views\Images\menugammel.png" />
+    <None Remove="Views\Images\pakke1.png" />
+    <None Remove="Views\Images\pakke2.png" />
+    <None Remove="Views\Images\WineAndDine.png" />
   </ItemGroup>
 
   <ItemGroup>
@@ -19,7 +27,15 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Resource Include="Views\Images\bubbles.png" />
     <Resource Include="Views\Images\CCLogo.png" />
+    <Resource Include="Views\Images\HildasBeerBar.png" />
+    <Resource Include="Views\Images\JazzItUp.png" />
+    <Resource Include="Views\Images\menu.png" />
+    <Resource Include="Views\Images\menugammel.png" />
+    <Resource Include="Views\Images\pakke1.png" />
+    <Resource Include="Views\Images\pakke2.png" />
+    <Resource Include="Views\Images\WineAndDine.png" />
   </ItemGroup>
 
 </Project>

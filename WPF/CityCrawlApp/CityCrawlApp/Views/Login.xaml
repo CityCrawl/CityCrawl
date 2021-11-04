@@ -61,6 +61,7 @@
                     FontWeight="Bold"
                     Background="#FF56F7FA"
                     x:Name="LoginValidButton"
+                    Command="{Binding Login}"
                 />
         </StackPanel>
 
