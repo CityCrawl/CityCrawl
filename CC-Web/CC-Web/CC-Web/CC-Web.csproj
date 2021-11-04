@@ -5,4 +5,12 @@
     <RootNamespace>CC_Web</RootNamespace>
   </PropertyGroup>
 
+  <ItemGroup>
+    <None Include="wwwroot\Images\bubbles.png" />
+    <None Include="wwwroot\Images\CCLogo.png" />
+    <None Include="wwwroot\Images\HildasBeerBar.png" />
+    <None Include="wwwroot\Images\JazzItUp.png" />
+    <None Include="wwwroot\Images\WineAndDine.png" />
+  </ItemGroup>
+
 </Project>
