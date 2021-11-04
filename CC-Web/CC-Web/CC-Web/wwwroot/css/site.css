@@ -96,7 +96,7 @@ body {
 }
 
 .PinkBtn {
-    background-color: mediumpurple; /*skal finde den rigtige farve*/
+    background-color: #e759ac; /*skal finde den rigtige farve*/
     border: none;
     width: 120px;
     height: 40px;
@@ -105,7 +105,7 @@ body {
 }
 
 .BlueBtn {
-    background-color: deepskyblue; /*skal finde den rigtige farve*/
+    background-color: #85d1d1; /*skal finde den rigtige farve*/
     border: none;
     width: 120px;
     height: 40px;
