@@ -35,8 +35,8 @@
                 <MenuItem.Header>
                     <Image Source="Images/menu.png" Width="35" Height="25" HorizontalAlignment="Left"></Image>
                 </MenuItem.Header>
-                <MenuItem Header="_Vis profil" Command="{Binding ShowProfile}"/>
-                <MenuItem Header="_Tilmeld pubcrawl" Command="{Binding RegisterPubCrawl}"/>
+                <MenuItem Header="_Vis profil" />
+                <MenuItem Header="_Tilmeld pubcrawl"/>
             </MenuItem>
 
         </Menu>
@@ -49,16 +49,14 @@
                 <Label Width="80">
                     Fornavn:
                 </Label>
-                <TextBlock VerticalAlignment="Center"
-                           Text="{Binding Path= , UpdateSourceTrigger=PropertyChanged}"/>
+                <TextBlock VerticalAlignment="Center"/>
             </WrapPanel>
 
             <WrapPanel>
                 <Label Width="80">
                     Efternavn:
                 </Label>
-                <TextBlock VerticalAlignment="Center"
-                           Text="{Binding Path= , UpdateSourceTrigger=PropertyChanged}"/>
+                <TextBlock VerticalAlignment="Center"/>
             </WrapPanel>
 
             <WrapPanel>
@@ -66,7 +64,7 @@
                     Fødselsdato:
                 </Label>
                 <TextBlock VerticalAlignment="Center"
-                           Text="{Binding Path= , UpdateSourceTrigger=PropertyChanged}"/>
+                           />
             </WrapPanel>
 
             <WrapPanel>
@@ -74,7 +72,7 @@
                     E-mail:
                 </Label>
                 <TextBlock VerticalAlignment="Center"
-                           Text="{Binding Path= , UpdateSourceTrigger=PropertyChanged}"/>
+                           />
             </WrapPanel>
         </StackPanel>
 
@@ -85,7 +83,6 @@
             Mine pubcrawls
         </Label>
         <DataGrid x:Name="UserPubcrawls"
-                  ItemsSource="{Binding Path=User}"
                   Grid.Column="1"
                   Grid.Row="1"
                   Width="150"

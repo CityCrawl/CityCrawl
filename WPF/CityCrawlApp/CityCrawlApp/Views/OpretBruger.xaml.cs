@@ -19,9 +19,10 @@ namespace CityCrawlApp.Views
     /// </summary>
     public partial class OpretBruger : Window
     {
-        public OpretBruger()
+        public OpretBruger(ViewModels.OpretBrugerViewModel vmOpretBruger)
         {
             InitializeComponent();
+            DataContext = vmOpretBruger;
         }
     }
 }
