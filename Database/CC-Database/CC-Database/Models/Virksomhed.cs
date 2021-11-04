@@ -18,6 +18,7 @@ namespace CC_Database.Models
         [MaxLength(30)]
         public string KontaktPerson { get; set; }
         [MaxLength(30)]
+        [EmailAddress]
         public string Email { get; set; }
         [MaxLength(30)]
         public string Password { get; set; }
