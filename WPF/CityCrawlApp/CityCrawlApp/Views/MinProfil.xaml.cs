@@ -19,9 +19,10 @@ namespace CityCrawlApp.Views
     /// </summary>
     public partial class MinProfil : Window
     {
-        public MinProfil()
+        public MinProfil(ViewModels.MinProfilViewModel vmMinProfil)
         {
             InitializeComponent();
+            DataContext = vmMinProfil;
         }
     }
 }

@@ -6,6 +6,7 @@
         xmlns:local="clr-namespace:CityCrawlApp.Views"
         mc:Ignorable="d"
         Title="CityCrawl" Height="350" Width="500"
+        DataContext="{Binding Source={StaticResource ViewModelLocator}, Path=ViewModel}"
         Background="{DynamicResource ResourceKey=BackgroundColor}">
     <Grid>
         <Grid.ColumnDefinitions>

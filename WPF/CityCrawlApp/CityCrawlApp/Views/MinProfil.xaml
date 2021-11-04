@@ -35,8 +35,8 @@
                 <MenuItem.Header>
                     <Image Source="Images/menu.png" Width="35" Height="25" HorizontalAlignment="Left"></Image>
                 </MenuItem.Header>
-                <MenuItem Header="_Vis profil" />
-                <MenuItem Header="_Tilmeld pubcrawl"/>
+                <MenuItem Header="_Tilmeld pubcrawl"
+                          Command="{Binding TilmeldPubcrawl}"/>
             </MenuItem>
 
         </Menu>
@@ -82,6 +82,7 @@
                Style="{StaticResource Headers}">
             Mine pubcrawls
         </Label>
+        
         <DataGrid x:Name="UserPubcrawls"
                   Grid.Column="1"
                   Grid.Row="1"

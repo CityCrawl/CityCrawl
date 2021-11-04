@@ -15,7 +15,7 @@
 
         <StackPanel>
             <Grid>
-                <TextBox Margin="0,30,0,40"
+                <TextBox Margin="0,30,0,20"
                          HorizontalAlignment="Center"
                          Width="140"
                          x:Name="EmailLoginTextBox"
@@ -35,7 +35,7 @@
                 </TextBlock>
             </Grid>
             <Grid>
-                <TextBox Margin="0,0,0,30"
+                <TextBox Margin="0,0,0,20"
                      HorizontalAlignment="Center"
                      Width="140"
                      x:Name="PasswordLoginTextBox"
@@ -61,6 +61,7 @@
                     FontWeight="Bold"
                     Background="#FF56F7FA"
                     x:Name="LoginValidButton"
+                    Command="{Binding Login}"
                 />
         </StackPanel>
 
