@@ -10,7 +10,6 @@
     <Window.Resources>
         <Style TargetType="{x:Type Label}">
             <Setter Property="FontSize" Value="8pt"/>
-            <Setter Property="FontStyle" Value="Italic"/>
             <Setter Property="FontFamily" Value="Segoe UI"/>
         </Style>
     </Window.Resources>
@@ -22,25 +21,95 @@
 
         <StackPanel HorizontalAlignment="Left" Margin="20,10,0,0" >
             <Label Content="Fornavn"/>
-            <TextBox Margin="0,0,0,5"
-                     Width="180"
-                     x:Name="FornavnTextBox"/>
+            <Grid>
+                <TextBox Margin="0,0,0,5"
+                         Width="180"
+                         x:Name="FornavnTextBox"/>
+                <TextBlock IsHitTestVisible="False" Text="Hans" FontStyle="Italic" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="3,1,0,0" Foreground="DarkGray">
+                    <TextBlock.Style>
+                        <Style TargetType="{x:Type TextBlock}">
+                            <Setter Property="Visibility" Value="Collapsed"/>
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding Text, ElementName=FornavnTextBox}" Value="">
+                                    <Setter Property="Visibility" Value="Visible"/>
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </TextBlock.Style>
+                </TextBlock>
+            </Grid>
             <Label Content="Efternavn"/>
-            <TextBox Margin="0,0,0,5"
-                     Width="180"
-                     x:Name="EfternavnTextBox"/>
+            <Grid>
+                <TextBox Margin="0,0,0,5"
+                         Width="180"
+                         x:Name="EfternavnTextBox"/>
+                <TextBlock IsHitTestVisible="False" Text="Hansen" FontStyle="Italic" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="3,1,0,0" Foreground="DarkGray">
+                    <TextBlock.Style>
+                        <Style TargetType="{x:Type TextBlock}">
+                            <Setter Property="Visibility" Value="Collapsed"/>
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding Text, ElementName=EfternavnTextBox}" Value="">
+                                    <Setter Property="Visibility" Value="Visible"/>
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </TextBlock.Style>
+                </TextBlock>
+            </Grid>
             <Label Content="Fødselsdato"/>
-            <TextBox Margin="0,0,0,5"
-                     Width="180"
-                     x:Name="FødselsdatoTextBox"/>
+            <Grid>
+                <TextBox Margin="0,0,0,5"
+                         Width="180"
+                         x:Name="FoedselsdatoTextBox"/>
+                <TextBlock IsHitTestVisible="False" Text="DD-MM-YYYY" FontStyle="Italic" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="3,1,0,0" Foreground="DarkGray">
+                    <TextBlock.Style>
+                        <Style TargetType="{x:Type TextBlock}">
+                            <Setter Property="Visibility" Value="Collapsed"/>
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding Text, ElementName=FoedselsdatoTextBox}" Value="">
+                                    <Setter Property="Visibility" Value="Visible"/>
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </TextBlock.Style>
+                </TextBlock>
+            </Grid>
             <Label Content="E-mail"/>
-            <TextBox Margin="0,0,0,5"
-                     Width="180"
-                     x:Name="EmailOpretTextBox"/>
+            <Grid>
+                <TextBox Margin="0,0,0,5"
+                         Width="180"
+                         x:Name="EmailOpretTextBox"/>
+                <TextBlock IsHitTestVisible="False" Text="hans@hansen.dk" FontStyle="Italic" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="3,1,0,0" Foreground="DarkGray">
+                    <TextBlock.Style>
+                        <Style TargetType="{x:Type TextBlock}">
+                            <Setter Property="Visibility" Value="Collapsed"/>
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding Text, ElementName=EmailOpretTextBox}" Value="">
+                                    <Setter Property="Visibility" Value="Visible"/>
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </TextBlock.Style>
+                </TextBlock>
+            </Grid>
             <Label Content="Password"/>
-            <TextBox Margin="0,0,0,5"
+            <Grid>
+                <TextBox Margin="0,0,0,5"
                      Width="180"
                      x:Name="PasswordOpretTextBox"/>
+                <TextBlock IsHitTestVisible="False" Text="**********" FontStyle="Italic" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="3,1,0,0" Foreground="DarkGray">
+                    <TextBlock.Style>
+                        <Style TargetType="{x:Type TextBlock}">
+                            <Setter Property="Visibility" Value="Collapsed"/>
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding Text, ElementName=PasswordOpretTextBox}" Value="">
+                                    <Setter Property="Visibility" Value="Visible"/>
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </TextBlock.Style>
+                </TextBlock>
+            </Grid>
             <Button Height="20"
                     Width="90"
                     Margin="0,10,0,0"
