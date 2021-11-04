@@ -84,15 +84,17 @@ body {
 .PinkBtn {
     background-color: mediumpurple; /*skal finde den rigtige farve*/
     border: none;
-    width: 100px;
+    width: 120px;
     height: 40px;
     font-weight: bold;
+    display: inline-block
 }
 
 .BlueBtn {
     background-color: deepskyblue; /*skal finde den rigtige farve*/
     border: none;
-    width: 100px;
+    width: 120px;
     height: 40px;
     font-weight: bold;
+    display: inline-block
 }
