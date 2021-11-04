@@ -5,8 +5,9 @@
              StartupUri="Views/MainWindow.xaml">
     <Application.Resources>
          <local:ViewModelLocator x:Key="ViewModelLocator"/>
-        <SolidColorBrush x:Key="BackgroundColor" Color="LightGray"/>
+         <SolidColorBrush x:Key="BackgroundColor" Color="LightGray"/>
          <SolidColorBrush x:Key="BackgroundLogin" Color="LightCyan"/>
          <SolidColorBrush x:Key="BackgroundOpretBruger" Color="#FFF5C7FF"/>
+        <SolidColorBrush x:Key="LoginErrorText" Color="Red"/>
     </Application.Resources>
 </Application>

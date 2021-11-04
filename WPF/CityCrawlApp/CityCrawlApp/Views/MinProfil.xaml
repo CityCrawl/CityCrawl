@@ -1,0 +1,81 @@
+﻿<Window x:Class="CityCrawlApp.Views.MinProfil"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:CityCrawlApp.Views"
+        mc:Ignorable="d"
+        Title="MinProfil" Height="350" Width="500"
+        Background="{DynamicResource ResourceKey=BackgroundColor}">
+    <Window.Resources>
+        <Style x:Key="Headers" TargetType="{x:Type Label}">
+            <Setter Property="FontSize" Value="12pt"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+        </Style>
+    </Window.Resources>
+    
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="0.5*"/>
+            <RowDefinition Height="2.5*"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+
+
+        <Menu Width="45" 
+              Height="20" 
+              HorizontalAlignment="Left" 
+              VerticalAlignment="Top" 
+              Background="{DynamicResource ResourceKey=BackgroundColor}">
+            <MenuItem Header="Menu">
+                <MenuItem Header="_Vis profil" Command="{Binding ShowProfile}"/>
+                <MenuItem Header="_Tilmeld pubcrawl" Command="{Binding RegisterPubCrawl}"/>
+            </MenuItem>
+
+        </Menu>
+
+        <StackPanel Grid.Row="1">
+            <Label Style="{StaticResource Headers}">
+                Min profil
+            </Label>
+            <WrapPanel>
+                <Label Width="80">
+                    Fornavn:
+                </Label>
+                <TextBlock VerticalAlignment="Center"
+                           Text="{Binding Path= , UpdateSourceTrigger=PropertyChanged}"/>
+            </WrapPanel>
+
+            <WrapPanel>
+                <Label Width="80">
+                    Efternavn:
+                </Label>
+                <TextBlock VerticalAlignment="Center"
+                           Text="{Binding Path= , UpdateSourceTrigger=PropertyChanged}"/>
+            </WrapPanel>
+
+            <WrapPanel>
+                <Label Width="80">
+                    Fødselsdato:
+                </Label>
+                <TextBlock VerticalAlignment="Center"
+                           Text="{Binding Path= , UpdateSourceTrigger=PropertyChanged}"/>
+            </WrapPanel>
+
+            <WrapPanel>
+                <Label Width="80">
+                    E-mail:
+                </Label>
+                <TextBlock VerticalAlignment="Center"
+                           Text="{Binding Path= , UpdateSourceTrigger=PropertyChanged}"/>
+            </WrapPanel>
+        </StackPanel>
+        
+        <DataGrid
+        
+    </Grid>
+</Window>
