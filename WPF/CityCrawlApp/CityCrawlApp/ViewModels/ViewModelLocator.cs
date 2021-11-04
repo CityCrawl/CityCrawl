@@ -3,15 +3,16 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using CityCrawlApp.ViewModels;
 
-namespace CityCrawlApp.VeiwModels
+namespace CityCrawlApp.ViewModels
 {
     public class ViewModelLocator
     {
 
-        public LoginViewModel ViewModel
+        public MainWindowViewModel ViewModel
         {
-            get { return new LoginViewModel(); }
+            get { return new MainWindowViewModel(); }
         }
     }
 }
