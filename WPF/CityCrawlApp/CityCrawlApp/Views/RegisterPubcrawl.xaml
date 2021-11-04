@@ -19,29 +19,33 @@
         </Grid.RowDefinitions>
 
 
-        <Menu Width="45" 
-              Height="20" 
+        <Menu Width="37" 
+              Height="27" 
               HorizontalAlignment="Left" 
               VerticalAlignment="Top" 
               Background="{DynamicResource ResourceKey=BackgroundColor}">
-            <MenuItem Header="Menu">
+            <MenuItem Padding="0,0,0,0" HorizontalAlignment="Center" Width="37" Height="27">
+                <MenuItem.Header>
+                    <Image Source="Images/menu.png" Width="35" Height="25" HorizontalAlignment="Left"></Image>
+                </MenuItem.Header>
                 <MenuItem Header="_Vis profil" Command="{Binding ShowProfile}"/>
-                <MenuItem Header="_Tilmeld pubcrawl" Command="{Binding RegisterPubcrawl}"/>
+                <MenuItem Header="_Tilmeld pubcrawl" Command="{Binding RegisterPubCrawl}"/>
             </MenuItem>
         </Menu>
         
         <Calendar HorizontalAlignment="Right"
                   Grid.Row="1"
-                  VerticalAlignment="Center"
-                  />
+                  VerticalAlignment="Center">
+            <!--Her kan man lave en "BlackoutDates" funktion-->
+        </Calendar>
 
         <Image 
-               Grid.Row="1"
-               Grid.RowSpan="2"
-               Grid.Column="1"
-               HorizontalAlignment="Left"
-               Source="Images/pakke1.png" 
-               Margin="30,0,0,100"/>
+           Grid.Row="1"
+           Grid.RowSpan="2"
+           Grid.Column="1"
+           HorizontalAlignment="Left"
+           Source="Images/pakke1.png" 
+           Margin="30,0,0,100"/>
 
         <Image Grid.Row="1"
                Grid.RowSpan="2"
