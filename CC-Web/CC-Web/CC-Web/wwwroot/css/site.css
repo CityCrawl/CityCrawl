@@ -112,3 +112,12 @@ body {
     font-weight: bold;
     display: inline-block
 }
+
+.GreenBtn {
+    background-color: darkseagreen; /*skal finde den rigtige farve*/
+    border: none;
+    width: 120px;
+    height: 40px;
+    font-weight: bold;
+    display: inline-block
+}
