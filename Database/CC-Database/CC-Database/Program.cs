@@ -18,7 +18,7 @@ namespace CC_Database
             bruger1.Efternavn = "Hansen";
             bruger1.Foedselsdag = "12-01-1981";
             bruger1.Email = "jytte@hansen.dk";
-            bruger1.Password = "minkatersød";
+            bruger1.Password = "minkatersoed";
 
             virksomhed1.VirksomhedId = 1;
             virksomhed1.CVR = "23564789";
