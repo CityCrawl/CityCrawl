@@ -33,9 +33,8 @@
               Background="{DynamicResource ResourceKey=BackgroundColor}">
             <MenuItem Header="Menu">
                 <MenuItem Header="_Vis profil" Command="{Binding ShowProfile}"/>
-                <MenuItem Header="_Tilmeld pubcrawl" Command="{Binding RegisterPubCrawl}"/>
+                <MenuItem Header="_Tilmeld pubcrawl" Command="{Binding RegisterPubcrawl}"/>
             </MenuItem>
-
         </Menu>
 
         <StackPanel Grid.Row="1">
