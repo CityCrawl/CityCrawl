@@ -14,14 +14,46 @@
         </Grid.RowDefinitions>
 
         <StackPanel>
-            <TextBox Margin="0,30,0,40"
-                     Width="140"
-                     x:Name="EmailLoginTextBox"
+            <Grid>
+                <TextBox Margin="0,30,0,40"
+                         HorizontalAlignment="Center"
+                         Width="140"
+                         x:Name="EmailLoginTextBox"
+                         TextWrapping="Wrap"
                 />
-            <TextBox Margin="0,0,0,30"
+                <TextBlock IsHitTestVisible="False" Text="E-mail" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="58,31,0,0" Foreground="DarkGray" >
+                    <TextBlock.Style>
+                        <Style TargetType="{x:Type TextBlock}">
+                            <Setter Property="Visibility" Value="Collapsed"/>
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding Text, ElementName=EmailLoginTextBox}" Value="">
+                                    <Setter Property="Visibility" Value="Visible"/>
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </TextBlock.Style>
+                </TextBlock>
+            </Grid>
+            <Grid>
+                <TextBox Margin="0,0,0,30"
+                     HorizontalAlignment="Center"
                      Width="140"
                      x:Name="PasswordLoginTextBox"
-            />
+                     TextWrapping="Wrap"
+                />
+                <TextBlock IsHitTestVisible="False" Text="Password" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="58,1,0,0" Foreground="DarkGray">
+                    <TextBlock.Style>
+                        <Style TargetType="{x:Type TextBlock}">
+                            <Setter Property="Visibility" Value="Collapsed"/>
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding Text, ElementName=PasswordLoginTextBox}" Value="">
+                                    <Setter Property="Visibility" Value="Visible"/>
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </TextBlock.Style>
+                </TextBlock>
+            </Grid>
             <Button Height="20"
                     Width="60"
                     Margin="0,10,0,0"
