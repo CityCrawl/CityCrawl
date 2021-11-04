@@ -32,6 +32,10 @@ namespace CC_Web.Controllers
         {
             return View();
         }
+        public IActionResult Profil()
+        {
+            return View();
+        }
 
         public IActionResult OpretBruger()
         {
