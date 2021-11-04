@@ -97,13 +97,22 @@
                 <TextBox Margin="0,0,0,5"
                      Width="180"
                      x:Name="PasswordOpretTextBox"/>
-                <TextBlock IsHitTestVisible="False" Text="**********" FontStyle="Italic" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="3,1,0,0" Foreground="DarkGray">
+                <TextBlock IsHitTestVisible="False"
+                           Text="**********"
+                           FontStyle="Italic"
+                           VerticalAlignment="Top"
+                           HorizontalAlignment="Left"
+                           Margin="3,1,0,0"
+                           Foreground="DarkGray">
                     <TextBlock.Style>
                         <Style TargetType="{x:Type TextBlock}">
-                            <Setter Property="Visibility" Value="Collapsed"/>
+                            <Setter Property="Visibility"
+                                    Value="Collapsed"/>
                             <Style.Triggers>
-                                <DataTrigger Binding="{Binding Text, ElementName=PasswordOpretTextBox}" Value="">
-                                    <Setter Property="Visibility" Value="Visible"/>
+                                <DataTrigger Binding="{Binding Text, ElementName=PasswordOpretTextBox}"
+                                             Value="">
+                                    <Setter Property="Visibility"
+                                            Value="Visible"/>
                                 </DataTrigger>
                             </Style.Triggers>
                         </Style>
@@ -124,6 +133,7 @@
                HorizontalAlignment="Right"
                Source="Images/CCLogo.png" 
                Margin="0,0,5,2"/>
+        <Frame Content="Frame"/>
     </Grid>
 
 </Window>
