@@ -20,18 +20,21 @@
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
-            <RowDefinition Height="0.5*"/>
+            <RowDefinition Height="0.3*"/>
             <RowDefinition Height="2.5*"/>
             <RowDefinition/>
         </Grid.RowDefinitions>
 
 
-        <Menu Width="45" 
-              Height="20" 
+        <Menu Width="37" 
+              Height="27" 
               HorizontalAlignment="Left" 
               VerticalAlignment="Top" 
               Background="{DynamicResource ResourceKey=BackgroundColor}">
-            <MenuItem Header="Menu">
+            <MenuItem Padding="0,0,0,0" HorizontalAlignment="Center" Width="37" Height="27">
+                <MenuItem.Header>
+                    <Image Source="Images/menu.png" Width="35" Height="25" HorizontalAlignment="Left"></Image>
+                </MenuItem.Header>
                 <MenuItem Header="_Vis profil" Command="{Binding ShowProfile}"/>
                 <MenuItem Header="_Tilmeld pubcrawl" Command="{Binding RegisterPubCrawl}"/>
             </MenuItem>
@@ -74,8 +77,42 @@
                            Text="{Binding Path= , UpdateSourceTrigger=PropertyChanged}"/>
             </WrapPanel>
         </StackPanel>
+
+        <Label Grid.Column="1"
+               Grid.Row="1"
+               VerticalAlignment="Top"
+               Style="{StaticResource Headers}">
+            Mine pubcrawls
+        </Label>
+        <DataGrid x:Name="UserPubcrawls"
+                  ItemsSource="{Binding Path=User}"
+                  Grid.Column="1"
+                  Grid.Row="1"
+                  Width="150"
+                  Height="150"
+                  HorizontalAlignment="Left"/>
+
+        <Image 
+               Grid.Row="2"
+               HorizontalAlignment="Left"
+               Source="Images/bubbles.png" 
+               Margin="30,0,0,0"/>
         
-        <DataGrid
-        
+        <Image Grid.Row="2"
+               HorizontalAlignment="Left"
+               Source="Images/HildasBeerBar.png" 
+               Margin="120,0,0,0"/>
+
+        <Image Grid.Row="2"
+               Grid.Column="1"
+               HorizontalAlignment="Left"
+               Source="Images/JazzItUp.png" 
+               Margin="0,0,0,0"/>
+
+        <Image Grid.Row="2"
+               Grid.Column="1"
+               HorizontalAlignment="Right"
+               Source="Images/WineAndDine.png" 
+               Margin="0,0,15,0"/>
     </Grid>
 </Window>
