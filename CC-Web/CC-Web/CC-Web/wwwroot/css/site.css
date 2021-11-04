@@ -74,21 +74,28 @@ body {
 /* Generel website style
 -------------------------------------------------- */
 .generel_style_image {
-  display: block;
-  margin-left: auto;
-  margin-right: auto;
-  margin-top: 5%;
-  width: 20%;
-
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 5%;
+    margin-bottom: 5%;
+    width: 20%;
 }
 
 .generel_style_txt_box {
     display: block;
     margin-left: auto;
     margin-right: auto;
-    margin-top: 5%;
     width: 20%;
 }
+
+.center_btn {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 20%;
+}
+
 .PinkBtn {
     background-color: mediumpurple; /*skal finde den rigtige farve*/
     border: none;
