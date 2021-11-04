@@ -35,16 +35,17 @@
         
         <Calendar HorizontalAlignment="Right"
                   Grid.Row="1"
-                  VerticalAlignment="Center"
-                  />
+                  VerticalAlignment="Center">
+            <!--Her kan man lave en "BlackoutDates" funktion-->
+        </Calendar>
 
         <Image 
-               Grid.Row="1"
-               Grid.RowSpan="2"
-               Grid.Column="1"
-               HorizontalAlignment="Left"
-               Source="Images/pakke1.png" 
-               Margin="30,0,0,100"/>
+           Grid.Row="1"
+           Grid.RowSpan="2"
+           Grid.Column="1"
+           HorizontalAlignment="Left"
+           Source="Images/pakke1.png" 
+           Margin="30,0,0,100"/>
 
         <Image Grid.Row="1"
                Grid.RowSpan="2"
