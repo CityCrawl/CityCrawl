@@ -21,6 +21,12 @@ namespace CityCrawlApp.ViewModels
             var dialog = new MinProfil(vmMinProfil);
 
             dialog.ShowDialog();
+
         }
     }
 }
+
+// burde hellere kun gemme informationer her, evt. først til properties i User klassen: efterfølgende i databasen
+// Så hvis det går godt returnere true (dialog.ShowDialog() == true) til MainWindowViewModel:
+// så kan det åbne MinProfil vinduet og lukke Opret bruger vinduet
+// gentage dette princip for alle vinduerne så alle kaldes fra MainWindowViewModel
