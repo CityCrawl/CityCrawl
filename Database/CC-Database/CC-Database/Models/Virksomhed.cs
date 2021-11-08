@@ -22,6 +22,9 @@ namespace CC_Database.Models
         public string Email { get; set; }
         [MaxLength(30)]
         public string Password { get; set; }
+        //Foreing key to CityCrawl
+        public int CC_id { get; set; }
+        public CityCrawl CC { get; set; }
 
 
     }
