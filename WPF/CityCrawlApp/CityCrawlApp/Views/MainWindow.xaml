@@ -6,6 +6,7 @@
         xmlns:local="clr-namespace:CityCrawlApp.Views"
         mc:Ignorable="d"
         Title="CityCrawl" Height="350" Width="500"
+        DataContext="{Binding Source={StaticResource ViewModelLocator}, Path=ViewModel}"
         Background="{DynamicResource ResourceKey=BackgroundColor}">
     <Grid>
         <Grid.ColumnDefinitions>
@@ -31,6 +32,7 @@
                 Margin="0,0,20,45"
                 FontWeight="Bold"
                 x:Name="LoginButton"
+                Command="{Binding LoginBtn}"
                 />
         <Button Grid.Row="1"
                 Grid.Column="1"
@@ -42,6 +44,7 @@
                 Margin="20,0,0,45"
                 FontWeight="Bold"
                 x:Name="OpretBrugerButton"
+                Command="{Binding OpretBrugerBtn}"
         />
 
 

@@ -19,9 +19,10 @@ namespace CityCrawlApp.Views
     /// </summary>
     public partial class Login : Window
     {
-        public Login()
+        public Login(ViewModels.LoginViewModel vmLogin)
         {
             InitializeComponent();
+            DataContext = vmLogin;
         }
     }
 }
