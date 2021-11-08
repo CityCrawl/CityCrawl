@@ -1,13 +1,9 @@
-﻿using CC_Web.Models;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
-using System;
-using System.Collections.Generic;
 using System.Diagnostics;
-using System.Linq;
-using System.Threading.Tasks;
+using Test_Af_LoginCC_Web.Models;
 
-namespace CC_Web.Controllers
+namespace Test_Af_LoginCC_Web.Controllers
 {
     public class HomeController : Controller
     {
@@ -32,28 +28,15 @@ namespace CC_Web.Controllers
         {
             return View();
         }
-        public IActionResult Profil()
-        {
-            return View();
-        }
-
-        public IActionResult OpretBruger()
-        {
-            return View();
-        }
-        public IActionResult TilmeldPubcrawl()
-        {
-            return View();
-        }
 
         public IActionResult FailedLogin(string email, string password)
         {
 
             if (email == "hans@hans.hans" && password == "minkatersoed")
-                return View("Profil");
+                return View("Index");
 
             else
-                return View();
+                return View("Privacy");
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
