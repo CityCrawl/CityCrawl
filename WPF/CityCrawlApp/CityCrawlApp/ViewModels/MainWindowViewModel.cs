@@ -26,7 +26,9 @@ namespace CityCrawlApp.ViewModels
 
             if (dialog.ShowDialog() == true)
             {
-                var vmMinProfil = new MinProfilViewModel();
+                var user = vmLogin.Email;
+                var password = vmLogin.Password;
+                var vmMinProfil = new MinProfilViewModel(user, password);
                 var dialogMinProfil = new MinProfil(vmMinProfil);
 
                 dialogMinProfil.ShowDialog();
@@ -45,7 +47,9 @@ namespace CityCrawlApp.ViewModels
 
             if (dialog.ShowDialog() == true)
             {
-                var vmMinProfil = new MinProfilViewModel();
+                var user = vmOpretBruger.Email;
+                var password = vmOpretBruger.Password;
+                var vmMinProfil = new MinProfilViewModel(user, password);
                 var dialogMinProfil = new MinProfil(vmMinProfil);
 
                 dialogMinProfil.ShowDialog();

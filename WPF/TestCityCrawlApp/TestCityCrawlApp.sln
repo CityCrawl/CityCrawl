@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.31729.503
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestCityCrawlApp", "TestCityCrawlApp\TestCityCrawlApp.csproj", "{E489AB88-1390-4F02-9A13-F2516774431A}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{E489AB88-1390-4F02-9A13-F2516774431A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E489AB88-1390-4F02-9A13-F2516774431A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E489AB88-1390-4F02-9A13-F2516774431A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E489AB88-1390-4F02-9A13-F2516774431A}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {37C77372-12E2-4A4E-AEA3-ACDE1D128B3C}
+	EndGlobalSection
+EndGlobal

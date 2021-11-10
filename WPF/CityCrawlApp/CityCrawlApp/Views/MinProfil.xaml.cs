@@ -24,7 +24,6 @@ namespace CityCrawlApp.Views
             InitializeComponent();
             DataContext = vmMinProfil;
             Closing += MinProfil_Closing;
-
         }
 
         private void MinProfil_Closing(object sender, System.ComponentModel.CancelEventArgs e)
@@ -43,7 +42,5 @@ namespace CityCrawlApp.Views
         {
             Close();
         }
-
-        
     }
 }

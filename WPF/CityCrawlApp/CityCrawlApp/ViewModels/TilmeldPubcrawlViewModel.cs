@@ -12,24 +12,29 @@ namespace CityCrawlApp.ViewModels
 {
     public class TilmeldPubcrawlViewModel : BindableBase
     {
+        private string loggedInUser;
+        private string userPassword;
+
+
         private DelegateCommand visProfil;
         public DelegateCommand VisProfil =>
             visProfil ?? (visProfil = new DelegateCommand(ExecuteVisProfil));
 
         void ExecuteVisProfil()
         {
-            var vmMinProfil = new MinProfilViewModel();
+          
+            var vmMinProfil = new MinProfilViewModel(loggedInUser, userPassword);
             var dialog = new MinProfil(vmMinProfil);
 
             dialog.ShowDialog();
         }
 
 
-        public TilmeldPubcrawlViewModel()
+        public TilmeldPubcrawlViewModel(string loggedInUser, string userPassword)
         {
+            this.loggedInUser = loggedInUser;
+            this.userPassword = userPassword;
             App.Current.MainWindow.Visibility = Visibility.Hidden;
         }
     }
-
-   
 }

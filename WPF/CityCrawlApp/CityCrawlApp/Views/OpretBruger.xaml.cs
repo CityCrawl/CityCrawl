@@ -24,11 +24,10 @@ namespace CityCrawlApp.Views
         {
             InitializeComponent();
             DataContext = vmOpretBruger;
-        }
-
-        private void LoginValidButton_OnClick(object sender, RoutedEventArgs e)
-        {
-            DialogResult = true;
+            vmOpretBruger.CloseDialog = (bool dialogResult) =>
+            {
+                this.DialogResult = dialogResult;
+            };
         }
 
         private void PasswordOpretTextBox_OnPasswordChanged(object sender, RoutedEventArgs e)

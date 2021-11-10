@@ -7,10 +7,13 @@ using Prism.Mvvm;
 using Prism.Commands;
 using CityCrawlApp.Views;
 using System.IO;
+using System.Net.Http;
+using System.Text.Json;
 using System.Windows;
 using Microsoft.Win32;
 using Newtonsoft.Json;
 using CityCrawlApp.Models;
+using JsonSerializer = System.Text.Json.JsonSerializer;
 
 namespace CityCrawlApp.ViewModels
 {
@@ -45,11 +48,31 @@ namespace CityCrawlApp.ViewModels
             set { SetProperty(ref email, value); }
         }
 
-        public MinProfilViewModel()
+        private string loggedInUser;
+        private string userPassword;
+
+        public MinProfilViewModel(string loggedInUser, string userPassword)
         {
+            this.loggedInUser = loggedInUser;
+            this.userPassword = userPassword;
+
             App.Current.MainWindow.Visibility = Visibility.Hidden;
 
-            OpenFileDialog openFileDialog = new OpenFileDialog();
+            var user = HttpClientGetUserFromServer(loggedInUser, userPassword);
+            if (user != null)
+            {
+                FirstName = user.FirstName;
+                LastName = user.LastName;
+                Birthday = user.Birthday;
+                Email = user.Email;
+            }
+            else
+            {
+                // show error / close window?
+            }
+            
+
+            /*OpenFileDialog openFileDialog = new OpenFileDialog();
 
             if (openFileDialog.ShowDialog() == true)
             {
@@ -63,7 +86,7 @@ namespace CityCrawlApp.ViewModels
                     Birthday = user.Birthday;
                     Email = user.Email;
                 }
-            }
+            }*/
         }
 
 
@@ -73,10 +96,31 @@ namespace CityCrawlApp.ViewModels
 
         void ExecuteTilmeldPubcrawl()
         {
-            var vmTilmeld = new TilmeldPubcrawlViewModel();
+            var vmTilmeld = new TilmeldPubcrawlViewModel(loggedInUser, userPassword);
             var dialog = new TilmeldPubcrawl(vmTilmeld);
 
             dialog.ShowDialog();
+        }
+
+        private User HttpClientGetUserFromServer(string email, string password)
+        {
+            string url = $"{Settings.baseUrl}/User?email={email}&password={password}"; // tages fra app settings
+            HttpClient client = new HttpClient();
+            try
+            {
+                Task<string> responseBody = client.GetStringAsync(url);
+                var options = new JsonSerializerOptions
+                {
+                    PropertyNameCaseInsensitive = true,
+                };
+                var user = JsonSerializer.Deserialize<User>(responseBody.Result, options);
+                return user;
+            }
+            catch (Exception e)
+            {
+                // show erro failed to talk to server...
+                return null;
+            }
         }
     }
 }

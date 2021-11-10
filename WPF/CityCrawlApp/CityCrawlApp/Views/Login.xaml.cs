@@ -24,13 +24,11 @@ namespace CityCrawlApp.Views
         {
             InitializeComponent();
             DataContext = vmLogin;
+            vmLogin.CloseDialog = (bool dialogResult) =>
+            {
+                this.DialogResult = dialogResult;
+            };
         }
-
-        private void LoginValidButton_OnClick(object sender, RoutedEventArgs e)
-        {
-            DialogResult = true;
-        }
-
 
         private void PasswordLoginTextBox_OnPasswordChanged(object sender, RoutedEventArgs e)
         {

@@ -46,32 +46,16 @@
                    VerticalAlignment="Top"/>
 
         <Button Grid.Row="2"
+                Grid.ColumnSpan="2"
                 Content="Okay"
                 Background="#FF56F7FA"
                 Height="20"
                 Width="60"
-                HorizontalAlignment="Right"
+                HorizontalAlignment="Center"
                 VerticalAlignment="Top"
-                Margin="0,0,20,10"
                 FontWeight="Bold"
                 x:Name="OkayButton"
-                Command="{Binding LoginBtn}"
-                Click="OkayButton_OnClick"/>
+                Command="{Binding CloseBtn}"/>
 
-        <Button Grid.Row="2"
-                Grid.Column="1"
-                Content="Opret bruger"
-                Background="#FFE482E1"
-                Height="20"
-                Width="80"
-                HorizontalAlignment="Left"
-                VerticalAlignment="Top"
-                Margin="10,0,0,10"
-                FontWeight="Bold"
-                x:Name="OpretBrugerButton"
-                Command="{Binding OpretBruger}"
-                Click="OpretBrugerButton_OnClick"
-              
-        />
     </Grid>
 </Window>

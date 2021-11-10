@@ -51,7 +51,7 @@ namespace CityCrawlApp.ViewModels
             set { SetProperty(ref password, value); }
         }
 
-
+        public Action<bool> CloseDialog { get; set; }
 
         private DelegateCommand visProfil;
         public DelegateCommand VisProfil =>
@@ -78,18 +78,10 @@ namespace CityCrawlApp.ViewModels
                 {
                     sw.WriteLine(json);
                 }
-            }
 
-            // return to mainWindow
-            
+                // Return true to mainWindow, user is created
+                CloseDialog(true);
+            }
         }
     }
 }
-
-// burde hellere kun gemme informationer her, evt. først til properties i User klassen: efterfølgende i databasen
-// Så hvis det går godt returnere true (dialog.ShowDialog() == true) til MainWindowViewModel:
-// så kan det åbne MinProfil vinduet og lukke Opret bruger vinduet
-// gentage dette princip for alle vinduerne så alle kaldes fra MainWindowViewModel
-
-// hvis man sender klassen User med og så opdaterer dens properties med det som indtastes,
-// så vil dette huskes når dette modal vindue returnerer til mainWindow

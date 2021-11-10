@@ -13,44 +13,16 @@ namespace CityCrawlApp.ViewModels
     public class ErrorLoginViewModel: BindableBase
     {
 
-        private DelegateCommand loginBtn;
-        public DelegateCommand LoginBtn =>
-            loginBtn ?? (loginBtn = new DelegateCommand(ExecuteLoginBtn));
+        private DelegateCommand closeBtn;
+        public DelegateCommand CloseBtn =>
+            closeBtn ?? (closeBtn = new DelegateCommand(ExecuteCloseBtn));
 
-        void ExecuteLoginBtn()
+        public Action<bool> CloseDialog { get; set; }
+
+        void ExecuteCloseBtn()
         {
-            var vmLogin = new LoginViewModel();
-            var dialog = new Login(vmLogin);
-
-            if (dialog.ShowDialog() == true)
-            {
-                var vmMinProfil = new MinProfilViewModel();
-                var dialogMinProfil = new MinProfil(vmMinProfil);
-
-                dialogMinProfil.ShowDialog();
-
-            }
-        }
-
-
-        private DelegateCommand opretBruger;
-        public DelegateCommand OpretBruger =>
-            opretBruger ?? (opretBruger = new DelegateCommand(ExecuteOpretBruger));
-
-        void ExecuteOpretBruger()
-        {
-
-            var vmOpretBruger = new OpretBrugerViewModel();
-            var dialog = new OpretBruger(vmOpretBruger);
-
-            if (dialog.ShowDialog() == true)
-            {
-                var vmMinProfil = new MinProfilViewModel();
-                var dialogMinProfil = new MinProfil(vmMinProfil);
-
-                dialogMinProfil.ShowDialog();
-
-            }
+            // Nobody uses this value, so leave it false
+            CloseDialog(false);
         }
     }
 }

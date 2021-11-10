@@ -94,7 +94,6 @@
                     Background="#FF56F7FA"
                     x:Name="LoginValidButton"
                     Command="{Binding Login}"
-                    Click="LoginValidButton_OnClick"
                 />
         </StackPanel>
 

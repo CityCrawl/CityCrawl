@@ -156,7 +156,6 @@
                     Background="#FFE482E1"
                     x:Name="LoginValidButton"
                     Command="{Binding VisProfil}"
-                    Click="LoginValidButton_OnClick"
             />
         </StackPanel>
 
