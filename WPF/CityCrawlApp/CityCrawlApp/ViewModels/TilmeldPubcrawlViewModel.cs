@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using Prism.Mvvm;
 using Prism.Commands;
 using CityCrawlApp.Views;
@@ -22,5 +23,13 @@ namespace CityCrawlApp.ViewModels
 
             dialog.ShowDialog();
         }
+
+
+        public TilmeldPubcrawlViewModel()
+        {
+            App.Current.MainWindow.Visibility = Visibility.Hidden;
+        }
     }
+
+   
 }

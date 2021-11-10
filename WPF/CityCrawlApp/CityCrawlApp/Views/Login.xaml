@@ -4,7 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:CityCrawlApp.Views"
-        WindowStartupLocation="CenterOwner"
+        WindowStartupLocation="CenterScreen"
         mc:Ignorable="d"
         Title="Login" Height="230" Width="250"
         Background="{DynamicResource ResourceKey=BackgroundLogin}">
@@ -20,6 +20,7 @@
                          HorizontalAlignment="Center"
                          Width="140"
                          x:Name="EmailLoginTextBox"
+                         Text="{Binding Path=Email}"
                          TextWrapping="Wrap"
                 />
                 <TextBlock IsHitTestVisible="False" Text="E-mail" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="58,31,0,0" Foreground="DarkGray" >
@@ -40,6 +41,7 @@
                      HorizontalAlignment="Center"
                      Width="140"
                      x:Name="PasswordLoginTextBox"
+                     Text="{Binding Path=Password}"
                      TextWrapping="Wrap"
                 />
                 <TextBlock IsHitTestVisible="False" Text="Password" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="58,1,0,0" Foreground="DarkGray">
@@ -63,6 +65,7 @@
                     Background="#FF56F7FA"
                     x:Name="LoginValidButton"
                     Command="{Binding Login}"
+                    Click="LoginValidButton_OnClick"
                 />
         </StackPanel>
 

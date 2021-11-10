@@ -24,5 +24,10 @@ namespace CityCrawlApp.Views
             InitializeComponent();
             DataContext = vmLogin;
         }
+
+        private void LoginValidButton_OnClick(object sender, RoutedEventArgs e)
+        {
+            DialogResult = true;
+        }
     }
 }

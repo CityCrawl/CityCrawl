@@ -19,9 +19,21 @@ namespace CityCrawlApp.Views
     /// </summary>
     public partial class LoginError : Window
     {
-        public LoginError()
+        public LoginError(ViewModels.ErrorLoginViewModel vmErrorLogin)
         {
             InitializeComponent();
+            DataContext = vmErrorLogin;
+        }
+
+        private void OkayButton_OnClick(object sender, RoutedEventArgs e)
+        {
+            Close();
+        }
+
+        private void OpretBrugerButton_OnClick(object sender, RoutedEventArgs e)
+        {
+            Close();
+            // skal også lukke Login vinduet
         }
     }
 }

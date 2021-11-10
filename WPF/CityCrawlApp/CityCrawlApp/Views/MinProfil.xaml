@@ -4,7 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:CityCrawlApp.Views"
-        WindowStartupLocation="CenterOwner"
+        WindowStartupLocation="CenterScreen"
         mc:Ignorable="d"
         Title="MinProfil" Height="350" Width="500"
         Background="{DynamicResource ResourceKey=BackgroundColor}">
@@ -37,7 +37,10 @@
                     <Image Source="Images/menu.png" Width="35" Height="25" HorizontalAlignment="Left"></Image>
                 </MenuItem.Header>
                 <MenuItem Header="_Tilmeld pubcrawl"
-                          Command="{Binding TilmeldPubcrawl}"/>
+                          Command="{Binding TilmeldPubcrawl}"
+                          Click="MenuItemRegister_OnClick"/>
+                <MenuItem Header="Log ud"
+                          Click="MenuItemLogOut_OnClick"/>
             </MenuItem>
 
         </Menu>
