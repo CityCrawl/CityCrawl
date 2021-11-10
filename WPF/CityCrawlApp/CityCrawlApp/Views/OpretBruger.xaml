@@ -4,7 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:CityCrawlApp.Views"
-        WindowStartupLocation="CenterOwner"
+        WindowStartupLocation="CenterScreen"
         mc:Ignorable="d"
         Title="OpretBruger" Height="380" Width="300"
         Background="{DynamicResource ResourceKey=BackgroundOpretBruger}">
@@ -136,6 +136,7 @@
                     Background="#FFE482E1"
                     x:Name="LoginValidButton"
                     Command="{Binding VisProfil}"
+                    Click="LoginValidButton_OnClick"
             />
         </StackPanel>
 

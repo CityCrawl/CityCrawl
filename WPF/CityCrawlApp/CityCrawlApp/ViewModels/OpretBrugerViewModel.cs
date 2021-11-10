@@ -68,13 +68,20 @@ namespace CityCrawlApp.ViewModels
             userInDB.Password = password;
 
             SaveFileDialog saveFileDialog = new SaveFileDialog();
+            
 
-            var json = JsonConvert.SerializeObject(userInDB, Newtonsoft.Json.Formatting.Indented);
-
-            using (StreamWriter sw = new StreamWriter(saveFileDialog.FileName))
+            if (saveFileDialog.ShowDialog() == true)
             {
-                sw.WriteLine(json);
+                var json = JsonConvert.SerializeObject(userInDB, Newtonsoft.Json.Formatting.Indented);
+
+                using (StreamWriter sw = new StreamWriter(saveFileDialog.FileName))
+                {
+                    sw.WriteLine(json);
+                }
             }
+
+            // return to mainWindow
+            
         }
     }
 }

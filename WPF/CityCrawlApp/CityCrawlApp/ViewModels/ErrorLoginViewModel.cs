@@ -2,19 +2,17 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading.Channels;
 using System.Threading.Tasks;
+using CityCrawlApp.Views;
 using Prism.Commands;
 using Prism.Mvvm;
-using CityCrawlApp.Views;
-using Microsoft.Win32;
-using System.IO;
-using Newtonsoft.Json;
-using CityCrawlApp.Models;
 
 namespace CityCrawlApp.ViewModels
 {
-    public class MainWindowViewModel : BindableBase
+    public class ErrorLoginViewModel: BindableBase
     {
+
         private DelegateCommand loginBtn;
         public DelegateCommand LoginBtn =>
             loginBtn ?? (loginBtn = new DelegateCommand(ExecuteLoginBtn));
@@ -34,12 +32,14 @@ namespace CityCrawlApp.ViewModels
             }
         }
 
-        private DelegateCommand opretBrugerBtn;
-        public DelegateCommand OpretBrugerBtn =>
-            opretBrugerBtn ?? (opretBrugerBtn = new DelegateCommand(ExecuteOpretBrugerBtn));
 
-        void ExecuteOpretBrugerBtn()
+        private DelegateCommand opretBruger;
+        public DelegateCommand OpretBruger =>
+            opretBruger ?? (opretBruger = new DelegateCommand(ExecuteOpretBruger));
+
+        void ExecuteOpretBruger()
         {
+
             var vmOpretBruger = new OpretBrugerViewModel();
             var dialog = new OpretBruger(vmOpretBruger);
 

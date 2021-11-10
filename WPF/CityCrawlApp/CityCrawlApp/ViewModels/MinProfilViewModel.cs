@@ -7,6 +7,7 @@ using Prism.Mvvm;
 using Prism.Commands;
 using CityCrawlApp.Views;
 using System.IO;
+using System.Windows;
 using Microsoft.Win32;
 using Newtonsoft.Json;
 using CityCrawlApp.Models;
@@ -46,19 +47,23 @@ namespace CityCrawlApp.ViewModels
 
         public MinProfilViewModel()
         {
+            App.Current.MainWindow.Visibility = Visibility.Hidden;
+
             OpenFileDialog openFileDialog = new OpenFileDialog();
 
-            using (StreamReader sr = new StreamReader(openFileDialog.FileName))
+            if (openFileDialog.ShowDialog() == true)
             {
-                var jsonText = sr.ReadToEnd();
-                var user = JsonConvert.DeserializeObject<User>(jsonText);
+                using (StreamReader sr = new StreamReader(openFileDialog.FileName))
+                {
+                    var jsonText = sr.ReadToEnd();
+                    var user = JsonConvert.DeserializeObject<User>(jsonText);
 
-                FirstName = user.FirstName;
-                LastName = user.LastName;
-                Birthday = user.Birthday;
-                Email = user.Email;
+                    FirstName = user.FirstName;
+                    LastName = user.LastName;
+                    Birthday = user.Birthday;
+                    Email = user.Email;
+                }
             }
-
         }
 
 
