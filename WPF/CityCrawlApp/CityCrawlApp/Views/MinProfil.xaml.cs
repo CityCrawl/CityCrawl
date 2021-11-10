@@ -23,6 +23,13 @@ namespace CityCrawlApp.Views
         {
             InitializeComponent();
             DataContext = vmMinProfil;
+            Closing += MinProfil_Closing;
+
+        }
+
+        private void MinProfil_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            App.Current.MainWindow.Visibility = Visibility.Visible;
         }
 
         private void MenuItemLogOut_OnClick(object sender, RoutedEventArgs e)

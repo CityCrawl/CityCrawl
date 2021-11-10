@@ -38,6 +38,15 @@ namespace CityCrawlApp.ViewModels
 
         void ExecuteLogin()
         {
+            if (email == null || password == null)
+            {
+                var vmErrorLogin = new ErrorLoginViewModel();
+                var dialogMinProfil = new LoginError(vmErrorLogin);
+
+                dialogMinProfil.ShowDialog();
+            }
+
+
             OpenFileDialog openFileDialog = new OpenFileDialog();
 
             if (openFileDialog.ShowDialog() == true)
@@ -48,12 +57,14 @@ namespace CityCrawlApp.ViewModels
                     var jsonText = sr.ReadToEnd();
                     var user = JsonConvert.DeserializeObject<User>(jsonText);
 
-                    if (user.Email != email || user.Password != password && (user.Email != null && user.Password != null))
+                    if (user.Email != email || user.Password != password)
                     {
+
                         var vmErrorLogin = new ErrorLoginViewModel();
                         var dialogMinProfil = new LoginError(vmErrorLogin);
 
                         dialogMinProfil.ShowDialog();
+
                     }
                 }
             }

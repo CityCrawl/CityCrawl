@@ -28,7 +28,6 @@ namespace CityCrawlApp.Views
 
         private void TilmeldPubcrawl_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
-            //Close();
             App.Current.MainWindow.Visibility = Visibility.Visible;
         }
 
