@@ -30,8 +30,7 @@ namespace CityCrawlApp.ViewModels
             set { SetProperty(ref password, value); }
         }
 
-
-
+       
         private DelegateCommand login;
         public DelegateCommand Login =>
             login ?? (login = new DelegateCommand(ExecuteLogin));
@@ -41,11 +40,10 @@ namespace CityCrawlApp.ViewModels
             if (email == null || password == null)
             {
                 var vmErrorLogin = new ErrorLoginViewModel();
-                var dialogMinProfil = new LoginError(vmErrorLogin);
+                var dialogErrorLogin = new LoginError(vmErrorLogin);
 
-                dialogMinProfil.ShowDialog();
+                dialogErrorLogin.ShowDialog();
             }
-
 
             OpenFileDialog openFileDialog = new OpenFileDialog();
 
@@ -61,9 +59,9 @@ namespace CityCrawlApp.ViewModels
                     {
 
                         var vmErrorLogin = new ErrorLoginViewModel();
-                        var dialogMinProfil = new LoginError(vmErrorLogin);
+                        var dialogErrorLogin = new LoginError(vmErrorLogin);
 
-                        dialogMinProfil.ShowDialog();
+                        dialogErrorLogin.ShowDialog();
 
                     }
                 }
