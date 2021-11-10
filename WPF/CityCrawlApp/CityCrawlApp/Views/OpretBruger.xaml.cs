@@ -11,6 +11,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using CityCrawlApp.ViewModels;
 
 namespace CityCrawlApp.Views
 {
@@ -28,6 +29,12 @@ namespace CityCrawlApp.Views
         private void LoginValidButton_OnClick(object sender, RoutedEventArgs e)
         {
             DialogResult = true;
+        }
+
+        private void PasswordOpretTextBox_OnPasswordChanged(object sender, RoutedEventArgs e)
+        {
+            if (this.DataContext != null)
+            { ((OpretBrugerViewModel)this.DataContext).Password = ((PasswordBox)sender).Password; }
         }
     }
 }

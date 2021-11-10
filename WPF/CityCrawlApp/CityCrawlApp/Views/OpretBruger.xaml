@@ -4,6 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:CityCrawlApp.Views"
+        xmlns:models="clr-namespace:CityCrawlApp.Models"
         WindowStartupLocation="CenterScreen"
         mc:Ignorable="d"
         Title="OpretBruger" Height="380" Width="300"
@@ -12,6 +13,46 @@
         <Style TargetType="{x:Type Label}">
             <Setter Property="FontSize" Value="8pt"/>
             <Setter Property="FontFamily" Value="Segoe UI"/>
+        </Style>
+        <Style x:Key="{x:Type PasswordBox}"
+           TargetType="{x:Type PasswordBox}">
+            <Setter Property="models:PasswordBoxMonitor.IsMonitoring"
+                Value="True"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type PasswordBox}">
+                        <Border Name="Bd"
+                            Background="{TemplateBinding Background}"
+                            BorderThickness="{TemplateBinding BorderThickness}"
+                            BorderBrush="{TemplateBinding BorderBrush}"
+                            SnapsToDevicePixels="true">
+                            <Grid>
+                                <ScrollViewer x:Name="PART_ContentHost"
+                                          SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"/>
+                                <TextBlock Text="Password" 
+                                           FontStyle="Italic"
+                                       Margin="2, 0, 0, 0"
+                                       Foreground="DarkGray" 
+                                       Visibility="Collapsed"
+                                       Name="txtPrompt" />
+                            </Grid>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsEnabled"
+                                 Value="false">
+                                <Setter TargetName="Bd"
+                                    Property="Background"
+                                    Value="{DynamicResource {x:Static SystemColors.ControlBrushKey}}"/>
+                                <Setter Property="Foreground"
+                                    Value="{DynamicResource {x:Static SystemColors.GrayTextBrushKey}}"/>
+                            </Trigger>
+                            <Trigger Property="models:PasswordBoxMonitor.PasswordLength" Value="0">
+                                <Setter Property="Visibility" TargetName="txtPrompt" Value="Visible"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
         </Style>
     </Window.Resources>
     <Grid>
@@ -101,31 +142,10 @@
             </Grid>
             <Label Content="Password"/>
             <Grid>
-                <TextBox Margin="0,0,0,5"
-                     Width="180"
-                     Name="PasswordOpretTextBox"
-                     Text="{Binding Path=Password}"/>
-                <TextBlock IsHitTestVisible="False"
-                   Text="**********"
-                   FontStyle="Italic"
-                   VerticalAlignment="Top"
-                   HorizontalAlignment="Left"
-                   Margin="3,1,0,0"
-                   Foreground="DarkGray">
-                <TextBlock.Style>
-                        <Style TargetType="{x:Type TextBlock}">
-                            <Setter Property="Visibility"
-                                    Value="Collapsed"/>
-                            <Style.Triggers>
-                                <DataTrigger Binding="{Binding Text, ElementName=PasswordOpretTextBox}"
-                                             Value="">
-                                    <Setter Property="Visibility"
-                                            Value="Visible"/>
-                                </DataTrigger>
-                            </Style.Triggers>
-                        </Style>
-                    </TextBlock.Style>
-                </TextBlock>
+                <PasswordBox Margin="0,0,0,5"
+                             Width="180"
+                             Name="PasswordOpretTextBox"
+                             PasswordChanged="PasswordOpretTextBox_OnPasswordChanged"/>
             </Grid>
             <Button Height="20"
                     Width="90"
