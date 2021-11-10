@@ -23,6 +23,13 @@ namespace CityCrawlApp.Views
         {
             InitializeComponent();
             DataContext = vmTilmeld;
+            Closing += TilmeldPubcrawl_Closing;
+        }
+
+        private void TilmeldPubcrawl_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            //Close();
+            App.Current.MainWindow.Visibility = Visibility.Visible;
         }
 
         private void MenuItemLogOut_OnClick(object sender, RoutedEventArgs e)
