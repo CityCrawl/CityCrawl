@@ -4,6 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:CityCrawlApp.Views"
+        WindowStartupLocation="CenterOwner"
         mc:Ignorable="d"
         Title="OpretBruger" Height="380" Width="300"
         Background="{DynamicResource ResourceKey=BackgroundOpretBruger}">
@@ -24,7 +25,9 @@
             <Grid>
                 <TextBox Margin="0,0,0,5"
                          Width="180"
-                         x:Name="FornavnTextBox"/>
+                         Name="FornavnTextBox"
+                         Text="{Binding Path=FirstName}"
+                         />
                 <TextBlock IsHitTestVisible="False" Text="Hans" FontStyle="Italic" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="3,1,0,0" Foreground="DarkGray">
                     <TextBlock.Style>
                         <Style TargetType="{x:Type TextBlock}">
@@ -42,7 +45,8 @@
             <Grid>
                 <TextBox Margin="0,0,0,5"
                          Width="180"
-                         x:Name="EfternavnTextBox"/>
+                         Name="EfternavnTextBox"
+                         Text="{Binding Path=LastName}"/>
                 <TextBlock IsHitTestVisible="False" Text="Hansen" FontStyle="Italic" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="3,1,0,0" Foreground="DarkGray">
                     <TextBlock.Style>
                         <Style TargetType="{x:Type TextBlock}">
@@ -60,7 +64,8 @@
             <Grid>
                 <TextBox Margin="0,0,0,5"
                          Width="180"
-                         x:Name="FoedselsdatoTextBox"/>
+                         Name="FoedselsdatoTextBox"
+                         Text="{Binding Path=Birthday}"/>
                 <TextBlock IsHitTestVisible="False" Text="DD-MM-YYYY" FontStyle="Italic" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="3,1,0,0" Foreground="DarkGray">
                     <TextBlock.Style>
                         <Style TargetType="{x:Type TextBlock}">
@@ -78,7 +83,8 @@
             <Grid>
                 <TextBox Margin="0,0,0,5"
                          Width="180"
-                         x:Name="EmailOpretTextBox"
+                         Name="EmailOpretTextBox"
+                         Text="{Binding Path=Email}"
                          TextWrapping="Wrap"/>
                 <TextBlock IsHitTestVisible="False" Text="hans@hansen.dk" FontStyle="Italic" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="3,1,0,0" Foreground="DarkGray">
                     <TextBlock.Style>
@@ -97,15 +103,16 @@
             <Grid>
                 <TextBox Margin="0,0,0,5"
                      Width="180"
-                     x:Name="PasswordOpretTextBox"/>
+                     Name="PasswordOpretTextBox"
+                     Text="{Binding Path=Password}"/>
                 <TextBlock IsHitTestVisible="False"
-                           Text="**********"
-                           FontStyle="Italic"
-                           VerticalAlignment="Top"
-                           HorizontalAlignment="Left"
-                           Margin="3,1,0,0"
-                           Foreground="DarkGray">
-                    <TextBlock.Style>
+                   Text="**********"
+                   FontStyle="Italic"
+                   VerticalAlignment="Top"
+                   HorizontalAlignment="Left"
+                   Margin="3,1,0,0"
+                   Foreground="DarkGray">
+                <TextBlock.Style>
                         <Style TargetType="{x:Type TextBlock}">
                             <Setter Property="Visibility"
                                     Value="Collapsed"/>

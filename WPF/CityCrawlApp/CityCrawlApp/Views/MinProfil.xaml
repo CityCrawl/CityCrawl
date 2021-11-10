@@ -4,6 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:CityCrawlApp.Views"
+        WindowStartupLocation="CenterOwner"
         mc:Ignorable="d"
         Title="MinProfil" Height="350" Width="500"
         Background="{DynamicResource ResourceKey=BackgroundColor}">
@@ -49,30 +50,30 @@
                 <Label Width="80">
                     Fornavn:
                 </Label>
-                <TextBlock VerticalAlignment="Center"/>
+                <TextBlock  Text="{Binding Path=FirstName}" VerticalAlignment="Center"/>
             </WrapPanel>
 
             <WrapPanel>
                 <Label Width="80">
                     Efternavn:
                 </Label>
-                <TextBlock VerticalAlignment="Center"/>
+                <TextBlock  Text="{Binding Path=LastName}" VerticalAlignment="Center"/>
             </WrapPanel>
 
             <WrapPanel>
                 <Label Width="80">
                     Fødselsdato:
                 </Label>
-                <TextBlock VerticalAlignment="Center"
-                           />
+                <TextBlock  Text="{Binding Path=Birthday}" VerticalAlignment="Center"
+                />
             </WrapPanel>
 
             <WrapPanel>
                 <Label Width="80">
                     E-mail:
                 </Label>
-                <TextBlock VerticalAlignment="Center"
-                           />
+                <TextBlock Text="{Binding Path=Email}" VerticalAlignment="Center"
+                />
             </WrapPanel>
         </StackPanel>
 

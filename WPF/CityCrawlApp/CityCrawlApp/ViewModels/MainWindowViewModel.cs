@@ -21,7 +21,16 @@ namespace CityCrawlApp.ViewModels
             var vmLogin = new LoginViewModel();
             var dialog = new Login(vmLogin);
 
-            dialog.ShowDialog();
+            if (dialog.ShowDialog() == true)
+            {
+                // if(Email == EmailInDB && Password == PasswordInDB)
+                var vmMinProfil = new MinProfilViewModel();
+                var dialogMinProfil = new MinProfil(vmMinProfil);
+
+                dialogMinProfil.ShowDialog();
+
+                // else: åbne LoginError
+            }
         }
 
         private DelegateCommand opretBrugerBtn;
@@ -33,7 +42,14 @@ namespace CityCrawlApp.ViewModels
             var vmOpretBruger = new OpretBrugerViewModel();
             var dialog = new OpretBruger(vmOpretBruger);
 
-            dialog.ShowDialog();
+            if (dialog.ShowDialog() == true)
+            {
+                var vmMinProfil = new MinProfilViewModel();
+                var dialogMinProfil = new MinProfil(vmMinProfil);
+
+                dialogMinProfil.ShowDialog();
+
+            }
         }
     }
 }
