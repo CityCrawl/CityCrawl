@@ -33,12 +33,18 @@ namespace CityCrawlApp.ViewModels
 
         void ExecuteCombineToListOne()
         {
-            User userInDB = new User();
-            userInDB.pubCrawls.Add("Pakke 1, " + selectedDate);
+            if (selectedDate == null)
+                MessageBox.Show("Venligst vælg dato, før pakke vælges");
+            else
+            {
+                User userInDB = new User();
+                userInDB.pubCrawls.Add("Pakke 1, " + selectedDate);
 
-            HttpClientPostUserToServerAsync(userInDB);
+                HttpClientPostUserToServerAsync(userInDB);
 
-            MessageBox.Show($"PubCrawl booket: {userInDB.pubCrawls.ElementAt(0)}");
+                MessageBox.Show($"PubCrawl booket: {userInDB.pubCrawls.ElementAt(0)}");
+            }
+            
         }
 
         
@@ -49,12 +55,17 @@ namespace CityCrawlApp.ViewModels
 
         void ExecuteCombineToListTwo()
         {
-            User userInDB = new User();
-            userInDB.pubCrawls.Add("Pakke 2, " + selectedDate);
+            if (selectedDate == null)
+                MessageBox.Show("Venligst vælg dato, før pakke vælges");
+            else
+            {
+                User userInDB = new User();
+                userInDB.pubCrawls.Add("Pakke 2, " + selectedDate);
 
-            HttpClientPostUserToServerAsync(userInDB);
+                HttpClientPostUserToServerAsync(userInDB);
 
-            MessageBox.Show($"PubCrawl booket: {userInDB.pubCrawls.ElementAt(0)}");
+                MessageBox.Show($"PubCrawl booket: {userInDB.pubCrawls.ElementAt(0)}");
+            }
         }
 
         private DelegateCommand visProfil;
