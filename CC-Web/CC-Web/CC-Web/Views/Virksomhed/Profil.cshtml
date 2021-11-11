@@ -1,0 +1,79 @@
+﻿@model IEnumerable<CC_Web.Models.Data.Virksomhed>
+
+@{
+    ViewData["Title"] = "Profil";
+}
+<img src="~/Images/CCLogo.png" class="generel_style_image" />
+
+<div class="row">
+    <div class="col-md-1"></div>
+    <div class="col-md-7">
+        <h1>Virksomhedsprofil</h1>
+        <p>Virksomhedsnavn:</p>
+        <p>CVR-nummer: </p>
+        <p>Kontaktperson</p>
+        <p>E-mail:</p>
+        <p>Virksomhedsbeskrivelse: </p>
+
+        <textarea id="textareaV" style="width:350px;height:200px"></textarea>
+        <br />
+        <input type="button" class="PinkBtn" value="Gem" style="margin-top:5%" />
+
+    </div>
+    <div class="col-md-4">
+        <h1>Bookede pubcrawls</h1>
+
+    </div>
+</div>
+
+<hr />
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.CVR)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Virksomhedsnavn)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.KontaktPerson)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Email)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Password)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CVR)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Virksomhedsnavn)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.KontaktPerson)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Email)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Password)
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.VirksomhedID">Edit</a> |
+                    <a asp-action="Details" asp-route-id="@item.VirksomhedID">Details</a> |
+                    <a asp-action="Delete" asp-route-id="@item.VirksomhedID">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
