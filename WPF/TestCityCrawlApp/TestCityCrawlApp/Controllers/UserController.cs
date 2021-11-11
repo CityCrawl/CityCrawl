@@ -32,5 +32,26 @@ namespace TestCityCrawlApp.Controllers
 
             throw new Exception("Bad user or password");
         }
+
+        [HttpPost]
+        public ActionResult<User> Post(User user)
+        {
+            if (user == null)
+            {
+                return BadRequest();
+            }
+
+            var newUser = new User()
+            {
+                FirstName = user.FirstName,
+                LastName = user.LastName,
+                Birthday = user.Birthday,
+                Email = user.Email,
+                Password = user.Password
+            };
+
+            return newUser;
+        }
+
     }
 }
