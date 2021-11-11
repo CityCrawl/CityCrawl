@@ -99,17 +99,17 @@ namespace CityCrawlApp.ViewModels
                 };
 
                 HttpClient client = new HttpClient();
-                var content = new User()
-                {
-                    FirstName = user.FirstName,
-                    LastName = user.LastName,
-                    Birthday = user.Birthday,
-                    Email = user.Email,
-                    Password = user.Password
-                };
+                //var content = new User()
+                //{
+                //    FirstName = user.FirstName,
+                //    LastName = user.LastName,
+                //    Birthday = user.Birthday,
+                //    Email = user.Email,
+                //    Password = user.Password
+                //};
 
-                var json = System.Text.Json.JsonSerializer.Serialize(content, options);
-                using (var stringContent = new StringContent(json, Encoding.UTF8, "app/json"))
+                var json = System.Text.Json.JsonSerializer.Serialize(user, options);
+                using (var stringContent = new StringContent(json, Encoding.UTF8, "application/json"))
                 {
                     httpRequest.Content = stringContent;
                     using (var httpResponse = await client

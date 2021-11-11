@@ -33,8 +33,8 @@ namespace TestCityCrawlApp.Controllers
             throw new Exception("Bad user or password");
         }
 
-        [HttpPost]
-        public ActionResult<User> Post(User user)
+        [HttpPost("PostCreateUser")]
+        public ActionResult<User> PostCreateUser(User user)
         {
             if (user == null)
             {
@@ -48,6 +48,22 @@ namespace TestCityCrawlApp.Controllers
                 Birthday = user.Birthday,
                 Email = user.Email,
                 Password = user.Password
+            };
+
+            return newUser;
+        }
+
+        [HttpPost("PostSavePubCrawl")]
+        public ActionResult<User> PostSavePubCrawl(User user)
+        {
+            if (user == null)
+            {
+                return BadRequest();
+            }
+
+            var newUser = new User()
+            {
+                pubCrawls = user.pubCrawls
             };
 
             return newUser;
