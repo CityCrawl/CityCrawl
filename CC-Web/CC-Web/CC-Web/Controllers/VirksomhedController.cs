@@ -25,6 +25,11 @@ namespace CC_Web.Controllers
             return View(await _context.virksomheder.ToListAsync());
         }
 
+        public async Task<IActionResult> Profil()
+        {
+            return View(await _context.virksomheder.ToListAsync());
+        }
+
         // GET: Virksomhed/Details/5
         public async Task<IActionResult> Details(int? id)
         {
