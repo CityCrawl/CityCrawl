@@ -13,5 +13,8 @@ namespace CC_Web.Models.Data
         public string KontaktPerson { get; set; }
         public string Email { get; set; }
         public string Password { get; set; }
+        //forening key til CityCrawl
+        public int CityCrawlID { get; set; }
+        public CityCrawl CC { get; set; }
     }
 }

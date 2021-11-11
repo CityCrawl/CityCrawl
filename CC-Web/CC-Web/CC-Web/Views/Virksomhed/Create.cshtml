@@ -4,48 +4,43 @@
     ViewData["Title"] = "Create";
 }
 
-<h1>Create</h1>
+<img src="~/Images/CCLogo.png" class="generel_style_image" />
 
-<h4>Virksomhed</h4>
 <hr />
 <div class="row">
-    <div class="col-md-4">
+    <div class="col-md-12">
         <form asp-action="Create">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div asp-validation-summary="ModelOnly" class=""></div>
             <div class="form-group">
-                <label asp-for="CVR" class="control-label"></label>
-                <input asp-for="CVR" class="form-control" />
+                <label asp-for="CVR" class="generel_style_txt_box"></label>
+                <input type="text" asp-for="CVR" class="generel_style_txt_box" placeholder="CVR-nummer"/>
                 <span asp-validation-for="CVR" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Virksomhedsnavn" class="control-label"></label>
-                <input asp-for="Virksomhedsnavn" class="form-control" />
+                <label asp-for="Virksomhedsnavn" class="generel_style_txt_box"></label>
+                <input type="text" asp-for="Virksomhedsnavn" class="generel_style_txt_box" placeholder="CityCrawl"/>
                 <span asp-validation-for="Virksomhedsnavn" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="KontaktPerson" class="control-label"></label>
-                <input asp-for="KontaktPerson" class="form-control" />
+                <label asp-for="KontaktPerson" class="generel_style_txt_box"></label>
+                <input type="text" asp-for="KontaktPerson" class="generel_style_txt_box" placeholder="Hans Hansen"/>
                 <span asp-validation-for="KontaktPerson" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Email" class="control-label"></label>
-                <input asp-for="Email" class="form-control" />
+                <label asp-for="Email" class="generel_style_txt_box"></label>
+                <input type="email" asp-for="Email" class="generel_style_txt_box" placeholder="hans@hansen.dk"/>
                 <span asp-validation-for="Email" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Password" class="control-label"></label>
-                <input asp-for="Password" class="form-control" />
+                <label asp-for="Password" class="generel_style_txt_box"></label>
+                <input type="password" asp-for="Password" class="generel_style_txt_box" placeholder="*********"/>
                 <span asp-validation-for="Password" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
+                <input type="submit" value="Create" class="PinkBtn" id="center_btn" />
             </div>
         </form>
     </div>
-</div>
-
-<div>
-    <a asp-action="Index">Back to List</a>
 </div>
 
 @section Scripts {
