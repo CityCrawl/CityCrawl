@@ -10,6 +10,8 @@ using CityCrawlApp.Views;
 using Newtonsoft.Json;
 using System.IO;
 using Microsoft.Win32;
+using System.Net.Http;
+using System.Text.Json;
 
 namespace CityCrawlApp.ViewModels
 {
@@ -67,7 +69,10 @@ namespace CityCrawlApp.ViewModels
             userInDB.Email = email;
             userInDB.Password = password;
 
-            SaveFileDialog saveFileDialog = new SaveFileDialog();
+            HttpClientPostUserToServerAsync(userInDB);
+            CloseDialog(true);
+
+            /*SaveFileDialog saveFileDialog = new SaveFileDialog();
             
 
             if (saveFileDialog.ShowDialog() == true)
@@ -81,6 +86,39 @@ namespace CityCrawlApp.ViewModels
 
                 // Return true to mainWindow, user is created
                 CloseDialog(true);
+            }*/
+        }
+
+        private async Task HttpClientPostUserToServerAsync(User user)
+        {
+            using (var httpRequest = new HttpRequestMessage(HttpMethod.Post, Settings.baseUrl))
+            {
+                var options = new JsonSerializerOptions
+                {
+                    PropertyNamingPolicy = JsonNamingPolicy.CamelCase
+                };
+
+                HttpClient client = new HttpClient();
+                var content = new User()
+                {
+                    FirstName = user.FirstName,
+                    LastName = user.LastName,
+                    Birthday = user.Birthday,
+                    Email = user.Email,
+                    Password = user.Password
+                };
+
+                var json = System.Text.Json.JsonSerializer.Serialize(content, options);
+                using (var stringContent = new StringContent(json, Encoding.UTF8, "app/json"))
+                {
+                    httpRequest.Content = stringContent;
+                    using (var httpResponse = await client
+                        .SendAsync(httpRequest, HttpCompletionOption.ResponseHeadersRead)
+                        .ConfigureAwait(false))
+                    {
+                        httpResponse.EnsureSuccessStatusCode();
+                    }
+                }
             }
         }
     }
