@@ -40,7 +40,8 @@
         
         <Calendar HorizontalAlignment="Right"
                   Grid.Row="1"
-                  VerticalAlignment="Center">
+                  VerticalAlignment="Center"
+                  SelectedDate="{Binding Path=SelectedDate}">
             <!--Her kan man lave en "BlackoutDates" funktion-->
         </Calendar>
 
@@ -65,22 +66,25 @@
                 Background="LightGreen"
                 Height="35"
                 Width="90"
-                HorizontalAlignment="Right"
+                HorizontalAlignment="Left"
                 VerticalAlignment="Top"
-                Margin="0,0,60,0"
+                Margin="60,0,0,0"
                 FontWeight="Bold"
-                x:Name="LoginButton"
-                />
+                x:Name="Pakke1"
+                Command="{Binding Path=GetPubCrawlOneAndDate}"/>
+
         <Button Grid.Row="2"
                 Grid.Column="1"
                 Content="Vælg"
                 Background="LightGreen"
                 Height="35"
                 Width="90"
-                HorizontalAlignment="Left"
+                HorizontalAlignment="Right"
                 VerticalAlignment="Top"
-                Margin="60,0,0,0"
+                Margin="0,0,60,0"
                 FontWeight="Bold"
-                x:Name="OpretBrugerButton"/>
+                x:Name="Pakke2"
+                Command="{Binding Path=GetPubCrawlTwoAndDate}"
+                />
     </Grid>
 </Window>
