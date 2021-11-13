@@ -14,27 +14,36 @@
             <Setter Property="FontWeight" Value="Bold"/>
         </Style>
     </Window.Resources>
-    
+
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
-            <RowDefinition Height="0.3*"/>
+            <RowDefinition Height="0.34*"/>
             <RowDefinition Height="2.5*"/>
             <RowDefinition/>
         </Grid.RowDefinitions>
 
 
         <Menu Width="37" 
-              Height="27" 
+              Height="27"
               HorizontalAlignment="Left" 
               VerticalAlignment="Top" 
               Background="{DynamicResource ResourceKey=BackgroundColor}">
             <MenuItem Padding="0,0,0,0" HorizontalAlignment="Center" Width="37" Height="27">
                 <MenuItem.Header>
-                    <Image Source="Images/menu.png" Width="35" Height="25" HorizontalAlignment="Left"></Image>
+                    <Image Source="Images/menu.png" Width="35" Height="25" HorizontalAlignment="Left">
+                        <Image.RenderTransform>
+                            <TransformGroup>
+                                <ScaleTransform/>
+                                <SkewTransform/>
+                                <RotateTransform Angle="0.178"/>
+                                <TranslateTransform/>
+                            </TransformGroup>
+                        </Image.RenderTransform>
+                    </Image>
                 </MenuItem.Header>
                 <MenuItem Header="_Tilmeld pubcrawl"
                           Command="{Binding TilmeldPubcrawl}"
@@ -86,7 +95,7 @@
                Style="{StaticResource Headers}">
             Mine pubcrawls
         </Label>
-        
+
         <ListBox x:Name="UserPubcrawls"
                   Grid.Column="1"
                   Grid.Row="1"
@@ -100,7 +109,7 @@
                HorizontalAlignment="Left"
                Source="Images/bubbles.png" 
                Margin="30,0,0,0"/>
-        
+
         <Image Grid.Row="2"
                HorizontalAlignment="Left"
                Source="Images/HildasBeerBar.png" 
