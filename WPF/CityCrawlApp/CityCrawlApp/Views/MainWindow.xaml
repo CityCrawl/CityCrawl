@@ -17,6 +17,7 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="2*"/>
             <RowDefinition/>
+            <RowDefinition Height="0.2*"/>
         </Grid.RowDefinitions>
 
         <Image Grid.ColumnSpan="2"
@@ -47,6 +48,19 @@
                 x:Name="OpretBrugerButton"
                 Command="{Binding OpretBrugerBtn}"
         />
+
+        <StatusBar Grid.Row="2" Grid.ColumnSpan="2">
+            <StatusBar.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <Grid>
+                    </Grid>
+                </ItemsPanelTemplate>
+            </StatusBar.ItemsPanel>
+            <StatusBarItem Content="© 2021 - CityCrawl - Your local pubcrawl" HorizontalAlignment="Left"/>
+            <StatusBarItem Grid.Column="1" HorizontalAlignment="Right">
+                <TextBlock Text="4. Semester projekt, gruppe 1" />
+            </StatusBarItem>
+        </StatusBar>
 
 
     </Grid>
