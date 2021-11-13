@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -48,6 +49,13 @@ namespace CityCrawlApp.ViewModels
             set { SetProperty(ref email, value); }
         }
 
+        private ObservableCollection<string> listOfPubcrawls = new ObservableCollection<string>();
+        public ObservableCollection<string> Pubcrawls
+        {
+            get { return listOfPubcrawls; }
+            set { SetProperty(ref listOfPubcrawls, value); }
+        }
+
         private string loggedInUser;
         private string userPassword;
 
@@ -65,6 +73,11 @@ namespace CityCrawlApp.ViewModels
                 LastName = user.LastName;
                 Birthday = user.Birthday;
                 Email = user.Email;
+
+                foreach (var pubcrawl in user.PubCrawls)
+                {
+                    this.Pubcrawls.Add(pubcrawl);
+                }
             }
             else
             {
@@ -118,7 +131,7 @@ namespace CityCrawlApp.ViewModels
             }
             catch (Exception e)
             {
-                // show erro failed to talk to server...
+                // show error failed to talk to server...
                 return null;
             }
         }

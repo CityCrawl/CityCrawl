@@ -13,7 +13,7 @@ using CityCrawlApp.Views;
 
 namespace CityCrawlApp.ViewModels
 {
-    public class TilmeldPubcrawlViewModel : BindableBase
+    public partial class TilmeldPubcrawlViewModel : BindableBase
     {
         
 
@@ -37,14 +37,16 @@ namespace CityCrawlApp.ViewModels
                 MessageBox.Show("Venligst vælg dato, før pakke vælges");
             else
             {
-                User userInDB = new User();
-                userInDB.pubCrawls.Add("Pakke 1, " + selectedDate);
+                var pubcrawl = "Pakke 1, " + selectedDate;
+                var newRequest = new NewPubcrawlRequest
+                {
+                    Email = loggedInUser,
+                    Pubcrawl = pubcrawl
+                };
+                HttpClientAddPubCrawls(newRequest);
 
-                HttpClientPostUserToServerAsync(userInDB);
-
-                MessageBox.Show($"PubCrawl booket: {userInDB.pubCrawls.ElementAt(0)}");
+                MessageBox.Show($"PubCrawl booket: {pubcrawl}");
             }
-            
         }
 
         
@@ -59,12 +61,15 @@ namespace CityCrawlApp.ViewModels
                 MessageBox.Show("Venligst vælg dato, før pakke vælges");
             else
             {
-                User userInDB = new User();
-                userInDB.pubCrawls.Add("Pakke 2, " + selectedDate);
-
-                HttpClientPostUserToServerAsync(userInDB);
-
-                MessageBox.Show($"PubCrawl booket: {userInDB.pubCrawls.ElementAt(0)}");
+                var pubcrawl = "Pakke 2, " + selectedDate;
+                var newRequest = new NewPubcrawlRequest
+                {
+                    Email = loggedInUser,
+                    Pubcrawl = pubcrawl
+                };
+                HttpClientAddPubCrawls(newRequest);
+                 
+                MessageBox.Show($"PubCrawl booket: {pubcrawl}");
             }
         }
 
@@ -89,37 +94,19 @@ namespace CityCrawlApp.ViewModels
             App.Current.MainWindow.Visibility = Visibility.Hidden;
         }
 
-        private async Task HttpClientPostUserToServerAsync(User user)
+        private void HttpClientAddPubCrawls(NewPubcrawlRequest pubcrawl)
         {
-            using (var httpRequest = new HttpRequestMessage(HttpMethod.Post, Settings.baseUrl))
+            var json = System.Text.Json.JsonSerializer.Serialize(pubcrawl, new JsonSerializerOptions
             {
-                var options = new JsonSerializerOptions
-                {
-                    PropertyNamingPolicy = JsonNamingPolicy.CamelCase
-                };
+                PropertyNamingPolicy = JsonNamingPolicy.CamelCase
+            });
+            using var httpRequest = new HttpRequestMessage(HttpMethod.Post, Settings.baseUrl + $"/User/AddPubCrawl");
+            using var client = new HttpClient();
+            using var stringContent = new StringContent(json, Encoding.UTF8, "application/json");
+            httpRequest.Content = stringContent;
 
-                HttpClient client = new HttpClient();
-                //var content = new User()
-                //{
-                //    FirstName = user.FirstName,
-                //    LastName = user.LastName,
-                //    Birthday = user.Birthday,
-                //    Email = user.Email,
-                //    Password = user.Password
-                //};
-
-                var json = System.Text.Json.JsonSerializer.Serialize(user, options);
-                using (var stringContent = new StringContent(json, Encoding.UTF8, "application/json"))
-                {
-                    httpRequest.Content = stringContent;
-                    using (var httpResponse = await client
-                        .SendAsync(httpRequest, HttpCompletionOption.ResponseHeadersRead)
-                        .ConfigureAwait(false))
-                    {
-                        httpResponse.EnsureSuccessStatusCode();
-                    }
-                }
-            }
+            var httpResponse = client.Send(httpRequest, HttpCompletionOption.ResponseHeadersRead);
+            httpResponse.EnsureSuccessStatusCode();
         }
     }
 }

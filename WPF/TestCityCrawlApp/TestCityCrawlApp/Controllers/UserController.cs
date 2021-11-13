@@ -2,8 +2,6 @@
 using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using CityCrawlApp.Models;
 
 namespace TestCityCrawlApp.Controllers
@@ -14,59 +12,68 @@ namespace TestCityCrawlApp.Controllers
     {
         private readonly ILogger<UserController> _logger;
 
+        // får fat i User via string, denne som skal skiftes ud med databasen
+        private static Dictionary<string, User> users = new Dictionary<string, User>();
+
         public UserController(ILogger<UserController> logger)
         {
             _logger = logger;
         }
 
         [HttpGet]
-        public User Get(string email, string password)
+        public User GetUser(string email, string password)
         {
-            if (email == "test@" && password == "test")
-                return new User()
-                {
-                    Email = "test@",
-                    Password = "test",
-                    FirstName = "First Name"
-                };
+            if (!users.ContainsKey(email))
+            {
+                throw new Exception("The user does not exist in CC-database");
+            }
 
-            throw new Exception("Bad user or password");
+            var user = users[email];
+
+            if (user.Password != password)
+            {
+                throw new Exception("Incorrect user password");
+            }
+
+            return user;
         }
 
-        [HttpPost("PostCreateUser")]
-        public ActionResult<User> PostCreateUser(User user)
+        [HttpPost("CreateUser")]
+        public ActionResult CreateUser(User user)
         {
             if (user == null)
             {
-                return BadRequest();
+                throw new Exception("User is null, can not be created!");
             }
 
-            var newUser = new User()
+            if (users.ContainsKey(user.Email))
             {
-                FirstName = user.FirstName,
-                LastName = user.LastName,
-                Birthday = user.Birthday,
-                Email = user.Email,
-                Password = user.Password
-            };
+                throw new Exception("User already exist");
+            }
 
-            return newUser;
+            // tjek om de restede felter er tomme
+            if (user.PubCrawls == null)
+            {
+                user.PubCrawls = new List<string>();
+            }
+
+            users.Add(user.Email, user);
+
+            return Ok();
         }
 
-        [HttpPost("PostSavePubCrawl")]
-        public ActionResult<User> PostSavePubCrawl(User user)
+        [HttpPost("AddPubCrawl")]
+        public ActionResult AddPubCrawl(NewPubcrawlRequest request)
         {
-            if (user == null)
+         
+            if (!users.ContainsKey(request.Email))
             {
-                return BadRequest();
+                throw new Exception("The user does not exist in CC-database");
             }
 
-            var newUser = new User()
-            {
-                pubCrawls = user.pubCrawls
-            };
-
-            return newUser;
+            users[request.Email].PubCrawls.Add(request.Pubcrawl);
+            
+            return Ok();
         }
 
     }

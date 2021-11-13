@@ -87,12 +87,13 @@
             Mine pubcrawls
         </Label>
         
-        <DataGrid x:Name="UserPubcrawls"
+        <ListBox x:Name="UserPubcrawls"
                   Grid.Column="1"
                   Grid.Row="1"
-                  Width="150"
+                  Width="200"
                   Height="150"
-                  HorizontalAlignment="Left"/>
+                  HorizontalAlignment="Left"
+                  ItemsSource="{Binding Pubcrawls}"/>
 
         <Image 
                Grid.Row="2"

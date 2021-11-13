@@ -69,7 +69,7 @@ namespace CityCrawlApp.ViewModels
             userInDB.Email = email;
             userInDB.Password = password;
 
-            HttpClientPostUserToServerAsync(userInDB);
+            HttpClientCreateUser(userInDB);
             CloseDialog(true);
 
             /*SaveFileDialog saveFileDialog = new SaveFileDialog();
@@ -89,37 +89,20 @@ namespace CityCrawlApp.ViewModels
             }*/
         }
 
-        private async Task HttpClientPostUserToServerAsync(User user)
+        private void HttpClientCreateUser(User user)
         {
-            using (var httpRequest = new HttpRequestMessage(HttpMethod.Post, Settings.baseUrl))
+            var json = System.Text.Json.JsonSerializer.Serialize(user, new JsonSerializerOptions
             {
-                var options = new JsonSerializerOptions
-                {
-                    PropertyNamingPolicy = JsonNamingPolicy.CamelCase
-                };
+                PropertyNamingPolicy = JsonNamingPolicy.CamelCase
+            });
 
-                HttpClient client = new HttpClient();
-                //var content = new User()
-                //{
-                //    FirstName = user.FirstName,
-                //    LastName = user.LastName,
-                //    Birthday = user.Birthday,
-                //    Email = user.Email,
-                //    Password = user.Password
-                //};
+            using var httpRequest = new HttpRequestMessage(HttpMethod.Post, Settings.baseUrl + "/User/CreateUser");
+            using var client = new HttpClient();
+            using var stringContent = new StringContent(json, Encoding.UTF8, "application/json");
+            httpRequest.Content = stringContent;
 
-                var json = System.Text.Json.JsonSerializer.Serialize(user, options);
-                using (var stringContent = new StringContent(json, Encoding.UTF8, "application/json"))
-                {
-                    httpRequest.Content = stringContent;
-                    using (var httpResponse = await client
-                        .SendAsync(httpRequest, HttpCompletionOption.ResponseHeadersRead)
-                        .ConfigureAwait(false))
-                    {
-                        httpResponse.EnsureSuccessStatusCode();
-                    }
-                }
-            }
+            var httpResponse = client.Send(httpRequest, HttpCompletionOption.ResponseHeadersRead);
+            httpResponse.EnsureSuccessStatusCode();
         }
     }
 }

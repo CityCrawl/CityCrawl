@@ -13,8 +13,7 @@ namespace CityCrawlApp.Models
         public string Birthday { get; set; }
         public string Email { get; set; }
         public string Password { get; set; }
-
-        public List<string> pubCrawls = new List<string>();
+        public List<string> PubCrawls { get; set; } = new List<string>();
 
     }
 }
