@@ -17,7 +17,7 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="2*"/>
             <RowDefinition/>
-            <RowDefinition Height="0.2*"/>
+            <RowDefinition Height="0.244*"/>
         </Grid.RowDefinitions>
 
         <Image Grid.ColumnSpan="2"
@@ -49,7 +49,7 @@
                 Command="{Binding OpretBrugerBtn}"
         />
 
-        <StatusBar Grid.Row="2" Grid.ColumnSpan="2">
+        <StatusBar Grid.Row="2" Grid.ColumnSpan="2" Margin="0,0,0,0" >
             <StatusBar.ItemsPanel>
                 <ItemsPanelTemplate>
                     <Grid>
