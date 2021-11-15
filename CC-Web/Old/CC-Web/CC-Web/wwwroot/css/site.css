@@ -59,8 +59,9 @@ html {
 }
 
 body {
-  /* Margin bottom by footer height */
+    /* Margin bottom by footer height */
   margin-bottom: 60px;
+  background-color: #D3D3D3;
 }
 .footer {
   position: absolute;
@@ -120,7 +121,6 @@ body {
     font-weight: bold;
     display: inline-block
 }
-
 .Logos {
     display: block;
     margin-left: auto;
