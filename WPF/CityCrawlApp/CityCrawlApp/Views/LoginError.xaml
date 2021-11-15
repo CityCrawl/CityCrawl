@@ -55,7 +55,8 @@
                 VerticalAlignment="Top"
                 FontWeight="Bold"
                 x:Name="OkayButton"
-                Command="{Binding CloseBtn}"/>
+                Command="{Binding CloseBtn}"
+                Cursor="Hand"/>
 
     </Grid>
 </Window>

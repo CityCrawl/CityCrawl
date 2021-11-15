@@ -41,7 +41,8 @@
         <Calendar HorizontalAlignment="Right"
                   Grid.Row="1"
                   VerticalAlignment="Center"
-                  SelectedDate="{Binding Path=SelectedDate}">
+                  SelectedDate="{Binding Path=SelectedDate}"
+                  >
             <!--Her kan man lave en "BlackoutDates" funktion-->
         </Calendar>
 
@@ -71,7 +72,8 @@
                 Margin="60,0,0,0"
                 FontWeight="Bold"
                 x:Name="Pakke1"
-                Command="{Binding Path=GetPubCrawlOneAndDate}"/>
+                Command="{Binding Path=GetPubCrawlOneAndDate}"
+                Cursor="Hand"/>
 
         <Button Grid.Row="2"
                 Grid.Column="1"
@@ -85,6 +87,6 @@
                 FontWeight="Bold"
                 x:Name="Pakke2"
                 Command="{Binding Path=GetPubCrawlTwoAndDate}"
-                />
+                Cursor="Hand"/>
     </Grid>
 </Window>

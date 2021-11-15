@@ -35,6 +35,7 @@
                 FontWeight="Bold"
                 x:Name="LoginButton"
                 Command="{Binding LoginBtn}"
+                Cursor="Hand"
                 />
         <Button Grid.Row="1"
                 Grid.Column="1"
@@ -47,6 +48,7 @@
                 FontWeight="Bold"
                 x:Name="OpretBrugerButton"
                 Command="{Binding OpretBrugerBtn}"
+                Cursor="Hand"
         />
 
         <StatusBar Grid.Row="2" Grid.ColumnSpan="2">
