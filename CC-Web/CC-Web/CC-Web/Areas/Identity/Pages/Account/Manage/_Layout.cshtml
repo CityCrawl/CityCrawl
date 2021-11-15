@@ -9,18 +9,25 @@
     }
 }
 
-<h2>Manage your account</h2>
-
+<img src="~/Images/CCLogo.png" class="generel_style_image" />
 <div>
-    <h4>Change your account settings</h4>
     <hr />
     <div class="row">
-        <div class="col-md-3">
-            <partial name="_ManageNav" />
+        <div class="col-md-6">
+            <h1>Virksomhedsprofil</h1>
+            <p>Virksomhedsnavn:</p>
+            <p>CVR-nummer: </p>
+            <p>Kontaktperson</p>
+            <p>E-mail:</p>
+            <p>Virksomhedsbeskrivelse: </p>
+
+            <textarea id="textareaV" style="width:350px;height:200px"></textarea>
+            <br />
+            <input type="button" class="PinkBtn" value="Gem" style="margin-top:5%" />
         </div>
-        <div class="col-md-9">
+        <!--<div class="col-md-6">
             @RenderBody()
-        </div>
+        </div>-->
     </div>
 </div>
 
