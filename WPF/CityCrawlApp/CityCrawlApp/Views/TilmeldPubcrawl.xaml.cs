@@ -25,6 +25,7 @@ namespace CityCrawlApp.Views
             InitializeComponent();
             DataContext = vmTilmeld;
             Closing += TilmeldPubcrawl_Closing;
+            myCalendar.BlackoutDates.Add(new CalendarDateRange(new DateTime(1111, 1, 1), DateTime.Now.AddDays(-1)));
         }
 
         private void TilmeldPubcrawl_Closing(object sender, System.ComponentModel.CancelEventArgs e)

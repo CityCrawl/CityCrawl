@@ -44,7 +44,7 @@
                   Grid.Row="1"
                   VerticalAlignment="Center"
                   SelectedDate="{Binding Path=SelectedDate}"
-                  >
+                  x:Name="myCalendar">
             <!--Her kan man lave en "BlackoutDates" funktion-->
         </Calendar>
 
