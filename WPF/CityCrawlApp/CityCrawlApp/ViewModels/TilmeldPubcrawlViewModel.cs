@@ -33,7 +33,7 @@ namespace CityCrawlApp.ViewModels
 
         void ExecuteCombineToListOne()
         {
-            if (selectedDate == null)
+            if (selectedDate.ToString("dd/MM/yyyy") == "01-01-0001")
                 MessageBox.Show("Venligst vælg dato, før pakke vælges");
             else
             {
@@ -57,7 +57,7 @@ namespace CityCrawlApp.ViewModels
 
         void ExecuteCombineToListTwo()
         {
-            if (selectedDate == null)
+            if (selectedDate.ToString("dd/MM/yyyy") == "01-01-0001")
                 MessageBox.Show("Venligst vælg dato, før pakke vælges");
             else
             {
