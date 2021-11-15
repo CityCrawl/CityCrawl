@@ -51,7 +51,7 @@ namespace TestCityCrawlApp.Controllers
                 throw new Exception("User already exist");
             }
 
-            // tjek om de restede felter er tomme
+           
             if (user.PubCrawls == null)
             {
                 user.PubCrawls = new List<string>();
