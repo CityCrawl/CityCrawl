@@ -20,8 +20,8 @@ namespace CityCrawlApp.ViewModels
         private string loggedInUser;
         private string userPassword;
 
-        private string selectedDate;
-        public string SelectedDate
+        private DateTime selectedDate;
+        public DateTime SelectedDate
         {
             get { return selectedDate; }
             set { SetProperty(ref selectedDate, value); }
@@ -37,7 +37,7 @@ namespace CityCrawlApp.ViewModels
                 MessageBox.Show("Venligst vælg dato, før pakke vælges");
             else
             {
-                var pubcrawl = "Pakke 1, " + selectedDate;
+                var pubcrawl = "Pakke 1 d. " + selectedDate.ToString("dd/MM/yyyy");
                 var newRequest = new NewPubcrawlRequest
                 {
                     Email = loggedInUser,
@@ -61,7 +61,7 @@ namespace CityCrawlApp.ViewModels
                 MessageBox.Show("Venligst vælg dato, før pakke vælges");
             else
             {
-                var pubcrawl = "Pakke 2, " + selectedDate;
+                var pubcrawl = "Pakke 2 d. " + selectedDate.ToString("dd/MM/yyyy");
                 var newRequest = new NewPubcrawlRequest
                 {
                     Email = loggedInUser,
