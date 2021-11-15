@@ -11,13 +11,14 @@
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="0.5*"/>
-            <ColumnDefinition/>
+            <ColumnDefinition Width="0.4*"/>
+            <ColumnDefinition Width="0.4*"/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="0.36*"/>
             <RowDefinition Height="2.5*"/>
             <RowDefinition/>
-            <RowDefinition Height="0.244*"/>
+            <RowDefinition Height="0.3*"/>
         </Grid.RowDefinitions>
 
 
@@ -39,7 +40,7 @@
             </MenuItem>
         </Menu>
         
-        <Calendar HorizontalAlignment="Right"
+        <Calendar HorizontalAlignment="Center"
                   Grid.Row="1"
                   VerticalAlignment="Center"
                   SelectedDate="{Binding Path=SelectedDate}">
@@ -50,16 +51,16 @@
            Grid.Row="1"
            Grid.RowSpan="2"
            Grid.Column="1"
-           HorizontalAlignment="Left"
+           HorizontalAlignment="Center"
            Source="Images/pakke1.png" 
-           Margin="30,0,0,100"/>
+           Margin="0,0,0,100"/>
 
         <Image Grid.Row="1"
                Grid.RowSpan="2"
-               Grid.Column="1"
-               HorizontalAlignment="Right"
+               Grid.Column="2"
+               HorizontalAlignment="Center"
                Source="Images/pakke2.png" 
-               Margin="0,0,30,100"/>
+               Margin="0,0,0,100"/>
 
         <Button Grid.Row="2"
                 Grid.Column="1"
@@ -67,28 +68,26 @@
                 Background="LightGreen"
                 Height="35"
                 Width="90"
-                HorizontalAlignment="Left"
+                HorizontalAlignment="Center"
                 VerticalAlignment="Top"
-                Margin="60,0,0,0"
                 FontWeight="Bold"
                 x:Name="Pakke1"
                 Command="{Binding Path=GetPubCrawlOneAndDate}"/>
 
         <Button Grid.Row="2"
-                Grid.Column="1"
+                Grid.Column="2"
                 Content="Vælg"
                 Background="LightGreen"
                 Height="35"
                 Width="90"
-                HorizontalAlignment="Right"
+                HorizontalAlignment="Center"
                 VerticalAlignment="Top"
-                Margin="0,0,60,0"
                 FontWeight="Bold"
                 x:Name="Pakke2"
                 Command="{Binding Path=GetPubCrawlTwoAndDate}"
                 />
 
-        <StatusBar Grid.Row="3" Grid.ColumnSpan="2">
+        <StatusBar Grid.Row="3" Grid.ColumnSpan="3">
             <StatusBar.ItemsPanel>
                 <ItemsPanelTemplate>
                     <Grid>

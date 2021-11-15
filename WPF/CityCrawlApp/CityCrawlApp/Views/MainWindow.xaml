@@ -49,7 +49,7 @@
                 Command="{Binding OpretBrugerBtn}"
         />
 
-        <StatusBar Grid.Row="2" Grid.ColumnSpan="2" Margin="0,0,0,0" >
+        <StatusBar Grid.Row="2" Grid.ColumnSpan="2" >
             <StatusBar.ItemsPanel>
                 <ItemsPanelTemplate>
                     <Grid>

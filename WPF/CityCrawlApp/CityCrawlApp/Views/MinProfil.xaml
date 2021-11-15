@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:CityCrawlApp.Views"
         WindowStartupLocation="CenterScreen"
         mc:Ignorable="d"
-        Title="MinProfil" Height="350" Width="500"
+        Title="MinProfil" Height="355" Width="500"
         Background="{DynamicResource ResourceKey=BackgroundColor}">
     <Window.Resources>
         <Style x:Key="Headers" TargetType="{x:Type Label}">
@@ -22,9 +22,10 @@
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="0.36*"/>
-            <RowDefinition Height="2.5*"/>
-            <RowDefinition/>
-            <RowDefinition Height="0.244*"/>
+            <RowDefinition Height="2.2*"/>
+            <RowDefinition />
+            <RowDefinition Height="0.1*"/>
+            <RowDefinition Height="0.3*"/>
         </Grid.RowDefinitions>
 
 
@@ -128,7 +129,7 @@
                Source="Images/WineAndDine.png" 
                Margin="0,0,15,0"/>
 
-        <StatusBar Grid.Row="3" Grid.ColumnSpan="2">
+        <StatusBar Grid.Row="4" Grid.ColumnSpan="2">
             <StatusBar.ItemsPanel>
                 <ItemsPanelTemplate>
                     <Grid>
