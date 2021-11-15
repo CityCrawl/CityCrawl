@@ -102,7 +102,7 @@
                   Grid.Column="1"
                   Grid.Row="1"
                   Width="200"
-                  Height="130"
+                  Height="125"
                   HorizontalAlignment="Left"
                   ItemsSource="{Binding Pubcrawls}"/>
 
