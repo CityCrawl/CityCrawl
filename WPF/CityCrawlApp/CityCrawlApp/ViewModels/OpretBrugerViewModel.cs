@@ -96,7 +96,7 @@ namespace CityCrawlApp.ViewModels
                 PropertyNamingPolicy = JsonNamingPolicy.CamelCase
             });
 
-            using var httpRequest = new HttpRequestMessage(HttpMethod.Post, Settings.baseUrl + "/User/CreateUser");
+            using var httpRequest = new HttpRequestMessage(HttpMethod.Post, Settings.baseUrl + "/User/User");
             using var client = new HttpClient();
             using var stringContent = new StringContent(json, Encoding.UTF8, "application/json");
             httpRequest.Content = stringContent;

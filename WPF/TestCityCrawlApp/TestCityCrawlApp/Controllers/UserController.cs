@@ -23,13 +23,16 @@ namespace TestCityCrawlApp.Controllers
         [HttpGet]
         public User GetUser(string email, string password)
         {
+            //database: _context.User til validering om email findes
             if (!users.ContainsKey(email))
             {
                 throw new Exception("The user does not exist in CC-database");
             }
 
+            // her skal user variablen sættes til den user i DB med denne email
             var user = users[email];
 
+            // dette skal ikke rettes ift. DB
             if (user.Password != password)
             {
                 throw new Exception("Incorrect user password");
@@ -38,31 +41,35 @@ namespace TestCityCrawlApp.Controllers
             return user;
         }
 
-        [HttpPost("CreateUser")]
+        [HttpPost("User")]
         public ActionResult CreateUser(User user)
         {
+            // dette skal ikke rettes ift. DB
             if (user == null)
             {
                 throw new Exception("User is null, can not be created!");
             }
 
+            // tjek om denne email findes i DB via _context.User
             if (users.ContainsKey(user.Email))
             {
                 throw new Exception("User already exist");
             }
 
            
+            // dette skal ikke rettes ift. DB
             if (user.PubCrawls == null)
             {
                 user.PubCrawls = new List<string>();
             }
 
+            // DB: _context.Users.Add(user.Email, user), hvor Users er listen af Users
             users.Add(user.Email, user);
 
             return Ok();
         }
 
-        [HttpPost("AddPubCrawl")]
+        [HttpPost("PubCrawl")]
         public ActionResult AddPubCrawl(NewPubcrawlRequest request)
         {
          
