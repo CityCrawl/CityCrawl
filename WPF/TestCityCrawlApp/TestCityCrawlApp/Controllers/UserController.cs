@@ -24,6 +24,7 @@ namespace TestCityCrawlApp.Controllers
         public User GetUser(string email, string password)
         {
             //database: _context.User til validering om email findes
+
             if (!users.ContainsKey(email))
             {
                 throw new Exception("The user does not exist in CC-database");

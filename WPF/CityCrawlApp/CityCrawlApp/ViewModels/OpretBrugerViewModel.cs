@@ -12,11 +12,13 @@ using System.IO;
 using Microsoft.Win32;
 using System.Net.Http;
 using System.Text.Json;
+using CityCrawlApp.Models;
 
 namespace CityCrawlApp.ViewModels
 {
     public class OpretBrugerViewModel : BindableBase
     {
+        private httpClient httpClient = new httpClient();
 
         private string firstName;
         public string FirstName
@@ -69,7 +71,7 @@ namespace CityCrawlApp.ViewModels
             userInDB.Email = email;
             userInDB.Password = password;
 
-            HttpClientCreateUser(userInDB);
+            httpClient.HttpClientCreateUser(userInDB);
             CloseDialog(true);
 
             /*SaveFileDialog saveFileDialog = new SaveFileDialog();
@@ -89,20 +91,5 @@ namespace CityCrawlApp.ViewModels
             }*/
         }
 
-        private void HttpClientCreateUser(User user)
-        {
-            var json = System.Text.Json.JsonSerializer.Serialize(user, new JsonSerializerOptions
-            {
-                PropertyNamingPolicy = JsonNamingPolicy.CamelCase
-            });
-
-            using var httpRequest = new HttpRequestMessage(HttpMethod.Post, Settings.baseUrl + "/User/User");
-            using var client = new HttpClient();
-            using var stringContent = new StringContent(json, Encoding.UTF8, "application/json");
-            httpRequest.Content = stringContent;
-
-            var httpResponse = client.Send(httpRequest, HttpCompletionOption.ResponseHeadersRead);
-            httpResponse.EnsureSuccessStatusCode();
-        }
     }
 }

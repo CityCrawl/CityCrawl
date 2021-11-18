@@ -10,6 +10,7 @@ using CityCrawlApp.Models;
 using Prism.Mvvm;
 using Prism.Commands;
 using CityCrawlApp.Views;
+using CityCrawlApp.Models;
 
 namespace CityCrawlApp.ViewModels
 {
@@ -19,6 +20,7 @@ namespace CityCrawlApp.ViewModels
 
         private string loggedInUser;
         private string userPassword;
+        private httpClient httpClient = new httpClient();
 
         private DateTime selectedDate;
         public DateTime SelectedDate
@@ -43,7 +45,7 @@ namespace CityCrawlApp.ViewModels
                     Email = loggedInUser,
                     Pubcrawl = pubcrawl
                 };
-                HttpClientAddPubCrawls(newRequest);
+                httpClient.HttpClientAddPubCrawls(newRequest);
 
                 MessageBox.Show($"PubCrawl booket: {pubcrawl}");
             }
@@ -67,7 +69,7 @@ namespace CityCrawlApp.ViewModels
                     Email = loggedInUser,
                     Pubcrawl = pubcrawl
                 };
-                HttpClientAddPubCrawls(newRequest);
+                httpClient.HttpClientAddPubCrawls(newRequest);
                  
                 MessageBox.Show($"PubCrawl booket: {pubcrawl}");
             }
@@ -94,19 +96,6 @@ namespace CityCrawlApp.ViewModels
             App.Current.MainWindow.Visibility = Visibility.Hidden;
         }
 
-        private void HttpClientAddPubCrawls(NewPubcrawlRequest pubcrawl)
-        {
-            var json = System.Text.Json.JsonSerializer.Serialize(pubcrawl, new JsonSerializerOptions
-            {
-                PropertyNamingPolicy = JsonNamingPolicy.CamelCase
-            });
-            using var httpRequest = new HttpRequestMessage(HttpMethod.Post, Settings.baseUrl + $"/User/PubCrawl");
-            using var client = new HttpClient();
-            using var stringContent = new StringContent(json, Encoding.UTF8, "application/json");
-            httpRequest.Content = stringContent;
-
-            var httpResponse = client.Send(httpRequest, HttpCompletionOption.ResponseHeadersRead);
-            httpResponse.EnsureSuccessStatusCode();
-        }
+       
     }
 }
