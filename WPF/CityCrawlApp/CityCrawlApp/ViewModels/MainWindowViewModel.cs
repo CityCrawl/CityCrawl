@@ -36,7 +36,7 @@ namespace CityCrawlApp.ViewModels
 
             if (loginModel != null)
             {
-                dialogService.ShowMinProfilDialog(loginModel.Email, loginModel.Password);
+                dialogService.ShowMinProfilDialog(loginModel.Email, loginModel.Password, httpClient, dialogService);
             }
         }
 
@@ -46,11 +46,11 @@ namespace CityCrawlApp.ViewModels
 
         void ExecuteOpretBrugerBtn()
         {
-            var vmOpretBruger = dialogService.ShowOpretBrugerDialog();
+            var vmOpretBruger = dialogService.ShowOpretBrugerDialog(httpClient);
 
             if (vmOpretBruger != null)
             {
-                dialogService.ShowMinProfilDialog(vmOpretBruger.Email, vmOpretBruger.Password);
+                dialogService.ShowMinProfilDialog(vmOpretBruger.Email, vmOpretBruger.Password, httpClient, dialogService);
             }
         }
     }

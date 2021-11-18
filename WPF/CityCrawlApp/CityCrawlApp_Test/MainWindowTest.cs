@@ -25,16 +25,24 @@ namespace CityCrawlApp.Test
         [Test]
         public void TestLoginBtnDelegateCanExecute()
         {
+            // Act
+            var loginExecute = uut.LoginBtn.CanExecute();
+
             // Assert
-            uut.LoginBtn.CanExecute();
+            Assert.True(loginExecute);
         }
 
         [Test]
-        public void TestOpretBrugerBtnDelegateCanExecute()
+        public void TestOpretBrugerDelegateCanExecute()
         {
+            // Act
+            var opretBrugerExecute = uut.OpretBrugerBtn.CanExecute();
+
             // Assert
-            uut.OpretBrugerBtn.CanExecute();
+            Assert.True(opretBrugerExecute);
         }
+
+     
 
     }
 }

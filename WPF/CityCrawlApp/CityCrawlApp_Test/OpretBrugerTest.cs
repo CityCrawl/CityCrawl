@@ -13,11 +13,13 @@ namespace CityCrawlApp.Test
     {
 
         private OpretBrugerViewModel uut;
+        private IhttpClient httpClient;
 
         [SetUp]
         public void Setup()
         {
-            uut = new OpretBrugerViewModel();
+            httpClient = Substitute.For<IhttpClient>();
+            uut = new OpretBrugerViewModel(httpClient);
         }
 
         [Test]

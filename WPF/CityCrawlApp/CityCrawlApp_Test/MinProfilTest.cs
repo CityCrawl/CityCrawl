@@ -12,6 +12,7 @@ namespace CityCrawlApp.Test
     {
         private MinProfilViewModel uut;
         private IhttpClient httpClient;
+        private IDialogService dialogService;
         private string loggedInUser = "User@mail.dk";
         private string userPassword = "testPassword";
 
@@ -19,7 +20,8 @@ namespace CityCrawlApp.Test
         public void Setup()
         {
             httpClient = Substitute.For<IhttpClient>();
-            uut = new MinProfilViewModel(loggedInUser, userPassword);
+            dialogService = Substitute.For<IDialogService>();
+            uut = new MinProfilViewModel(loggedInUser, userPassword, httpClient, dialogService);
         }
 
         [Test]
