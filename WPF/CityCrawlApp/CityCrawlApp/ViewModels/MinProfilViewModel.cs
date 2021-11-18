@@ -20,6 +20,8 @@ namespace CityCrawlApp.ViewModels
 {
     public class MinProfilViewModel : BindableBase
     {
+        private httpClient httpClient = new httpClient();
+
 
         private string firstName;
         public string FirstName
@@ -66,7 +68,7 @@ namespace CityCrawlApp.ViewModels
 
             App.Current.MainWindow.Visibility = Visibility.Hidden;
 
-            var user = HttpClientGetUserFromServer(loggedInUser, userPassword);
+            var user = httpClient.HttpClientGetUserFromServer(loggedInUser, userPassword);
             if (user != null)
             {
                 FirstName = user.FirstName;
@@ -115,25 +117,5 @@ namespace CityCrawlApp.ViewModels
             dialog.ShowDialog();
         }
 
-        private User HttpClientGetUserFromServer(string email, string password)
-        {
-            string url = $"{Settings.baseUrl}/User?email={email}&password={password}"; // tages fra app settings
-            HttpClient client = new HttpClient();
-            try
-            {
-                Task<string> responseBody = client.GetStringAsync(url);
-                var options = new JsonSerializerOptions
-                {
-                    PropertyNameCaseInsensitive = true,
-                };
-                var user = JsonSerializer.Deserialize<User>(responseBody.Result, options);
-                return user;
-            }
-            catch (Exception e)
-            {
-                // show error failed to talk to server...
-                return null;
-            }
-        }
     }
 }

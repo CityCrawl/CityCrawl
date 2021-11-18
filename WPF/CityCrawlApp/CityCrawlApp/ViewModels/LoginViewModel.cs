@@ -17,6 +17,8 @@ namespace CityCrawlApp.ViewModels
 {
     public class LoginViewModel : BindableBase
     {
+        private httpClient httpClient = new httpClient();
+
         private string email;
         public string Email
         {
@@ -50,7 +52,7 @@ namespace CityCrawlApp.ViewModels
             }
 
             // erstattes med httpClient og get fra API controller
-            var user = HttpClientGetUserFromServer(email, password);
+            var user = httpClient.HttpClientGetUserFromServer(email, password);
             if (user == null)
             {
                 var vmErrorLogin = new ErrorLoginViewModel();
@@ -89,25 +91,6 @@ namespace CityCrawlApp.ViewModels
             }*/
         }
 
-        private User HttpClientGetUserFromServer(string email, string password)
-        {
-            string url = $"{Settings.baseUrl}/User?email={email}&password={password}"; // tages fra app settings
-            HttpClient client = new HttpClient();
-            try
-            {
-                Task<string> responseBody = client.GetStringAsync(url);
-                var options = new JsonSerializerOptions
-                {
-                    PropertyNameCaseInsensitive = true,
-                };
-                var user = JsonSerializer.Deserialize<User>(responseBody.Result, options);
-                return user;
-            }
-            catch (Exception e)
-            {
-                // show erro failed to talk to server...
-                return null;
-            }
-        }
+     
     }
 }
