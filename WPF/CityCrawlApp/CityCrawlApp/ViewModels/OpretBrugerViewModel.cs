@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using CityCrawlApp.Models.Interfaces;
 using CityCrawlApp.Models;
 using Prism.Mvvm;
 using Prism.Commands;
@@ -17,7 +18,13 @@ namespace CityCrawlApp.ViewModels
 {
     public class OpretBrugerViewModel : BindableBase
     {
-        private readonly httpClient httpClient = new httpClient();
+        private readonly IhttpClient httpClient;
+
+        public OpretBrugerViewModel(IhttpClient httpClient)
+        {
+            this.httpClient = httpClient;
+        }
+
 
         private string firstName;
         public string FirstName

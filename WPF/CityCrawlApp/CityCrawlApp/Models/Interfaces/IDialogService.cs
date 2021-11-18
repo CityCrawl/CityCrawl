@@ -1,7 +1,20 @@
-﻿namespace CityCrawlApp.Models.Interfaces
+﻿
+using CityCrawlApp.ViewModels;
+
+namespace CityCrawlApp.Models.Interfaces
 {
     public interface IDialogService
     {
-        void ShowErrorDialog();
+        bool ShowErrorDialog();
+
+        LoginViewModel ShowLoginDialog(IhttpClient httpClient);
+
+        bool ShowMinProfilDialog(string loginEmail, string loginPassword,
+                        IhttpClient httpClient, IDialogService dialogService);
+
+        OpretBrugerViewModel ShowOpretBrugerDialog();
+
+        void ShowTilmeldPubcrawlDialog(string loggedInEmail, string loggedInPassword,
+            IhttpClient httpClient, IDialogService dialogService);
     }
 }

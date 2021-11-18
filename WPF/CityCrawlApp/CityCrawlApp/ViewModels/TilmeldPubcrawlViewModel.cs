@@ -6,6 +6,7 @@ using System.Text;
 using System.Text.Json;
 using System.Threading.Tasks;
 using System.Windows;
+using CityCrawlApp.Models.Interfaces;
 using CityCrawlApp.Models;
 using Prism.Mvvm;
 using Prism.Commands;
@@ -19,7 +20,20 @@ namespace CityCrawlApp.ViewModels
 
         private readonly string loggedInUser;
         private readonly string userPassword;
-        private readonly httpClient httpClient = new httpClient();
+        private IhttpClient httpClient;
+        private IDialogService dialogService;
+
+        public TilmeldPubcrawlViewModel(string loggedInUser, string userPassword,
+            IhttpClient httpClient, IDialogService dialogService)
+        {
+            this.loggedInUser = loggedInUser;
+            this.userPassword = userPassword;
+            this.httpClient = httpClient;
+            this.dialogService = dialogService;
+            App.Current.MainWindow.Visibility = Visibility.Hidden;
+        }
+
+
 
         private DateTime selectedDate;
         public DateTime SelectedDate
@@ -27,6 +41,7 @@ namespace CityCrawlApp.ViewModels
             get { return selectedDate; }
             set { SetProperty(ref selectedDate, value); }
         }
+
 
         private DelegateCommand getPubCrawlOneAndDate;
         public DelegateCommand GetPubCrawlOneAndDate =>
@@ -74,6 +89,7 @@ namespace CityCrawlApp.ViewModels
             }
         }
 
+
         private DelegateCommand visProfil;
         public DelegateCommand VisProfil =>
             visProfil ?? (visProfil = new DelegateCommand(ExecuteVisProfil));
@@ -81,20 +97,10 @@ namespace CityCrawlApp.ViewModels
         void ExecuteVisProfil()
         {
           
-            var vmMinProfil = new MinProfilViewModel(loggedInUser, userPassword);
+            var vmMinProfil = new MinProfilViewModel(loggedInUser, userPassword, httpClient, dialogService);
             var dialog = new MinProfil(vmMinProfil);
 
             dialog.ShowDialog();
         }
-
-
-        public TilmeldPubcrawlViewModel(string loggedInUser, string userPassword)
-        {
-            this.loggedInUser = loggedInUser;
-            this.userPassword = userPassword;
-            App.Current.MainWindow.Visibility = Visibility.Hidden;
-        }
-
-       
     }
 }

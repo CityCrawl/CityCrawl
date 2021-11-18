@@ -10,29 +10,33 @@ using Microsoft.Win32;
 using System.IO;
 using Newtonsoft.Json;
 using CityCrawlApp.Models;
+using CityCrawlApp.Models.Interfaces;
 
 namespace CityCrawlApp.ViewModels
 {
     public class MainWindowViewModel : BindableBase
     {
+        private IhttpClient httpClient;
+        private IDialogService dialogService;
+
+        public MainWindowViewModel(IhttpClient httpClient, IDialogService dialogService)
+        {
+            this.httpClient = httpClient;
+            this.dialogService = dialogService;
+        }
+
+
         private DelegateCommand loginBtn;
         public DelegateCommand LoginBtn =>
             loginBtn ?? (loginBtn = new DelegateCommand(ExecuteLoginBtn));
 
         void ExecuteLoginBtn()
         {
-            var vmLogin = new LoginViewModel(new httpClient(), new DialogService());
-            var dialog = new Login(vmLogin);
+            var loginModel = dialogService.ShowLoginDialog(httpClient);
 
-            if (dialog.ShowDialog() == true)
+            if (loginModel != null)
             {
-                var user = vmLogin.Email;
-                var password = vmLogin.Password;
-                var vmMinProfil = new MinProfilViewModel(user, password);
-                var dialogMinProfil = new MinProfil(vmMinProfil);
-
-                dialogMinProfil.ShowDialog();
-
+                dialogService.ShowMinProfilDialog(loginModel.Email, loginModel.Password);
             }
         }
 
@@ -42,18 +46,11 @@ namespace CityCrawlApp.ViewModels
 
         void ExecuteOpretBrugerBtn()
         {
-            var vmOpretBruger = new OpretBrugerViewModel();
-            var dialog = new OpretBruger(vmOpretBruger);
+            var vmOpretBruger = dialogService.ShowOpretBrugerDialog();
 
-            if (dialog.ShowDialog() == true)
+            if (vmOpretBruger != null)
             {
-                var user = vmOpretBruger.Email;
-                var password = vmOpretBruger.Password;
-                var vmMinProfil = new MinProfilViewModel(user, password);
-                var dialogMinProfil = new MinProfil(vmMinProfil);
-
-                dialogMinProfil.ShowDialog();
-
+                dialogService.ShowMinProfilDialog(vmOpretBruger.Email, vmOpretBruger.Password);
             }
         }
     }

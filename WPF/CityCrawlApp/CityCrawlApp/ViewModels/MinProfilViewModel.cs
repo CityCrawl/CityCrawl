@@ -13,14 +13,15 @@ using System.Text.Json;
 using System.Windows;
 using Microsoft.Win32;
 using Newtonsoft.Json;
-using CityCrawlApp.Models;
+using CityCrawlApp.Models.Interfaces;
 using JsonSerializer = System.Text.Json.JsonSerializer;
 
 namespace CityCrawlApp.ViewModels
 {
     public class MinProfilViewModel : BindableBase
     {
-        private httpClient httpClient = new httpClient();
+        private IhttpClient httpClient;
+        private IDialogService dialogService;
 
 
         private string firstName;
@@ -61,10 +62,13 @@ namespace CityCrawlApp.ViewModels
         private string loggedInUser;
         private string userPassword;
 
-        public MinProfilViewModel(string loggedInUser, string userPassword)
+        public MinProfilViewModel(string loggedInUser, string userPassword,
+                                IhttpClient httpClient, IDialogService dialogService)
         {
             this.loggedInUser = loggedInUser;
             this.userPassword = userPassword;
+            this.httpClient = httpClient;
+            this.dialogService = dialogService;
 
             App.Current.MainWindow.Visibility = Visibility.Hidden;
 
@@ -111,10 +115,7 @@ namespace CityCrawlApp.ViewModels
 
         void ExecuteTilmeldPubcrawl()
         {
-            var vmTilmeld = new TilmeldPubcrawlViewModel(loggedInUser, userPassword);
-            var dialog = new TilmeldPubcrawl(vmTilmeld);
-
-            dialog.ShowDialog();
+            dialogService.ShowTilmeldPubcrawlDialog(loggedInUser, userPassword, httpClient, dialogService);
         }
 
     }

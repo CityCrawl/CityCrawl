@@ -20,6 +20,12 @@ namespace CityCrawlApp.ViewModels
         private IhttpClient httpClient;
         private IDialogService dialogService;
 
+        public LoginViewModel(IhttpClient httpClient, IDialogService dialogService)
+        {
+            this.httpClient = httpClient;
+            this.dialogService = dialogService;
+        }
+
         private string email;
         public string Email
         {
@@ -87,12 +93,5 @@ namespace CityCrawlApp.ViewModels
             }*/
         }
 
-        public LoginViewModel(IhttpClient httpClient, IDialogService dialogService)
-        {
-            this.httpClient = httpClient;
-            this.dialogService = dialogService;
-        }
-
-     
     }
 }
