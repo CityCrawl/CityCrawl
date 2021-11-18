@@ -11,13 +11,14 @@ using Microsoft.Win32;
 using System.IO;
 using System.Net.Http;
 using System.Text.Json;
-using CityCrawlApp.Models;
+using CityCrawlApp.Models.Interfaces;
 
 namespace CityCrawlApp.ViewModels
 {
     public class LoginViewModel : BindableBase
     {
-        private httpClient httpClient = new httpClient();
+        private IhttpClient httpClient;
+        private IDialogService dialogService;
 
         private string email;
         public string Email
@@ -44,10 +45,7 @@ namespace CityCrawlApp.ViewModels
         {
             if (email == null || password == null)
             {
-                var vmErrorLogin = new ErrorLoginViewModel();
-                var dialogErrorLogin = new LoginError(vmErrorLogin);
-
-                dialogErrorLogin.ShowDialog();
+                dialogService.ShowErrorDialog();
                 return; // on error stop flow
             }
 
@@ -55,9 +53,7 @@ namespace CityCrawlApp.ViewModels
             var user = httpClient.HttpClientGetUserFromServer(email, password);
             if (user == null)
             {
-                var vmErrorLogin = new ErrorLoginViewModel();
-                var dialogErrorLogin = new LoginError(vmErrorLogin);
-                dialogErrorLogin.ShowDialog();
+                dialogService.ShowErrorDialog();
             }
             else
             {
@@ -89,6 +85,12 @@ namespace CityCrawlApp.ViewModels
                     }
                 }
             }*/
+        }
+
+        public LoginViewModel(IhttpClient httpClient, IDialogService dialogService)
+        {
+            this.httpClient = httpClient;
+            this.dialogService = dialogService;
         }
 
      

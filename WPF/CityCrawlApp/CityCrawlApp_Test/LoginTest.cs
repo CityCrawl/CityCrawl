@@ -1,4 +1,5 @@
-﻿using CityCrawlApp.Models;
+﻿using System;
+using CityCrawlApp.Models;
 using NUnit.Framework;
 using NSubstitute;
 using CityCrawlApp.ViewModels;
@@ -12,34 +13,79 @@ namespace CityCrawlApp.Test
     {
 
         private LoginViewModel uut;
-        private LoginViewModel login;
-        private IUser user;
-        private IhttpClient httpClient;
+        private IhttpClient httpClientMock;
+        private IDialogService dialogServiceMock;
+        private Action<bool> closeActionMock;
 
 
         [SetUp]
         public void Setup()
         {
-            httpClient = Substitute.For<IhttpClient>();
-            user = Substitute.For<IUser>();
-            login = new LoginViewModel();
-            uut = new LoginViewModel();
-            login.Email = "User@mail.dk";
-            login.Password = "testPassword";
+            httpClientMock = Substitute.For<IhttpClient>();
+            dialogServiceMock = Substitute.For<IDialogService>();
+            closeActionMock = Substitute.For<Action<bool>>();
+            uut = new LoginViewModel(httpClientMock, dialogServiceMock);
+            uut.CloseDialog = closeActionMock;
         }
 
         [Test]
         public void TestLoginDelegateCanExecute()
         {
+            // Act
+            var loginExecute = uut.Login.CanExecute();
+
             // Assert
-            uut.Login.CanExecute();
+            Assert.True(loginExecute);
         }
 
         [Test]
-        public void TestHttpClientGetUserFromServerIsCalled()
+        public void TestLoginWhenUserEmailAndPasswordIsNull()
         {
+            // Arrange
+            uut.Email = null;
+            uut.Password = null;
+
+            // Act
+            uut.Login.Execute();
+
             // Assert
-            httpClient.Received(1).HttpClientGetUserFromServer(user.Email, user.Password);
+            dialogServiceMock.Received(1).ShowErrorDialog();
+            httpClientMock.Received(0).HttpClientGetUserFromServer(uut.Email, uut.Password);
+        }
+
+
+        [Test]
+        public void TestLoginWhenServerReturnsNull()
+        {
+            // Arrange
+            uut.Email = "User@mail.dk";
+            uut.Password = "testPassword";
+            httpClientMock.HttpClientGetUserFromServer(uut.Email, uut.Password).Returns((User) null);
+
+            // Act
+            uut.Login.Execute();
+
+            // Assert
+            httpClientMock.Received(1).HttpClientGetUserFromServer(uut.Email, uut.Password);
+            dialogServiceMock.Received(1).ShowErrorDialog();
+        }
+
+        [Test]
+        public void TestLoginWhenDialogCloseWithFalse()
+        {
+            // Arrange
+            uut.Email = "User@mail.dk";
+            uut.Password = "testPassword";
+            var user = new User();
+            httpClientMock.HttpClientGetUserFromServer(uut.Email, uut.Password).Returns(user);
+
+            // Act
+            uut.Login.Execute();
+
+            // Assert
+            httpClientMock.Received(1).HttpClientGetUserFromServer(uut.Email, uut.Password);
+            dialogServiceMock.Received(0).ShowErrorDialog();
+            closeActionMock.Received(1).Invoke(true);
         }
     }
 }

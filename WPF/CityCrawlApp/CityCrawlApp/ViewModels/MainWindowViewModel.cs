@@ -21,7 +21,7 @@ namespace CityCrawlApp.ViewModels
 
         void ExecuteLoginBtn()
         {
-            var vmLogin = new LoginViewModel();
+            var vmLogin = new LoginViewModel(new httpClient(), new DialogService());
             var dialog = new Login(vmLogin);
 
             if (dialog.ShowDialog() == true)
