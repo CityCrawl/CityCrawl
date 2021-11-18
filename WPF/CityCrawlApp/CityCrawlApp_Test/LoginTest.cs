@@ -16,6 +16,7 @@ namespace CityCrawlApp.Test
         private IUser user;
         private IhttpClient httpClient;
 
+
         [SetUp]
         public void Setup()
         {
