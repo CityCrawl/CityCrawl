@@ -12,13 +12,12 @@ using System.IO;
 using Microsoft.Win32;
 using System.Net.Http;
 using System.Text.Json;
-using CityCrawlApp.Models;
 
 namespace CityCrawlApp.ViewModels
 {
     public class OpretBrugerViewModel : BindableBase
     {
-        private httpClient httpClient = new httpClient();
+        private readonly httpClient httpClient = new httpClient();
 
         private string firstName;
         public string FirstName

@@ -10,7 +10,6 @@ using CityCrawlApp.Models;
 using Prism.Mvvm;
 using Prism.Commands;
 using CityCrawlApp.Views;
-using CityCrawlApp.Models;
 
 namespace CityCrawlApp.ViewModels
 {
@@ -18,9 +17,9 @@ namespace CityCrawlApp.ViewModels
     {
         
 
-        private string loggedInUser;
-        private string userPassword;
-        private httpClient httpClient = new httpClient();
+        private readonly string loggedInUser;
+        private readonly string userPassword;
+        private readonly httpClient httpClient = new httpClient();
 
         private DateTime selectedDate;
         public DateTime SelectedDate
