@@ -13,14 +13,12 @@ namespace CityCrawlApp.Test
         private MainWindowViewModel uut;
         private IhttpClient httpClientMock;
         private IDialogService dialogServiceMock;
-        private LoginViewModel loginViewModel;
 
         [SetUp]
         public void Setup()
         {
             httpClientMock = Substitute.For<IhttpClient>();
             dialogServiceMock = Substitute.For<IDialogService>();
-            loginViewModel = new LoginViewModel(httpClientMock, dialogServiceMock);
             uut = new MainWindowViewModel(httpClientMock, dialogServiceMock);
         }
 
@@ -48,31 +46,19 @@ namespace CityCrawlApp.Test
         public void TestLoginBtnDelegateExecuteLoginDialogAndThenShowUser()
         {
             // Arrange
+            var loginViewModel = new LoginViewModel(httpClientMock, dialogServiceMock);
             loginViewModel.Email = "user@mail.dk";
             loginViewModel.Password = "testPassword";
-            var loginDialog = dialogServiceMock.ShowLoginDialog(httpClientMock);
+            dialogServiceMock.ShowLoginDialog(httpClientMock).Returns(loginViewModel);
+
             // Act
             uut.LoginBtn.Execute();
-            loginDialog.Returns(loginViewModel);
-
+            
             // Assert
             dialogServiceMock.Received(1).ShowMinProfilDialog(loginViewModel.Email, loginViewModel.Password, httpClientMock, dialogServiceMock);
         }
 
-        [Test]
-        public void TestloginBtnSomething()
-        {
-            
-            var loginModel = dialogServiceMock.ShowLoginDialog(httpClientMock);
-
-            uut.LoginBtn.Execute();
-
-            Assert.That(httpClientMock, Is.Not.Null);
-
-            dialogServiceMock.Received(1)
-                .ShowMinProfilDialog(loginModel.Email, loginModel.Password, httpClientMock, dialogServiceMock);
-        }
-        
+       
         [Test]
         public void TestOpretBrugerBtnDelegateExecuteOpretBrugerDialog()
         {
@@ -86,9 +72,15 @@ namespace CityCrawlApp.Test
         [Test]
         public void TestOpretBrugerBtnDelegateExecuteOpretBrugerDialogAndThenShowUser()
         {
+            // Arrange
+            var opretBrugerLoginViewModel = new OpretBrugerViewModel(httpClientMock);
+            opretBrugerLoginViewModel.Email = "user@mail.dk";
+            opretBrugerLoginViewModel.Password = "testPassword";
+            dialogServiceMock.ShowOpretBrugerDialog(httpClientMock).Returns(opretBrugerLoginViewModel);
+
+
             // Act
             uut.OpretBrugerBtn.Execute();
-            //dialogServiceMock.ShowOpretBrugerDialog(httpClientMock).Returns(!null);
 
             // Assert
             dialogServiceMock.Received(1).ShowOpretBrugerDialog(httpClientMock);
