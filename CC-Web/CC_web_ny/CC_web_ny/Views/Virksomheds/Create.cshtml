@@ -1,0 +1,41 @@
+﻿@model CC_Web.Models.Data.Virksomhed
+
+@{
+    ViewData["Title"] = "Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<img src="~/Images/CCLogo.png" alt="CityCrawl logo" style="width: 350px; height: 350px; margin-left:auto;margin-right:auto; display:block" />
+<div class="row">
+    <div class="col-md-12">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="CVR" class="generel_style_txt_box"></label>
+                <input asp-for="CVR" class="generel_style_txt_box" />
+                <span asp-validation-for="CVR" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Virksomhedsnavn" class="generel_style_txt_box"></label>
+                <input asp-for="Virksomhedsnavn" class="generel_style_txt_box" />
+                <span asp-validation-for="Virksomhedsnavn" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="KontaktPerson" class="generel_style_txt_box"></label>
+                <input asp-for="KontaktPerson" class="generel_style_txt_box" />
+                <span asp-validation-for="KontaktPerson" class="text-danger"></span>
+            </div>
+            @*<div class="form-group">
+                <label asp-for="CityCrawlId" class="control-label"></label>
+                <select asp-for="CityCrawlId" class ="form-control" asp-items="ViewBag.CityCrawlId"></select>
+            </div>*@
+            <div class="form-group">
+                <input type="submit" value="Gem" class="PinkBtn" id="center_btn"/>
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

@@ -1,5 +1,8 @@
-﻿@{
-    ViewData["Title"] = "Home Page";
+﻿@model IEnumerable<CC_Web.Models.Data.Virksomhed>
+
+@{
+    ViewData["Title"] = "CityCrawl";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 <div class="logo-center">
@@ -7,6 +10,5 @@
 </div>
 <div>
     <a href="Home/Login"><button class="BlueBtn" style="margin: 80px 150px; margin-left:350px">Login</button></a>
-        <a href="Home/OpretBruger"><button class="PinkBtn">Opret bruger</button></a>
+    <a href="Home/OpretBruger"><button class="PinkBtn">Opret bruger</button></a>
 </div>
-

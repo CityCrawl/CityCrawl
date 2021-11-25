@@ -23,7 +23,7 @@ namespace CC_web_ny.Controllers
             return View();
         }
 
-        public IActionResult Privacy()
+        public IActionResult Profil()
         {
             return View();
         }
