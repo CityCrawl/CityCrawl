@@ -42,7 +42,20 @@ namespace CityCrawlApp.Test
             Assert.True(opretBrugerExecute);
         }
 
-     
+        [Test]
+        public void TestloginBtnSomething()
+        {
+            
+            var loginModel = dialogServiceMock.ShowLoginDialog(httpClientMock);
+
+            uut.LoginBtn.Execute();
+
+            Assert.That(httpClientMock, Is.Not.Null);
+
+            dialogServiceMock.Received(1)
+                .ShowMinProfilDialog(loginModel.Email, loginModel.Password, httpClientMock, dialogServiceMock);
+
+        }
 
     }
 }
