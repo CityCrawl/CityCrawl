@@ -18,11 +18,13 @@ namespace CityCrawlApp.ViewModels
     {
         private IhttpClient httpClient;
         private IDialogService dialogService;
+        private IAppControlService appControlService;
 
-        public MainWindowViewModel(IhttpClient httpClient, IDialogService dialogService)
+        public MainWindowViewModel(IhttpClient httpClient, IDialogService dialogService, IAppControlService appControlService)
         {
             this.httpClient = httpClient;
             this.dialogService = dialogService;
+            this.appControlService = appControlService;
         }
 
 
@@ -36,7 +38,7 @@ namespace CityCrawlApp.ViewModels
 
             if (loginModel != null)
             {
-                dialogService.ShowMinProfilDialog(loginModel.Email, loginModel.Password, httpClient, dialogService);
+                dialogService.ShowMinProfilDialog(loginModel.Email, loginModel.Password, httpClient, dialogService, appControlService);
             }
         }
 
@@ -50,7 +52,7 @@ namespace CityCrawlApp.ViewModels
 
             if (vmOpretBruger != null)
             {
-                dialogService.ShowMinProfilDialog(vmOpretBruger.Email, vmOpretBruger.Password, httpClient, dialogService);
+                dialogService.ShowMinProfilDialog(vmOpretBruger.Email, vmOpretBruger.Password, httpClient, dialogService, appControlService);
             }
         }
     }

@@ -16,6 +16,7 @@ namespace CityCrawlApp.Test
         {
             closeActionMock = Substitute.For<Action<bool>>();
             uut = new ErrorLoginViewModel();
+            uut.CloseDialog = closeActionMock;
         }
 
         [Test]

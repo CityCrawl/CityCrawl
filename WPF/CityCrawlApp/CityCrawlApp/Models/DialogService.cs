@@ -28,9 +28,10 @@ namespace CityCrawlApp.Models
         }
 
         public bool ShowMinProfilDialog(string loginEmail, string loginPassword,
-                                    IhttpClient httpClient, IDialogService dialogService)
+                                    IhttpClient httpClient, IDialogService dialogService,
+                                    IAppControlService appControlService)
         {
-            var vmMinProfil = new MinProfilViewModel(loginEmail, loginPassword, httpClient, dialogService);
+            var vmMinProfil = new MinProfilViewModel(loginEmail, loginPassword, httpClient, dialogService, appControlService);
             var dialogMinProfil = new MinProfil(vmMinProfil);
 
             return dialogMinProfil.ShowDialog() == true;
@@ -49,9 +50,9 @@ namespace CityCrawlApp.Models
         }
 
         public void ShowTilmeldPubcrawlDialog(string loggedInEmail, string loggedInPassword,
-                                        IhttpClient httpClient, IDialogService dialogService)
+                                        IhttpClient httpClient, IDialogService dialogService, IAppControlService appControlService)
         {
-            var vmTilmeld = new TilmeldPubcrawlViewModel(loggedInEmail, loggedInPassword, httpClient, dialogService);
+            var vmTilmeld = new TilmeldPubcrawlViewModel(loggedInEmail, loggedInPassword, httpClient, dialogService, appControlService);
             var dialog = new TilmeldPubcrawl(vmTilmeld);
 
             dialog.ShowDialog();

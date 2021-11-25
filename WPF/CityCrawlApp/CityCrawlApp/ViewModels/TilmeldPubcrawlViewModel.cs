@@ -22,18 +22,19 @@ namespace CityCrawlApp.ViewModels
         private readonly string userPassword;
         private IhttpClient httpClient;
         private IDialogService dialogService;
+        private IAppControlService appControlService;
 
         public TilmeldPubcrawlViewModel(string loggedInUser, string userPassword,
-            IhttpClient httpClient, IDialogService dialogService)
+            IhttpClient httpClient, IDialogService dialogService, IAppControlService appControlService)
         {
             this.loggedInUser = loggedInUser;
             this.userPassword = userPassword;
             this.httpClient = httpClient;
             this.dialogService = dialogService;
-            App.Current.MainWindow.Visibility = Visibility.Hidden;
+            this.appControlService = appControlService;
+
+            this.appControlService.SetVindowVisibilityToHidden();
         }
-
-
 
         private DateTime selectedDate;
         public DateTime SelectedDate
@@ -50,7 +51,7 @@ namespace CityCrawlApp.ViewModels
         void ExecuteCombineToListOne()
         {
             if (selectedDate.ToString("dd/MM/yyyy") == "01-01-0001")
-                MessageBox.Show("Venligst vælg dato, før pakke vælges");
+                appControlService.ShowMessageBox("Venligst vælg dato, før pakke vælges");
             else
             {
                 var pubcrawl = "Pakke 1 d. " + selectedDate.ToString("dd/MM/yyyy");
@@ -61,7 +62,7 @@ namespace CityCrawlApp.ViewModels
                 };
                 httpClient.HttpClientAddPubCrawls(newRequest);
 
-                MessageBox.Show($"PubCrawl booket: {pubcrawl}");
+                appControlService.ShowMessageBox($"PubCrawl booket: {pubcrawl}");
             }
         }
 
@@ -74,7 +75,7 @@ namespace CityCrawlApp.ViewModels
         void ExecuteCombineToListTwo()
         {
             if (selectedDate.ToString("dd/MM/yyyy") == "01-01-0001")
-                MessageBox.Show("Venligst vælg dato, før pakke vælges");
+                appControlService.ShowMessageBox("Venligst vælg dato, før pakke vælges");
             else
             {
                 var pubcrawl = "Pakke 2 d. " + selectedDate.ToString("dd/MM/yyyy");
@@ -84,8 +85,8 @@ namespace CityCrawlApp.ViewModels
                     Pubcrawl = pubcrawl
                 };
                 httpClient.HttpClientAddPubCrawls(newRequest);
-                 
-                MessageBox.Show($"PubCrawl booket: {pubcrawl}");
+
+                appControlService.ShowMessageBox($"PubCrawl booket: {pubcrawl}");
             }
         }
 
@@ -96,11 +97,7 @@ namespace CityCrawlApp.ViewModels
 
         void ExecuteVisProfil()
         {
-          
-            var vmMinProfil = new MinProfilViewModel(loggedInUser, userPassword, httpClient, dialogService);
-            var dialog = new MinProfil(vmMinProfil);
-
-            dialog.ShowDialog();
+            dialogService.ShowMinProfilDialog(loggedInUser, userPassword, httpClient, dialogService, appControlService);
         }
     }
 }

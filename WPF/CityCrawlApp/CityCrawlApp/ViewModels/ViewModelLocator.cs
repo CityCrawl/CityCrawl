@@ -13,7 +13,7 @@ namespace CityCrawlApp.ViewModels
 
         public MainWindowViewModel ViewModel
         {
-            get { return new MainWindowViewModel(new httpClient(), new DialogService()); }
+            get { return new MainWindowViewModel(new httpClient(), new DialogService(), new AppControlService()); }
         }
     }
 }

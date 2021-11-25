@@ -65,32 +65,6 @@ namespace CityCrawlApp.ViewModels
             {
                 CloseDialog(true);
             }
-
-            /*OpenFileDialog openFileDialog = new OpenFileDialog();
-
-            if (openFileDialog.ShowDialog() == true)
-            {
-                
-                using (StreamReader sr = new StreamReader(openFileDialog.FileName))
-                {
-                    var jsonText = sr.ReadToEnd();
-                    var user = JsonConvert.DeserializeObject<User>(jsonText);
-
-                    if (user.Email != email || user.Password != password)
-                    {
-                        var vmErrorLogin = new ErrorLoginViewModel();
-                        var dialogErrorLogin = new LoginError(vmErrorLogin);
-
-                        dialogErrorLogin.ShowDialog();
-                        // bad user email or/and password, flow ends
-                    }
-                    else
-                    {
-                        // closes login with true: user is logged in
-                        CloseDialog(true); 
-                    }
-                }
-            }*/
         }
 
     }

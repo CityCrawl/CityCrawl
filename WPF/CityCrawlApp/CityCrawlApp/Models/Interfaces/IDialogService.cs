@@ -10,11 +10,12 @@ namespace CityCrawlApp.Models.Interfaces
         LoginViewModel ShowLoginDialog(IhttpClient httpClient);
 
         bool ShowMinProfilDialog(string loginEmail, string loginPassword,
-                        IhttpClient httpClient, IDialogService dialogService);
+                        IhttpClient httpClient, IDialogService dialogService,
+                        IAppControlService appControlService);
 
         OpretBrugerViewModel ShowOpretBrugerDialog(IhttpClient httpClient);
 
         void ShowTilmeldPubcrawlDialog(string loggedInEmail, string loggedInPassword,
-            IhttpClient httpClient, IDialogService dialogService);
+            IhttpClient httpClient, IDialogService dialogService, IAppControlService appControlService);
     }
 }

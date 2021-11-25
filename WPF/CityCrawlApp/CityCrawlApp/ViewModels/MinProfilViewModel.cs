@@ -22,6 +22,7 @@ namespace CityCrawlApp.ViewModels
     {
         private IhttpClient httpClient;
         private IDialogService dialogService;
+        private IAppControlService appControlService;
 
 
         private string firstName;
@@ -56,21 +57,22 @@ namespace CityCrawlApp.ViewModels
         public ObservableCollection<string> Pubcrawls
         {
             get { return listOfPubcrawls; }
-            set { SetProperty(ref listOfPubcrawls, value); }
         }
 
         private string loggedInUser;
         private string userPassword;
 
         public MinProfilViewModel(string loggedInUser, string userPassword,
-                                IhttpClient httpClient, IDialogService dialogService)
+                                IhttpClient httpClient, IDialogService dialogService,
+                                IAppControlService appControlService)
         {
             this.loggedInUser = loggedInUser;
             this.userPassword = userPassword;
             this.httpClient = httpClient;
             this.dialogService = dialogService;
+            this.appControlService = appControlService;
 
-            App.Current.MainWindow.Visibility = Visibility.Hidden;
+            this.appControlService.SetVindowVisibilityToHidden();
 
             var user = httpClient.HttpClientGetUserFromServer(loggedInUser, userPassword);
             if (user != null)
@@ -87,25 +89,8 @@ namespace CityCrawlApp.ViewModels
             }
             else
             {
-                // show error / close window?
+                throw new Exception("User is not found!");
             }
-            
-
-            /*OpenFileDialog openFileDialog = new OpenFileDialog();
-
-            if (openFileDialog.ShowDialog() == true)
-            {
-                using (StreamReader sr = new StreamReader(openFileDialog.FileName))
-                {
-                    var jsonText = sr.ReadToEnd();
-                    var user = JsonConvert.DeserializeObject<User>(jsonText);
-
-                    FirstName = user.FirstName;
-                    LastName = user.LastName;
-                    Birthday = user.Birthday;
-                    Email = user.Email;
-                }
-            }*/
         }
 
 
@@ -115,7 +100,7 @@ namespace CityCrawlApp.ViewModels
 
         void ExecuteTilmeldPubcrawl()
         {
-            dialogService.ShowTilmeldPubcrawlDialog(loggedInUser, userPassword, httpClient, dialogService);
+            dialogService.ShowTilmeldPubcrawlDialog(loggedInUser, userPassword, httpClient, dialogService, appControlService);
         }
 
     }

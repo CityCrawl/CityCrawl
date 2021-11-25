@@ -79,22 +79,6 @@ namespace CityCrawlApp.ViewModels
 
             httpClient.HttpClientCreateUser(userInDB);
             CloseDialog(true);
-
-            /*SaveFileDialog saveFileDialog = new SaveFileDialog();
-            
-
-            if (saveFileDialog.ShowDialog() == true)
-            {
-                var json = JsonConvert.SerializeObject(userInDB, Newtonsoft.Json.Formatting.Indented);
-
-                using (StreamWriter sw = new StreamWriter(saveFileDialog.FileName))
-                {
-                    sw.WriteLine(json);
-                }
-
-                // Return true to mainWindow, user is created
-                CloseDialog(true);
-            }*/
         }
 
     }

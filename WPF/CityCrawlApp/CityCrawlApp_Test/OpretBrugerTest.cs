@@ -21,11 +21,8 @@ namespace CityCrawlApp.Test
             httpClientMock = Substitute.For<IhttpClient>();
             closeActionMock = Substitute.For<Action<bool>>();
             uut = new OpretBrugerViewModel(httpClientMock);
-            uut.Email = "user@mail.dk";
-            uut.Password = "testPassword";
-            uut.Birthday = "11-11-1999";
-            uut.FirstName = "Hans";
-            uut.LastName = "Hansen";
+            uut.CloseDialog = closeActionMock;
+
         }
 
         [Test]
@@ -42,18 +39,24 @@ namespace CityCrawlApp.Test
         public void TestVisProfilDelegateExecute()
         {
             // Arrange
-            var User = new User();
-            User.FirstName = uut.FirstName;
-            User.LastName = uut.LastName;
-            User.Birthday = uut.Birthday;
-            User.Email = uut.Email;
-            User.Password = uut.Email;
-            
+            uut.Email = "user@mail.dk";
+            uut.Password = "testPassword";
+            uut.Birthday = "11-11-1999";
+            uut.FirstName = "Hans";
+            uut.LastName = "Hansen";
+
             // Act
+            User calledUser = null;
+            httpClientMock.HttpClientCreateUser(Arg.Do<User>(user => calledUser = user));
             uut.VisProfil.Execute();
 
             // Assert
-            httpClientMock.Received(1).HttpClientCreateUser(User);
+            Assert.That(calledUser.Email, Is.EqualTo(uut.Email));
+            Assert.That(calledUser.Password, Is.EqualTo(uut.Password));
+            Assert.That(calledUser.Birthday, Is.EqualTo(uut.Birthday));
+            Assert.That(calledUser.FirstName, Is.EqualTo(uut.FirstName));
+            Assert.That(calledUser.LastName, Is.EqualTo(uut.LastName));
+
             closeActionMock.Received(1).Invoke(true);
         }
     }

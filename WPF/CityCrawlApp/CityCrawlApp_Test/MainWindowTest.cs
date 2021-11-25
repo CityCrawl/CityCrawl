@@ -13,13 +13,15 @@ namespace CityCrawlApp.Test
         private MainWindowViewModel uut;
         private IhttpClient httpClientMock;
         private IDialogService dialogServiceMock;
+        private IAppControlService appControlServiceMock;
 
         [SetUp]
         public void Setup()
         {
             httpClientMock = Substitute.For<IhttpClient>();
             dialogServiceMock = Substitute.For<IDialogService>();
-            uut = new MainWindowViewModel(httpClientMock, dialogServiceMock);
+            appControlServiceMock = Substitute.For<IAppControlService>();
+            uut = new MainWindowViewModel(httpClientMock, dialogServiceMock, appControlServiceMock);
         }
 
         [Test]
@@ -55,7 +57,8 @@ namespace CityCrawlApp.Test
             uut.LoginBtn.Execute();
             
             // Assert
-            dialogServiceMock.Received(1).ShowMinProfilDialog(loginViewModel.Email, loginViewModel.Password, httpClientMock, dialogServiceMock);
+            dialogServiceMock.Received(1).ShowMinProfilDialog(loginViewModel.Email, loginViewModel.Password,
+                                            httpClientMock, dialogServiceMock, appControlServiceMock);
         }
 
        
@@ -77,7 +80,6 @@ namespace CityCrawlApp.Test
             opretBrugerLoginViewModel.Email = "user@mail.dk";
             opretBrugerLoginViewModel.Password = "testPassword";
             dialogServiceMock.ShowOpretBrugerDialog(httpClientMock).Returns(opretBrugerLoginViewModel);
-
 
             // Act
             uut.OpretBrugerBtn.Execute();
