@@ -19,12 +19,35 @@ namespace CC_Web.Data.Migrations
                 .HasAnnotation("ProductVersion", "5.0.12")
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+            modelBuilder.Entity("CC_Web.Models.Data.BookedPubcrawls", b =>
+                {
+                    b.Property<int>("BookedPubcrawlsId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("CityCrawlId")
+                        .HasColumnType("int");
+
+                    b.HasKey("BookedPubcrawlsId");
+
+                    b.HasIndex("CityCrawlId");
+
+                    b.ToTable("BookedPubcrawls");
+                });
+
             modelBuilder.Entity("CC_Web.Models.Data.Bruger", b =>
                 {
                     b.Property<int>("BrugerID")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("BookdPubcrawlsId")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("BookedPubcrawlsId")
+                        .HasColumnType("int");
 
                     b.Property<string>("Efternavn")
                         .HasColumnType("nvarchar(max)");
@@ -43,6 +66,8 @@ namespace CC_Web.Data.Migrations
 
                     b.HasKey("BrugerID");
 
+                    b.HasIndex("BookedPubcrawlsId");
+
                     b.ToTable("brugere");
                 });
 
@@ -52,15 +77,6 @@ namespace CC_Web.Data.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("Begivenhed")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Dato")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Sted")
-                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("CityCrawlID");
 
@@ -74,7 +90,10 @@ namespace CC_Web.Data.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int>("CVR")
+                    b.Property<string>("CVR")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("CityCrawlId")
                         .HasColumnType("int");
 
                     b.Property<string>("Email")
@@ -90,6 +109,8 @@ namespace CC_Web.Data.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("VirksomhedID");
+
+                    b.HasIndex("CityCrawlId");
 
                     b.ToTable("virksomheder");
                 });
@@ -294,6 +315,37 @@ namespace CC_Web.Data.Migrations
                     b.ToTable("AspNetUserTokens");
                 });
 
+            modelBuilder.Entity("CC_Web.Models.Data.BookedPubcrawls", b =>
+                {
+                    b.HasOne("CC_Web.Models.Data.CityCrawl", "CC")
+                        .WithMany("BookingList")
+                        .HasForeignKey("CityCrawlId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("CC");
+                });
+
+            modelBuilder.Entity("CC_Web.Models.Data.Bruger", b =>
+                {
+                    b.HasOne("CC_Web.Models.Data.BookedPubcrawls", "BookedPubcrawls")
+                        .WithMany("Bruger")
+                        .HasForeignKey("BookedPubcrawlsId");
+
+                    b.Navigation("BookedPubcrawls");
+                });
+
+            modelBuilder.Entity("CC_Web.Models.Data.Virksomhed", b =>
+                {
+                    b.HasOne("CC_Web.Models.Data.CityCrawl", "CC")
+                        .WithMany("Virksomhed")
+                        .HasForeignKey("CityCrawlId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("CC");
+                });
+
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
                 {
                     b.HasOne("Microsoft.AspNetCore.Identity.IdentityRole", null)
@@ -343,6 +395,18 @@ namespace CC_Web.Data.Migrations
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+                });
+
+            modelBuilder.Entity("CC_Web.Models.Data.BookedPubcrawls", b =>
+                {
+                    b.Navigation("Bruger");
+                });
+
+            modelBuilder.Entity("CC_Web.Models.Data.CityCrawl", b =>
+                {
+                    b.Navigation("BookingList");
+
+                    b.Navigation("Virksomhed");
                 });
 #pragma warning restore 612, 618
         }

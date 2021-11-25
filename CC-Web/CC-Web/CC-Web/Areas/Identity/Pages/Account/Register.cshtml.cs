@@ -5,6 +5,8 @@ using System.Linq;
 using System.Text;
 using System.Text.Encodings.Web;
 using System.Threading.Tasks;
+using CC_Web.Data;
+using CC_Web.Models.Data;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
@@ -56,12 +58,30 @@ namespace CC_Web.Areas.Identity.Pages.Account
             [Display(Name = "Password")]
             public string Password { get; set; }
 
+<<<<<<< Updated upstream
             [DataType(DataType.Password)]
             [Display(Name = "Confirm password")]
             [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
             public string ConfirmPassword { get; set; }
 
             //CVR opret som ovenstående. 
+=======
+            [Required]
+            [StringLength(100, ErrorMessage = "Indtast virksomhedens CVR-nummer")]
+            [Display(Name = "CVR")]
+            public string CVR { get; set; }
+
+            [Required]
+            [StringLength(100, ErrorMessage = "Indtast virksomhedens Virksomhedsnavn")]
+            [Display(Name = "VName")]
+            public string Virksomhedsnavn { get; set; }
+
+            [Required]
+            [StringLength(100, ErrorMessage = "Indtast virksomhedens Kontaktperson")]
+            [Display(Name = "Kontaktperson")]
+            public string Kontaktperson { get; set; }
+
+>>>>>>> Stashed changes
         }
 
         public async Task OnGetAsync(string returnUrl = null)
@@ -77,10 +97,15 @@ namespace CC_Web.Areas.Identity.Pages.Account
             if (ModelState.IsValid)
             {
                 var user = new IdentityUser { UserName = Input.Email, Email = Input.Email };
+                var vuser = new Virksomhed { CVR = Input.CVR, Virksomhedsnavn = Input.Virksomhedsnavn, KontaktPerson = Input.Kontaktperson, Email = Input.Email, Password = Input.Password };
                 var result = await _userManager.CreateAsync(user, Input.Password);
                 if (result.Succeeded)
                 {
                     _logger.LogInformation("User created a new account with password.");
+                    //Gemmer input i virksomhed db
+                    ApplicationDbContext context = new ApplicationDbContext();
+                    context.Add(vuser);
+                    context.Dispose();
 
                     var code = await _userManager.GenerateEmailConfirmationTokenAsync(user);
                     code = WebEncoders.Base64UrlEncode(Encoding.UTF8.GetBytes(code));
@@ -108,6 +133,8 @@ namespace CC_Web.Areas.Identity.Pages.Account
                     ModelState.AddModelError(string.Empty, error.Description);
                 }
             }
+
+            
 
             // If we got this far, something failed, redisplay form
             return Page();
