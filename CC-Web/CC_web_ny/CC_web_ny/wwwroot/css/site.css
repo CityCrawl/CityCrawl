@@ -72,3 +72,63 @@ body {
     white-space: nowrap;
     line-height: 60px; /* Vertically center the text there */
 }
+
+/* Generel website style
+-------------------------------------------------- */
+.generel_style_image {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 5%;
+    margin-bottom: 5%;
+    width: 20%;
+}
+
+.generel_style_txt_box {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 20%;
+}
+
+#center_btn {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.PinkBtn {
+    background-color: #e759ac; /*skal finde den rigtige farve*/
+    border: none;
+    width: 120px;
+    height: 40px;
+    font-weight: bold;
+    display: inline-block
+}
+
+.BlueBtn {
+    background-color: #85d1d1; /*skal finde den rigtige farve*/
+    border: none;
+    width: 120px;
+    height: 40px;
+    font-weight: bold;
+    display: inline-block
+}
+
+.GreenBtn {
+    background-color: darkseagreen; /*skal finde den rigtige farve*/
+    border: none;
+    width: 120px;
+    height: 40px;
+    font-weight: bold;
+    display: inline-block
+}
+
+.Logos {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 5%;
+    margin-bottom: 5%;
+    width: 60%;
+}

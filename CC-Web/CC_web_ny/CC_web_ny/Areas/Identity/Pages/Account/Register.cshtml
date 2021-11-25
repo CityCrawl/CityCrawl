@@ -1,0 +1,44 @@
+﻿@page
+@model RegisterModel
+@{
+    ViewData["Title"] = "Opret bruger";
+}
+<img src="~/Images/CCLogo.png" class="generel_style_image" />
+<div class="row">
+    <div class="col-md-12">
+        <form asp-route-returnUrl="@Model.ReturnUrl" method="post">
+            <hr />
+            <div asp-validation-summary="All" class="text-danger"></div>
+            @*<div class="form-group">
+                <label asp-for="Input.CVR" class="generel_style_txt_box"></label>
+                <input asp-for="Input.CVR" class="generel_style_txt_box" placeholder="12345678" />
+                <span asp-validation-for="Input.CVR" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Input.Virksomhedsnavn" class="generel_style_txt_box"></label>
+                <input asp-for="Input.Virksomhedsnavn" class="generel_style_txt_box" placeholder="CityCrawl"/>
+                <span asp-validation-for="Input.Virksomhedsnavn" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Input.Kontaktperson" class="generel_style_txt_box"></label>
+                <input asp-for="Input.Kontaktperson" class="generel_style_txt_box" placeholder="Hans Hansen" />
+                <span asp-validation-for="Input.Kontaktperson" class="text-danger"></span>
+            </div>*@
+            <div class="form-group">
+                <label asp-for="Input.Email" class="generel_style_txt_box"></label>
+                <input asp-for="Input.Email" class="generel_style_txt_box" placeholder="citycrawl@citycrawl.dk" />
+                <span asp-validation-for="Input.Email" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Input.Password" class="generel_style_txt_box"></label>
+                <input asp-for="Input.Password" class="generel_style_txt_box" placeholder="*********" />
+                <span asp-validation-for="Input.Password" class="text-danger"></span>
+            </div>
+            <button type="submit" class="PinkBtn" id="center_btn">Opret bruger</button>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}
