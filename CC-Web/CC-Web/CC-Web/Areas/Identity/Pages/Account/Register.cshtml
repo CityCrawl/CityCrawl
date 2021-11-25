@@ -1,4 +1,6 @@
-﻿@page
+﻿
+
+@page
 @model RegisterModel
 @{
     ViewData["Title"] = "Opret Bruger";
@@ -13,20 +15,26 @@
             <hr />
             <div asp-validation-summary="All" class="text-danger"></div>
             <div class="form-group">
+<<<<<<< Updated upstream
                 <!-- Her skal vi have indsat asp.for osv. igen.</h4>-->
                 <label for="CVR" class="generel_style_txt_box">CVR-nummer</label>
                 <input id="CVR" type="text" class="generel_style_txt_box" placeholder="CVR-nummer" />
                 <span class="text-danger"></span>
+=======
+                <label asp-for="Input.CVR" class="generel_style_txt_box">CVR-nummer</label>
+                <input asp-for="Input.CVR" class="generel_style_txt_box" placeholder="CVR-nummer" />
+                <span asp-validation-for="Input.CVR" class="text-danger"></span>
+>>>>>>> Stashed changes
             </div>
             <div class="form-group">
-                <label asp-for="Input.ConfirmPassword" class="generel_style_txt_box">Virksomhedsnavn</label>
-                <input asp-for="Input.ConfirmPassword" class="generel_style_txt_box" placeholder="CityCrawl" />
-                <span asp-validation-for="Input.ConfirmPassword" class="text-danger"></span>
+                <label asp-for="Input.Virksomhedsnavn" class="generel_style_txt_box">Virksomhedsnavn</label>
+                <input asp-for="Input.Virksomhedsnavn" class="generel_style_txt_box" placeholder="CityCrawl" />
+                <span asp-validation-for="Input.Virksomhedsnavn" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Input.ConfirmPassword" class="generel_style_txt_box">Kontakt person</label>
-                <input asp-for="Input.ConfirmPassword" class="generel_style_txt_box" placeholder="Hans Hansen" />
-                <span asp-validation-for="Input.ConfirmPassword" class="text-danger"></span>
+                <label asp-for="Input.Kontaktperson" class="generel_style_txt_box">Kontakt person</label>
+                <input asp-for="Input.Kontaktperson" class="generel_style_txt_box" placeholder="Hans Hansen" />
+                <span asp-validation-for="Input.Kontaktperson" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="Input.Email" class="generel_style_txt_box">E-mail</label>

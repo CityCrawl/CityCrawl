@@ -1,4 +1,5 @@
-﻿using CC_Web.Models;
+﻿using CC_Web.Data;
+using CC_Web.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System;
@@ -13,9 +14,13 @@ namespace CC_Web.Controllers
     {
         private readonly ILogger<HomeController> _logger;
 
-        public HomeController(ILogger<HomeController> logger)
+        private readonly ApplicationDbContext _context;
+
+        public HomeController(ILogger<HomeController> logger, ApplicationDbContext context)
         {
             _logger = logger;
+            _context = context;
+
         }
 
         public IActionResult Index()
@@ -23,7 +28,7 @@ namespace CC_Web.Controllers
             return View();
         }
 
-        public IActionResult Privacy()
+        public IActionResult Profil()
         {
             return View();
         }
