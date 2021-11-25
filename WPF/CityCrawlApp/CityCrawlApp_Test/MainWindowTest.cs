@@ -48,8 +48,8 @@ namespace CityCrawlApp.Test
         public void TestLoginBtnDelegateExecuteLoginDialogAndThenShowUser()
         {
             // Arrange
-            loginViewModel.Email = "user@localhost.dk";
-            loginViewModel.Password = "secretLogin";
+            loginViewModel.Email = "user@mail.dk";
+            loginViewModel.Password = "testPassword";
             var loginDialog = dialogServiceMock.ShowLoginDialog(httpClientMock);
             // Act
             uut.LoginBtn.Execute();
