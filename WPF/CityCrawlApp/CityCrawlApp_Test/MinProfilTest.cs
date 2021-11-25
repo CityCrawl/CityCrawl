@@ -64,10 +64,7 @@ namespace CityCrawlApp.Test
             httpClientMock.HttpClientGetUserFromServer(loggedInUser, userPassword).Returns((User) null);
             
             // Act and Assert
-            var exception = Assert.Throws<Exception>(() =>
-                {
-                    uut = new MinProfilViewModel(loggedInUser, userPassword, httpClientMock, dialogServiceMock, appControlServiceMock);
-                });
+            var exception = Assert.Throws<Exception>(() => uut = new MinProfilViewModel(loggedInUser, userPassword, httpClientMock, dialogServiceMock, appControlServiceMock));
 
             Assert.That(exception.Message, Is.EqualTo("User is not found!"));
         }
