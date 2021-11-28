@@ -5,6 +5,8 @@ using System.Linq;
 using System.Text;
 using System.Text.Encodings.Web;
 using System.Threading.Tasks;
+using CC_Web.Data;
+using CC_Web.Models.Data;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
@@ -23,17 +25,20 @@ namespace CC_Web.Areas.Identity.Pages.Account
         private readonly UserManager<IdentityUser> _userManager;
         private readonly ILogger<RegisterModel> _logger;
         private readonly IEmailSender _emailSender;
+        private readonly ApplicationDbContext _context;
 
         public RegisterModel(
             UserManager<IdentityUser> userManager,
             SignInManager<IdentityUser> signInManager,
             ILogger<RegisterModel> logger,
-            IEmailSender emailSender)
+            IEmailSender emailSender,
+            ApplicationDbContext context)
         {
             _userManager = userManager;
             _signInManager = signInManager;
             _logger = logger;
             _emailSender = emailSender;
+            _context = context;
         }
 
         [BindProperty]
@@ -45,6 +50,22 @@ namespace CC_Web.Areas.Identity.Pages.Account
 
         public class InputModel
         {
+
+            [Required]
+            [DataType(DataType.Text)]
+            [Display(Name = "CVR")]
+            public string CVR { get; set; }
+
+            [Required]
+            [DataType(DataType.Text)]
+            [Display(Name = "Virksomhedsnavn")]
+            public string Virksomhedsnavn { get; set; }
+
+            [Required]
+            [DataType(DataType.Text)]
+            [Display(Name = "KontaktPerson")]
+            public string KontaktPerson { get; set; }
+
             [Required]
             [EmailAddress]
             [Display(Name = "Email")]
@@ -56,10 +77,10 @@ namespace CC_Web.Areas.Identity.Pages.Account
             [Display(Name = "Password")]
             public string Password { get; set; }
 
-            [DataType(DataType.Password)]
-            [Display(Name = "Confirm password")]
-            [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
-            public string ConfirmPassword { get; set; }
+            //[DataType(DataType.Password)]
+            //[Display(Name = "Confirm password")]
+            //[Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
+            //public string ConfirmPassword { get; set; }
         }
 
         public async Task OnGetAsync(string returnUrl = null)
@@ -74,10 +95,13 @@ namespace CC_Web.Areas.Identity.Pages.Account
             ExternalLogins = (await _signInManager.GetExternalAuthenticationSchemesAsync()).ToList();
             if (ModelState.IsValid)
             {
-                var user = new IdentityUser { UserName = Input.Email, Email = Input.Email };
+                var user = new IdentityUser { UserName = Input.Virksomhedsnavn, Email = Input.Email };
+                var vuser = new Virksomhed { CVR = Input.CVR, Virksomhedsnavn = Input.Virksomhedsnavn, KontaktPerson = Input.KontaktPerson, Email = Input.Email, Password = Input.Password };
                 var result = await _userManager.CreateAsync(user, Input.Password);
                 if (result.Succeeded)
                 {
+                    _context.Add(vuser);
+                    await _context.SaveChangesAsync();
                     _logger.LogInformation("User created a new account with password.");
 
                     var code = await _userManager.GenerateEmailConfirmationTokenAsync(user);
