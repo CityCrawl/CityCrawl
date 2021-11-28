@@ -62,6 +62,13 @@ namespace CC_Web.Controllers
             return View(virksomhed);
         }
 
+        // GET: Welcome
+
+        public IActionResult Welcome()
+        {
+            return View();
+        }
+
         // GET: MainCC/Create
         public IActionResult Create()
         {
