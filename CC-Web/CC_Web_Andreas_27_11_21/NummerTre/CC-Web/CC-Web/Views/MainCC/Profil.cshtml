@@ -1,0 +1,28 @@
+﻿@model CC_Web.Models.Data.Virksomhed
+
+@{
+    ViewData["Title"] = "Profil";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<img src="~/Images/CCLogo.png" class="generel_style_image" />
+
+<div class="row">
+    <div class="col-md-1"></div>
+    <div class="col-md-7">
+        <h1>Virksomhedsprofil</h1>
+        <p>Virksomhedsnavn: @Html.DisplayFor(model => model.Virksomhedsnavn)</p>
+        <p>CVR-nummer: @Html.DisplayFor(model => model.CVR)</p>
+        <p>Kontaktperson: @Html.DisplayFor(model => model.KontaktPerson)</p>
+        <p>Virksomhedsbeskrivelse: </p>
+
+        <textarea id="textareaV" style="width:350px;height:200px"></textarea>
+        <br />
+        <input type="button" class="PinkBtn" value="Gem" style="margin-top:5%" />
+    </div>
+    <div class="col-md-4">
+        <h1>Bookede pubcrawls</h1>
+
+    </div>
+</div>
+
+<hr />

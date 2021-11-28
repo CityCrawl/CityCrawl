@@ -43,6 +43,25 @@ namespace CC_Web.Controllers
             return View(virksomhed);
         }
 
+        // GET: Profil
+
+        public async Task<IActionResult> Profil(string? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            var virksomhed = await _context.virksomheder
+                .FirstOrDefaultAsync(m => m.Virksomhedsnavn == id);
+            if (virksomhed == null)
+            {
+                return NotFound();
+            }
+
+            return View(virksomhed);
+        }
+
         // GET: MainCC/Create
         public IActionResult Create()
         {

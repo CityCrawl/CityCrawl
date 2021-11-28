@@ -1,60 +1,14 @@
 ﻿@model IEnumerable<CC_Web.Models.Data.Virksomhed>
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "CityCrawl";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h1>Index</h1>
-
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.CVR)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Virksomhedsnavn)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.KontaktPerson)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Email)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Password)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.CVR)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Virksomhedsnavn)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.KontaktPerson)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Email)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Password)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.VirksomhedID">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.VirksomhedID">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.VirksomhedID">Delete</a>
-            </td>
-        </tr>
-}
-    </tbody>
-</table>
+<div class="logo-center">
+    <img src="~/Images/CCLogo.png" alt="CityCrawl logo" style="width: 350px; height: 350px; margin-left:auto;margin-right:auto; display:block" />
+</div>
+<div>
+    <a href="Home/Login"><button class="BlueBtn" style="margin: 80px 150px; margin-left:350px">Login</button></a>
+    <a href="Home/OpretBruger"><button class="PinkBtn">Opret bruger</button></a>
+</div>

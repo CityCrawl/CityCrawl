@@ -63,7 +63,7 @@ namespace CC_Web
             {
                 endpoints.MapControllerRoute(
                     name: "default",
-                    pattern: "{controller=MainCC}/{action=Index}/{id?}");
+                    pattern: "{controller=Home}/{action=Index}/{id?}");
                 endpoints.MapRazorPages();
             });
         }
