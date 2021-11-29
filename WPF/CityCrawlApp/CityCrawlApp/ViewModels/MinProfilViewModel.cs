@@ -72,7 +72,7 @@ namespace CityCrawlApp.ViewModels
             this.dialogService = dialogService;
             this.appControlService = appControlService;
 
-            this.appControlService.SetVindowVisibilityToHidden();
+            this.appControlService.SetMainWindowVisibilityToHidden();
 
             var user = httpClient.HttpClientGetUserFromServer(loggedInUser, userPassword);
             if (user != null)

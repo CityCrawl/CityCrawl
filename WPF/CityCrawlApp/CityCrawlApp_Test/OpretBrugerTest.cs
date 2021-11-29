@@ -22,7 +22,11 @@ namespace CityCrawlApp.Test
             closeActionMock = Substitute.For<Action<bool>>();
             uut = new OpretBrugerViewModel(httpClientMock);
             uut.CloseDialog = closeActionMock;
-
+            uut.Email = "user@mail.dk";
+            uut.Password = "testPassword";
+            uut.Birthday = "11-11-1999";
+            uut.FirstName = "Hans";
+            uut.LastName = "Hansen";
         }
 
         [Test]
@@ -38,13 +42,6 @@ namespace CityCrawlApp.Test
         [Test]
         public void TestVisProfilDelegateExecute()
         {
-            // Arrange
-            uut.Email = "user@mail.dk";
-            uut.Password = "testPassword";
-            uut.Birthday = "11-11-1999";
-            uut.FirstName = "Hans";
-            uut.LastName = "Hansen";
-
             // Act
             User calledUser = null;
             httpClientMock.HttpClientCreateUser(Arg.Do<User>(user => calledUser = user));
