@@ -7,7 +7,6 @@ using System.Text.Json;
 using System.Threading.Tasks;
 using CityCrawlApp.Models.Interfaces;
 
-;
 
 namespace CityCrawlApp.Models
 {
