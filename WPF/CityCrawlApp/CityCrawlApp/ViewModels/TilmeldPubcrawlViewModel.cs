@@ -33,7 +33,7 @@ namespace CityCrawlApp.ViewModels
             this.dialogService = dialogService;
             this.appControlService = appControlService;
 
-            this.appControlService.SetVindowVisibilityToHidden();
+            this.appControlService.SetMainWindowVisibilityToHidden();
         }
 
         private DateTime selectedDate;

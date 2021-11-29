@@ -5,7 +5,7 @@ namespace CityCrawlApp.Models
 {
     public class AppControlService : IAppControlService
     {
-        public void SetVindowVisibilityToHidden()
+        public void SetMainWindowVisibilityToHidden()
         {
             App.Current.MainWindow.Visibility = Visibility.Hidden;
         }
