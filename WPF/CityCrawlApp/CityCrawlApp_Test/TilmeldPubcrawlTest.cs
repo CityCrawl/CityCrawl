@@ -66,7 +66,7 @@ namespace CityCrawlApp.Test
         public void TestGetPubcrawlOneAndDateValidDate()
         {
             // Arrange
-            DateTime validDate = new DateTime(2021, 09, 09);
+            DateTime validDate = new DateTime(2021, 11, 29);
             uut.SelectedDate = validDate;
 
             // Act
@@ -74,7 +74,7 @@ namespace CityCrawlApp.Test
 
             // Assert
             httpClientMock.Received(1).HttpClientAddPubCrawls(Arg.Any<NewPubcrawlRequest>());
-            appControlServiceMock.Received(1).ShowMessageBox("PubCrawl booket: Pakke 1 d. 09-09-2021");
+            appControlServiceMock.Received(1).ShowMessageBox("PubCrawl booket: Pakke 1 d. 29-11-2021");
         }
 
         [Test]
@@ -95,7 +95,7 @@ namespace CityCrawlApp.Test
         public void TestGetPubcrawlTwoAndDateValidDate()
         {
             // Arrange
-            DateTime validDate = new DateTime(2021, 09, 09);
+            DateTime validDate = new DateTime(2021, 11, 29);
             uut.SelectedDate = validDate;
 
             // Act
@@ -103,7 +103,7 @@ namespace CityCrawlApp.Test
 
             // Assert
             httpClientMock.Received(1).HttpClientAddPubCrawls(Arg.Any<NewPubcrawlRequest>());
-            appControlServiceMock.Received(1).ShowMessageBox("PubCrawl booket: Pakke 2 d. 09-09-2021");
+            appControlServiceMock.Received(1).ShowMessageBox("PubCrawl booket: Pakke 2 d. 29-11-2021");
         }
 
         [Test]
@@ -131,10 +131,10 @@ namespace CityCrawlApp.Test
         public void TestSetAndGetSelectedDateProperty()
         {
             // Arrange
-            uut.SelectedDate = new DateTime(2021, 09, 09);
+            uut.SelectedDate = new DateTime(2021, 11, 29);
 
             // Assert
-            Assert.That(uut.SelectedDate, Is.EqualTo(new DateTime(2021, 09, 09)));
+            Assert.That(uut.SelectedDate, Is.EqualTo(new DateTime(2021, 11, 29)));
         }
     }
 }
