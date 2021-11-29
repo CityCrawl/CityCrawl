@@ -10,9 +10,12 @@ namespace CC_Web.Models.Data
     {
         [Key]
         public int CityCrawlID { get; set; }
-        public List<BookedPubcrawls> BookingList { get; set; }
+        public string Begivenhed { get; set; }
+        public string Sted { get; set; }
+        public string Dato { get; set; }
         //Collection over Virksomheder, FK
-        public List<Virksomhed> Virksomhed { get; set; }
-
+        //public List<Virksomhed> Virksomhed { get; set; }
+        //////Collection over Bruger, FK
+        //public List<Bruger> Bruger { get; set; }
     }
 }

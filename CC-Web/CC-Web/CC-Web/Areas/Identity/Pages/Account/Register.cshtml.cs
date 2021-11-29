@@ -25,17 +25,20 @@ namespace CC_Web.Areas.Identity.Pages.Account
         private readonly UserManager<IdentityUser> _userManager;
         private readonly ILogger<RegisterModel> _logger;
         private readonly IEmailSender _emailSender;
+        private readonly ApplicationDbContext _context;
 
         public RegisterModel(
             UserManager<IdentityUser> userManager,
             SignInManager<IdentityUser> signInManager,
             ILogger<RegisterModel> logger,
-            IEmailSender emailSender)
+            IEmailSender emailSender,
+            ApplicationDbContext context)
         {
             _userManager = userManager;
             _signInManager = signInManager;
             _logger = logger;
             _emailSender = emailSender;
+            _context = context;
         }
 
         [BindProperty]
@@ -47,6 +50,22 @@ namespace CC_Web.Areas.Identity.Pages.Account
 
         public class InputModel
         {
+
+            [Required]
+            [DataType(DataType.Text)]
+            [Display(Name = "CVR")]
+            public string CVR { get; set; }
+
+            [Required]
+            [DataType(DataType.Text)]
+            [Display(Name = "Virksomhedsnavn")]
+            public string Virksomhedsnavn { get; set; }
+
+            [Required]
+            [DataType(DataType.Text)]
+            [Display(Name = "KontaktPerson")]
+            public string KontaktPerson { get; set; }
+
             [Required]
             [EmailAddress]
             [Display(Name = "Email")]
@@ -58,30 +77,10 @@ namespace CC_Web.Areas.Identity.Pages.Account
             [Display(Name = "Password")]
             public string Password { get; set; }
 
-<<<<<<< Updated upstream
-            [DataType(DataType.Password)]
-            [Display(Name = "Confirm password")]
-            [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
-            public string ConfirmPassword { get; set; }
-
-            //CVR opret som ovenstående. 
-=======
-            [Required]
-            [StringLength(100, ErrorMessage = "Indtast virksomhedens CVR-nummer")]
-            [Display(Name = "CVR")]
-            public string CVR { get; set; }
-
-            [Required]
-            [StringLength(100, ErrorMessage = "Indtast virksomhedens Virksomhedsnavn")]
-            [Display(Name = "VName")]
-            public string Virksomhedsnavn { get; set; }
-
-            [Required]
-            [StringLength(100, ErrorMessage = "Indtast virksomhedens Kontaktperson")]
-            [Display(Name = "Kontaktperson")]
-            public string Kontaktperson { get; set; }
-
->>>>>>> Stashed changes
+            //[DataType(DataType.Password)]
+            //[Display(Name = "Confirm password")]
+            //[Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
+            //public string ConfirmPassword { get; set; }
         }
 
         public async Task OnGetAsync(string returnUrl = null)
@@ -90,22 +89,20 @@ namespace CC_Web.Areas.Identity.Pages.Account
             ExternalLogins = (await _signInManager.GetExternalAuthenticationSchemesAsync()).ToList();
         }
 
-        public async Task<IActionResult> OnPostAsync(string returnUrl = null) //Linker database og controller 
+        public async Task<IActionResult> OnPostAsync(string returnUrl = null)
         {
-            returnUrl ??= Url.Content("~/");
+            returnUrl ??= Url.Content("~/MainCC/Welcome");
             ExternalLogins = (await _signInManager.GetExternalAuthenticationSchemesAsync()).ToList();
             if (ModelState.IsValid)
             {
-                var user = new IdentityUser { UserName = Input.Email, Email = Input.Email };
-                var vuser = new Virksomhed { CVR = Input.CVR, Virksomhedsnavn = Input.Virksomhedsnavn, KontaktPerson = Input.Kontaktperson, Email = Input.Email, Password = Input.Password };
+                var user = new IdentityUser { UserName = Input.Virksomhedsnavn, Email = Input.Email };
+                var vuser = new Virksomhed { CVR = Input.CVR, Virksomhedsnavn = Input.Virksomhedsnavn, KontaktPerson = Input.KontaktPerson, Email = Input.Email, Password = Input.Password };
                 var result = await _userManager.CreateAsync(user, Input.Password);
                 if (result.Succeeded)
                 {
+                    _context.Add(vuser);
+                    await _context.SaveChangesAsync();
                     _logger.LogInformation("User created a new account with password.");
-                    //Gemmer input i virksomhed db
-                    ApplicationDbContext context = new ApplicationDbContext();
-                    context.Add(vuser);
-                    context.Dispose();
 
                     var code = await _userManager.GenerateEmailConfirmationTokenAsync(user);
                     code = WebEncoders.Base64UrlEncode(Encoding.UTF8.GetBytes(code));
@@ -133,8 +130,6 @@ namespace CC_Web.Areas.Identity.Pages.Account
                     ModelState.AddModelError(string.Empty, error.Description);
                 }
             }
-
-            
 
             // If we got this far, something failed, redisplay form
             return Page();

@@ -1,6 +1,4 @@
-﻿
-
-@page
+﻿@page
 @model RegisterModel
 @{
     ViewData["Title"] = "Opret Bruger";
@@ -25,9 +23,9 @@
                 <span asp-validation-for="Input.Virksomhedsnavn" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Input.Kontaktperson" class="generel_style_txt_box">Kontakt person</label>
-                <input asp-for="Input.Kontaktperson" class="generel_style_txt_box" placeholder="Hans Hansen" />
-                <span asp-validation-for="Input.Kontaktperson" class="text-danger"></span>
+                <label asp-for="Input.KontaktPerson" class="generel_style_txt_box">Kontakt person</label>
+                <input asp-for="Input.KontaktPerson" class="generel_style_txt_box" placeholder="Hans Hansen" />
+                <span asp-validation-for="Input.KontaktPerson" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="Input.Email" class="generel_style_txt_box">E-mail</label>
