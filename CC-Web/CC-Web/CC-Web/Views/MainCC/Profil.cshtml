@@ -13,11 +13,16 @@
         <p>Virksomhedsnavn: @Html.DisplayFor(model => model.Virksomhedsnavn)</p>
         <p>CVR-nummer: @Html.DisplayFor(model => model.CVR)</p>
         <p>Kontaktperson: @Html.DisplayFor(model => model.KontaktPerson)</p>
-        <p>Virksomhedsbeskrivelse: </p>
+        <p>Virksomhedsbeskrivelse: @Html.DisplayFor(model => model.Beskrivelse)</p>
 
-        <textarea id="textareaV" style="width:350px;height:200px"></textarea>
-        <br />
-        <input type="button" class="PinkBtn" value="Gem" style="margin-top:5%" />
+
+
+
+        @*<form>
+            <textarea id="textareaV" style="width:350px;height:200px"></textarea>
+            <br />
+            <input type="submit" class="PinkBtn" value="Gem" style="margin-top:5%" />
+        </form>*@
     </div>
     <div class="col-md-4">
         <h1>Bookede pubcrawls</h1>

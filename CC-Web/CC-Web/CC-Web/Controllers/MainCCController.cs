@@ -69,6 +69,10 @@ namespace CC_Web.Controllers
             return View();
         }
 
+        // Post beskrivelse
+
+
+
         // GET: MainCC/Create
         public IActionResult Create()
         {
