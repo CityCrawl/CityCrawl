@@ -15,7 +15,8 @@ namespace CC_Web.Models.Data
         public string Foedselsdag { get; set; }
         public string Email { get; set; }
         public string Password { get; set; }
-        //public List<CityCrawl> PubCrawlBookings { get; set; }
+        public List<CityCrawl> PubCrawlBookings { get; set; }
+        
         //forening key til CityCrawl
         //public int CityCrawlId { get; set; }
         //public CityCrawl CC { get; set; }

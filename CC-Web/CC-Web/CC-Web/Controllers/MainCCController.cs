@@ -62,6 +62,30 @@ namespace CC_Web.Controllers
             return View(virksomhed);
         }
 
+        // EDIT Profil
+
+        //public IActionResult Profil(Virksomhed virksomhed)
+        //{
+
+        //    return View(virksomhed);
+        //}
+
+        //public async Task<IActionResult> EditBeskrivelse(int? id)
+        //{
+        //    if (id == null)
+        //    {
+        //        return NotFound();
+        //    }
+
+        //    var virksomhed = await _context.virksomheder.FindAsync(id);
+        //    if (virksomhed == null)
+        //    {
+        //        return NotFound();
+        //    }
+        //    return Profil(virksomhed);
+
+        //}
+
         // GET: Welcome
 
         public IActionResult Welcome()
@@ -109,6 +133,7 @@ namespace CC_Web.Controllers
                 return NotFound();
             }
             return View(virksomhed);
+            
         }
 
         // POST: MainCC/Edit/5

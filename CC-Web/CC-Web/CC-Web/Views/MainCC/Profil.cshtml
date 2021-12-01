@@ -15,14 +15,21 @@
         <p>Kontaktperson: @Html.DisplayFor(model => model.KontaktPerson)</p>
         <p>Virksomhedsbeskrivelse: @Html.DisplayFor(model => model.Beskrivelse)</p>
 
+        <textarea id="textareaV" style="width:350px;height:200px"></textarea>
+        <br />
+        <input type="submit" class="PinkBtn" value="Gem" style="margin-top: 5%" />
 
-
-
-        @*<form>
-            <textarea id="textareaV" style="width:350px;height:200px"></textarea>
-            <br />
-            <input type="submit" class="PinkBtn" value="Gem" style="margin-top:5%" />
+        @*<form asp-action="EditBeskrivelse">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <textarea asp-for="Beskrivelse" class="form-control" />
+                <span asp-validation-for="CVR" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" class="PinkBtn" value="Gem" style="margin-top:5%" />
+            </div>
         </form>*@
+
     </div>
     <div class="col-md-4">
         <h1>Bookede pubcrawls</h1>
