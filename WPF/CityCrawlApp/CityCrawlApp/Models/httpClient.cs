@@ -7,7 +7,6 @@ using System.Text.Json;
 using System.Threading.Tasks;
 using CityCrawlApp.Models.Interfaces;
 
-;
 
 namespace CityCrawlApp.Models
 {
@@ -27,7 +26,7 @@ namespace CityCrawlApp.Models
                 var user = JsonSerializer.Deserialize<User>(responseBody.Result, options);
                 return user;
             }
-            catch (Exception e)
+            catch (Exception)
             {
                 // show erro failed to talk to server...
                 return null;

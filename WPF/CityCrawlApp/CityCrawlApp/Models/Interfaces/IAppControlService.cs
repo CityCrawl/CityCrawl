@@ -2,7 +2,7 @@
 {
     public interface IAppControlService
     {
-        void SetVindowVisibilityToHidden();
+        void SetMainWindowVisibilityToHidden();
         void ShowMessageBox(string message);
     }
 }
