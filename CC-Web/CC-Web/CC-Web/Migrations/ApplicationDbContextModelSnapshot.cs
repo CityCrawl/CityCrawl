@@ -56,6 +56,9 @@ namespace CC_Web.Migrations
                     b.Property<string>("Begivenhed")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int?>("BrugerID")
+                        .HasColumnType("int");
+
                     b.Property<string>("Dato")
                         .HasColumnType("nvarchar(max)");
 
@@ -63,6 +66,8 @@ namespace CC_Web.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("CityCrawlID");
+
+                    b.HasIndex("BrugerID");
 
                     b.ToTable("cityCrawls");
                 });
@@ -297,6 +302,13 @@ namespace CC_Web.Migrations
                     b.ToTable("AspNetUserTokens");
                 });
 
+            modelBuilder.Entity("CC_Web.Models.Data.CityCrawl", b =>
+                {
+                    b.HasOne("CC_Web.Models.Data.Bruger", null)
+                        .WithMany("PubCrawlBookings")
+                        .HasForeignKey("BrugerID");
+                });
+
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
                 {
                     b.HasOne("Microsoft.AspNetCore.Identity.IdentityRole", null)
@@ -346,6 +358,11 @@ namespace CC_Web.Migrations
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+                });
+
+            modelBuilder.Entity("CC_Web.Models.Data.Bruger", b =>
+                {
+                    b.Navigation("PubCrawlBookings");
                 });
 #pragma warning restore 612, 618
         }
