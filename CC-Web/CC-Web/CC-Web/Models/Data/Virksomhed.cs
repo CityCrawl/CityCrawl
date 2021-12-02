@@ -16,6 +16,10 @@ namespace CC_Web.Models.Data
         public string Email { get; set; }
         public string Password { get; set; }
         public string Beskrivelse { get; set; }
+
+        //indsæt liste af pubcrawls entiteten
+        //Indsæt FK til ny pubcrawl 
+
         //forening key til CityCrawl
         //public int CityCrawlId { get; set; }
         //public CityCrawl CC { get; set; }
