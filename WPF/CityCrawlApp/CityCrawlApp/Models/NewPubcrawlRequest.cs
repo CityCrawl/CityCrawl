@@ -3,6 +3,6 @@
     public class NewPubcrawlRequest
     {
         public string Email { get; set; }
-        public string Pubcrawl { get; set; }
+        public Pubcrawl Pubcrawl { get; set; }
     }
 }

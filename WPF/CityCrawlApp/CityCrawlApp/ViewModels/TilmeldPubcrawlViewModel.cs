@@ -23,6 +23,7 @@ namespace CityCrawlApp.ViewModels
         private IhttpClient httpClient;
         private IDialogService dialogService;
         private IAppControlService appControlService;
+        private Pubcrawl pubcrawl = new Pubcrawl();
 
         public TilmeldPubcrawlViewModel(string loggedInUser, string userPassword,
             IhttpClient httpClient, IDialogService dialogService, IAppControlService appControlService)
@@ -54,7 +55,10 @@ namespace CityCrawlApp.ViewModels
                 appControlService.ShowMessageBox("Venligst vælg dato, før pakke vælges");
             else
             {
-                var pubcrawl = "Pakke 1 d. " + selectedDate.ToString("dd/MM/yyyy");
+                //var pubcrawl = "Pakke 1 d. " + selectedDate.ToString("dd/MM/yyyy");
+
+                pubcrawl.PacketName = "Pakke 1";
+                pubcrawl.MeetDate = "d. " + selectedDate.ToString("dd/MM/yyyy");
                 var newRequest = new NewPubcrawlRequest
                 {
                     Email = loggedInUser,
@@ -62,7 +66,7 @@ namespace CityCrawlApp.ViewModels
                 };
                 httpClient.HttpClientAddPubCrawls(newRequest);
 
-                appControlService.ShowMessageBox($"PubCrawl booket: {pubcrawl}");
+                appControlService.ShowMessageBox($"PubCrawl booket: {pubcrawl.PacketName} {pubcrawl.MeetDate}");
             }
         }
 
@@ -78,7 +82,8 @@ namespace CityCrawlApp.ViewModels
                 appControlService.ShowMessageBox("Venligst vælg dato, før pakke vælges");
             else
             {
-                var pubcrawl = "Pakke 2 d. " + selectedDate.ToString("dd/MM/yyyy");
+                pubcrawl.PacketName = "Pakke 2";
+                pubcrawl.MeetDate = "d. " + selectedDate.ToString("dd/MM/yyyy");
                 var newRequest = new NewPubcrawlRequest
                 {
                     Email = loggedInUser,
@@ -86,7 +91,7 @@ namespace CityCrawlApp.ViewModels
                 };
                 httpClient.HttpClientAddPubCrawls(newRequest);
 
-                appControlService.ShowMessageBox($"PubCrawl booket: {pubcrawl}");
+                appControlService.ShowMessageBox($"PubCrawl booket: {pubcrawl.PacketName} {pubcrawl.MeetDate}");
             }
         }
 
