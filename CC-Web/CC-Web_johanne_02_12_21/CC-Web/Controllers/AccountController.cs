@@ -15,6 +15,7 @@ using System.Security.Claims;
 using System.IdentityModel.Tokens.Jwt;
 using System.Text;
 using Microsoft.IdentityModel.Tokens;
+using Virksomhed = CC_Web.Models.Data.Virksomhed;
 
 namespace CC_Web.Controllers
 { 
@@ -33,56 +34,33 @@ namespace CC_Web.Controllers
             _appSettings = appSettings.Value;
         }
 
-        [HttpPost("register"), AllowAnonymous]
-        public async Task<ActionResult<BrugerDto>> Register(BrugerDto regUser)
+        [HttpGet("Bruger"), AllowAnonymous]
+        public ActionResult<Bruger> Bruger(string email, string password)
         {
-            regUser.Email = regUser.Email.ToLower();
-            var emailExist = await _context.brugere.Where(u =>
-            u.Email == regUser.Email).FirstOrDefaultAsync();
-            if (emailExist != null)
-                return BadRequest(new { errorMessage = "Email already in use" });
-            Bruger user = new Bruger()
+            //Validere om email og password findes i databasen for Bruger
+            var bruger = _context.brugere
+                .Where(m => m.Email == email)
+                .Include(m => m.Pubcrawls)
+                .FirstOrDefault();
+
+            if (bruger.Email != email)
             {
-                Email = regUser.Email,
-                Fornavn = regUser.Fornavn,
-                Efternavn = regUser.Efternavn,
-                Foedselsdag = regUser.Foedselsdag
-            };
-            user.PwHash = HashPassword(regUser.Password, BcryptWorkfactor);
-            _context.brugere.Add(user);
-            await _context.SaveChangesAsync();
-            return CreatedAtAction("Get", new { id = user.BrugerID }, GenerateToken(user));
-        }
-
-        [HttpPost("Pubcrawl")]
-        public async Task<ActionResult<Bruger>> CreatePubcrawl(Pubcrawl pubcrawl)
-        {
-            User.Claims.Where(c => c.Type == "BrugerId")
-                .Select(c => c.Value).FirstOrDefault();
-
-            if (pubcrawl.PakkeNavn == "Pakke 1")
-            {
-
-                var bubbles = await _context.virksomheder
-                .FirstOrDefaultAsync(m => m.Virksomhedsnavn == "Bubbles");
-
-                bubbles.Pubcrawls.Add(pubcrawl);
-
-
-
+                throw new Exception("The user does not exist in CC-database");
             }
-            else if (pubcrawl.PakkeNavn == "Pakke 2")
+            var validPwd = Verify(password, bruger.PwHash);
+            if (!validPwd)
             {
-
+                throw new Exception("Incorrect user password");
             }
 
-            _context.pubcrawls.Add(pubcrawl);
-            await _context.SaveChangesAsync();
+            // Fjerner uendelig rekursiv link mellem pubcrawl og brugere og virksomheder
+            foreach (var pubcrawl in bruger.Pubcrawls)
+            {
+                pubcrawl.Brugere = new List<Bruger>();
+                pubcrawl.Virksomheder = new List<Virksomhed>();
+            }
 
-            return CreatedAtAction("GetPubcrawl", new { id = pubcrawl.PubcrawlId }, pubcrawl);
-
-
-
+            return bruger;
         }
 
         // GET: api/Account/5
@@ -98,27 +76,74 @@ namespace CC_Web.Controllers
             userDto.Email = user.Email;
             userDto.Fornavn = user.Fornavn;
             userDto.Efternavn = user.Efternavn;
+            userDto.Foedselsdag = user.Foedselsdag;
             return userDto;
         }
 
-        [HttpGet("Bruger"), AllowAnonymous]
-        public async Task<ActionResult<Bruger>> Bruger(string email, string password)
+        [HttpPost("register"), AllowAnonymous]
+        public async Task<ActionResult<BrugerDto>> Register(BrugerDto regUser)
         {
-            //Validere om email og password findes i databasen for Bruger
-            var bruger = await _context.brugere
-                .FirstOrDefaultAsync(m => m.Email == email);
-            if (bruger.Email != email)
+            regUser.Email = regUser.Email.ToLower();
+            var emailExist = await _context.brugere.Where(u =>
+            u.Email == regUser.Email).FirstOrDefaultAsync();
+            if (emailExist != null)
+                return BadRequest(new { errorMessage = "Email already in use" });
+            Bruger user = new Bruger()
             {
-                throw new Exception("The user does not exist in CC-database");
+                Email = regUser.Email,
+                Fornavn = regUser.Fornavn,
+                Efternavn = regUser.Efternavn,
+                Foedselsdag = regUser.Foedselsdag,
+                Pubcrawls = new List<Pubcrawl>()
+            };
+            user.PwHash = HashPassword(regUser.Password, BcryptWorkfactor);
+            _context.brugere.Add(user);
+            await _context.SaveChangesAsync();
+            return CreatedAtAction("Get", new { id = user.BrugerID }, GenerateToken(user));
+        }
+
+        [HttpPost("Pubcrawl")]
+        public async Task<ActionResult> CreatePubcrawl(CreatePubcrawl createPubcrawl)
+        {
+            //var user = User.Claims.Where(c => c.Type == "BrugerId")
+            //    .Select(c => c.Value).FirstOrDefault();
+
+            // Finder brugeren i databasen
+            var user = await _context.brugere.Where(u =>
+                u.Email == createPubcrawl.Email).FirstOrDefaultAsync();
+
+            if (user == null)
+                return BadRequest(new { errorMessage = "User does not exist" });
+            
+            // Pubcrawl med påhæftet bruger
+            var newPubcrawl = createPubcrawl.Pubcrawl;
+            newPubcrawl.Brugere = new List<Bruger>();
+            newPubcrawl.Brugere.Add(user);
+            
+            // Virksomheder
+            newPubcrawl.Virksomheder = new List<Virksomhed>();
+
+            if (newPubcrawl.PakkeNavn == "Pakke 1")
+            {
+                var bubbles = await _context.virksomheder
+                  .FirstOrDefaultAsync(m => m.Virksomhedsnavn == "Bubbles");
+
+                if (bubbles != null)
+                {
+                    newPubcrawl.Virksomheder.Add(bubbles);
+                }
             }
-            var validPwd = Verify(password, bruger.PwHash);
-            if (!validPwd)
+            else if (newPubcrawl.PakkeNavn == "Pakke 2")
             {
-                throw new Exception("Incorrect user password");
+
             }
 
-            return bruger;
+            _context.pubcrawls.Add(newPubcrawl);
+            _context.SaveChanges();
+
+            return Ok();
         }
+
 
         [HttpPost("login"), AllowAnonymous]
         public async Task<ActionResult<TokenDto>> Login(BrugerDto login)
@@ -139,6 +164,7 @@ namespace CC_Web.Controllers
             ModelState.AddModelError(string.Empty, "Forkert brugernavn eller password");
             return BadRequest(ModelState);
         }
+
         private string GenerateToken(Bruger user)
         {
             var claims = new Claim[]

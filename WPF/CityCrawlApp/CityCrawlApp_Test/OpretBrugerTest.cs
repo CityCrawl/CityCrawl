@@ -50,9 +50,9 @@ namespace CityCrawlApp.Test
             // Assert
             Assert.That(calledUser.Email, Is.EqualTo(uut.Email));
             Assert.That(calledUser.Password, Is.EqualTo(uut.Password));
-            Assert.That(calledUser.Birthday, Is.EqualTo(uut.Birthday));
-            Assert.That(calledUser.FirstName, Is.EqualTo(uut.FirstName));
-            Assert.That(calledUser.LastName, Is.EqualTo(uut.LastName));
+            Assert.That(calledUser.Foedselsdag, Is.EqualTo(uut.Birthday));
+            Assert.That(calledUser.Fornavn, Is.EqualTo(uut.FirstName));
+            Assert.That(calledUser.Efternavn, Is.EqualTo(uut.LastName));
 
             closeActionMock.Received(1).Invoke(true);
         }

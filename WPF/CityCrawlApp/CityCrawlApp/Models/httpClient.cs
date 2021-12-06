@@ -16,21 +16,14 @@ namespace CityCrawlApp.Models
         {
             string url = $"{Settings.baseUrl}/Account/Bruger?email={email}&password={password}"; // tages fra app settings
             HttpClient client = new HttpClient();
-            try
+        
+            Task<string> responseBody = client.GetStringAsync(url);
+            var options = new JsonSerializerOptions
             {
-                Task<string> responseBody = client.GetStringAsync(url);
-                var options = new JsonSerializerOptions
-                {
-                    PropertyNameCaseInsensitive = true,
-                };
-                var user = JsonSerializer.Deserialize<User>(responseBody.Result, options);
-                return user;
-            }
-            catch (Exception)
-            {
-                // show erro failed to talk to server...
-                return null;
-            }
+                PropertyNameCaseInsensitive = true,
+            };
+            var user = JsonSerializer.Deserialize<User>(responseBody.Result, options);
+            return user;
         }
 
         public void HttpClientCreateUser(User user)
@@ -40,7 +33,6 @@ namespace CityCrawlApp.Models
                 PropertyNamingPolicy = JsonNamingPolicy.CamelCase
             });
 
-            // User/User til dictionary DB
             using var httpRequest = new HttpRequestMessage(HttpMethod.Post, Settings.baseUrl + "/Account/register");
             using var client = new HttpClient();
             using var stringContent = new StringContent(json, Encoding.UTF8, "application/json");
@@ -56,8 +48,8 @@ namespace CityCrawlApp.Models
             {
                 PropertyNamingPolicy = JsonNamingPolicy.CamelCase
             });
-            // User/PubCrawl til dictionary DB
-            using var httpRequest = new HttpRequestMessage(HttpMethod.Post, Settings.baseUrl + $"/api/Pubcrawl");
+            
+            using var httpRequest = new HttpRequestMessage(HttpMethod.Post, Settings.baseUrl + "/Account/Pubcrawl");
             using var client = new HttpClient();
             using var stringContent = new StringContent(json, Encoding.UTF8, "application/json");
             httpRequest.Content = stringContent;

@@ -6,6 +6,7 @@ using System.Text;
 using System.Text.Json;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Markup;
 using CityCrawlApp.Models.Interfaces;
 using CityCrawlApp.Models;
 using Prism.Mvvm;
@@ -16,8 +17,6 @@ namespace CityCrawlApp.ViewModels
 {
     public partial class TilmeldPubcrawlViewModel : BindableBase
     {
-        
-
         private readonly string loggedInUser;
         private readonly string userPassword;
         private IhttpClient httpClient;
@@ -51,47 +50,36 @@ namespace CityCrawlApp.ViewModels
 
         void ExecuteCombineToListOne()
         {
-            if (selectedDate.ToString("dd/MM/yyyy") == "01-01-0001")
-                appControlService.ShowMessageBox("Venligst vælg dato, før pakke vælges");
-            else
-            {
-                //var pubcrawl = "Pakke 1 d. " + selectedDate.ToString("dd/MM/yyyy");
-
-                pubcrawl.PacketName = "Pakke 1";
-                pubcrawl.MeetDate = "d. " + selectedDate.ToString("dd/MM/yyyy");
-                var newRequest = new NewPubcrawlRequest
-                {
-                    Email = loggedInUser,
-                    Pubcrawl = pubcrawl
-                };
-                httpClient.HttpClientAddPubCrawls(newRequest);
-
-                appControlService.ShowMessageBox($"PubCrawl booket: {pubcrawl.PacketName} {pubcrawl.MeetDate}");
-            }
+            CreatePubcrawl("Pakke 1");
         }
 
-        
 
         private DelegateCommand getPubCrawlTwoAndDate;
         public DelegateCommand GetPubCrawlTwoAndDate =>
             getPubCrawlTwoAndDate ?? (getPubCrawlTwoAndDate = new DelegateCommand(ExecuteCombineToListTwo));
-
         void ExecuteCombineToListTwo()
+        {
+            CreatePubcrawl("Pakke 2");
+        }
+
+        // metode som kaldes i Execute for pubcrawl Pakke 1 eller Pakke 2
+        private void CreatePubcrawl(string package)
         {
             if (selectedDate.ToString("dd/MM/yyyy") == "01-01-0001")
                 appControlService.ShowMessageBox("Venligst vælg dato, før pakke vælges");
             else
             {
-                pubcrawl.PacketName = "Pakke 2";
-                pubcrawl.MeetDate = "d. " + selectedDate.ToString("dd/MM/yyyy");
-                var newRequest = new NewPubcrawlRequest
-                {
-                    Email = loggedInUser,
-                    Pubcrawl = pubcrawl
-                };
-                httpClient.HttpClientAddPubCrawls(newRequest);
+                pubcrawl.PakkeNavn = package;
+                pubcrawl.MoedeTid = selectedDate;
+                pubcrawl.MoedeSted = "";
 
-                appControlService.ShowMessageBox($"PubCrawl booket: {pubcrawl.PacketName} {pubcrawl.MeetDate}");
+                var newPubcrawlRequest = new NewPubcrawlRequest();
+                newPubcrawlRequest.Pubcrawl = pubcrawl;
+                newPubcrawlRequest.Email = loggedInUser;
+               
+                httpClient.HttpClientAddPubCrawls(newPubcrawlRequest);
+
+                appControlService.ShowMessageBox($"PubCrawl booket: {pubcrawl.PakkeNavn}, d. {pubcrawl.MoedeTid}");
             }
         }
 

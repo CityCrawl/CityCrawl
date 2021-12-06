@@ -4,8 +4,8 @@ namespace CityCrawlApp.Models
 {
     public class Pubcrawl
     {
-        public string PacketName { get; set; }
-        public string MeetDate { get; set; }
-        public string MeetPlace { get; set; }
+        public string PakkeNavn { get; set; }
+        public DateTime MoedeTid { get; set; }
+        public string MoedeSted { get; set; }
     }
 }

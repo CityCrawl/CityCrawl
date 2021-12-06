@@ -82,9 +82,10 @@ namespace CityCrawlApp.ViewModels
                 Birthday = user.Foedselsdag;
                 Email = user.Email;
 
-                foreach (var pubcrawl in user.pubcrawls)
+                foreach (var pubcrawl in user.Pubcrawls)
                 {
-                    this.Pubcrawls.Add(pubcrawl);
+                    var booketPubcrawl = pubcrawl.PakkeNavn + " d. " + pubcrawl.MoedeTid;
+                    this.Pubcrawls.Add(booketPubcrawl);
                 }
             }
             else

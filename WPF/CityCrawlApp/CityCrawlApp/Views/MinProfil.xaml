@@ -95,7 +95,7 @@
                Grid.Row="1"
                VerticalAlignment="Top"
                Style="{StaticResource Headers}">
-            Mine pubcrawls
+            Mine Pubcrawls
         </Label>
 
         <ListBox x:Name="UserPubcrawls"

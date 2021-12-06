@@ -13,7 +13,7 @@ namespace CityCrawlApp.Models
         public string Foedselsdag { get; set; }
         public string Email { get; set; }
         public string Password { get; set; }
-        public List<string> pubcrawls { get; set; } = new List<string>();
+        public List<Pubcrawl> Pubcrawls { get; set; } = new List<Pubcrawl>();
 
     }
 }

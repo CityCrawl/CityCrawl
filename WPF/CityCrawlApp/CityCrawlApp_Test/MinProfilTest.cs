@@ -28,13 +28,19 @@ namespace CityCrawlApp.Test
             dialogServiceMock = Substitute.For<IDialogService>();
             appControlServiceMock = Substitute.For<IAppControlService>();
 
-            user.FirstName = "Test user";
-            user.LastName = "Test user lastname";
-            user.Birthday = "09-09-1991";
+            user.Fornavn = "Test user";
+            user.Efternavn = "Test user lastname";
+            user.Foedselsdag = "09-09-1991";
             user.Email = "userEmail@email.dk";
-            user.pubcrawls = new List<string>();
-            user.pubcrawls.Add("Pakke 1");
-            user.pubcrawls.Add("Pakke 2");
+            user.Pubcrawls = new List<Pubcrawl>();
+            Pubcrawl pakke1 = new Pubcrawl();
+            Pubcrawl pakke2 = new Pubcrawl();
+            pakke1.PakkeNavn = "Pakke 1";
+            pakke2.PakkeNavn = "Pakke 2";
+            pakke1.MoedeTid = new DateTime(2021, 12, 09);
+            pakke2.MoedeTid = new DateTime(2021, 12, 10);
+            user.Pubcrawls.Add(pakke1);
+            user.Pubcrawls.Add(pakke2);
 
             httpClientMock.HttpClientGetUserFromServer(loggedInUser, userPassword).Returns(user);
         }
@@ -47,13 +53,13 @@ namespace CityCrawlApp.Test
             uut = new MinProfilViewModel(loggedInUser, userPassword, httpClientMock, dialogServiceMock, appControlServiceMock);
 
             // Assert
-            Assert.That(uut.FirstName, Is.EqualTo(user.FirstName));
-            Assert.That(uut.LastName, Is.EqualTo(user.LastName));
-            Assert.That(uut.Birthday, Is.EqualTo(user.Birthday));
+            Assert.That(uut.FirstName, Is.EqualTo(user.Fornavn));
+            Assert.That(uut.LastName, Is.EqualTo(user.Efternavn));
+            Assert.That(uut.Birthday, Is.EqualTo(user.Foedselsdag));
             Assert.That(uut.Email, Is.EqualTo(user.Email));
             
-            Assert.That(uut.Pubcrawls[0], Is.EqualTo(user.pubcrawls[0]));
-            Assert.That(uut.Pubcrawls[1], Is.EqualTo(user.pubcrawls[1]));
+            Assert.That(uut.Pubcrawls[0], Is.EqualTo("Pakke 1 d. 09-12-2021 00:00:00"));
+            Assert.That(uut.Pubcrawls[1], Is.EqualTo("Pakke 2 d. 10-12-2021 00:00:00"));
 
         }
 
