@@ -8,6 +8,6 @@ namespace CityCrawlApp
 {
     class Settings
     {
-        public static string baseUrl = "https://localhost:44346"; // her indsættes den rigitge url til serveren
+        public static string baseUrl = "https://localhost:44361/api"; // her indsættes den rigitge url til serveren
     }
 }

@@ -54,6 +54,37 @@ namespace CC_Web.Controllers
             return CreatedAtAction("Get", new { id = user.BrugerID }, GenerateToken(user));
         }
 
+        [HttpPost("Pubcrawl")]
+        public async Task<ActionResult<Bruger>> CreatePubcrawl(Pubcrawl pubcrawl)
+        {
+            User.Claims.Where(c => c.Type == "BrugerId")
+                .Select(c => c.Value).FirstOrDefault();
+
+            if (pubcrawl.PakkeNavn == "Pakke 1")
+            {
+
+                var bubbles = await _context.virksomheder
+                .FirstOrDefaultAsync(m => m.Virksomhedsnavn == "Bubbles");
+
+                bubbles.Pubcrawls.Add(pubcrawl);
+
+
+
+            }
+            else if (pubcrawl.PakkeNavn == "Pakke 2")
+            {
+
+            }
+
+            _context.pubcrawls.Add(pubcrawl);
+            await _context.SaveChangesAsync();
+
+            return CreatedAtAction("GetPubcrawl", new { id = pubcrawl.PubcrawlId }, pubcrawl);
+
+
+
+        }
+
         // GET: api/Account/5
         [HttpGet("{id}", Name = "Get")]
         public async Task<ActionResult<BrugerDto>> Get(int id)
@@ -68,6 +99,25 @@ namespace CC_Web.Controllers
             userDto.Fornavn = user.Fornavn;
             userDto.Efternavn = user.Efternavn;
             return userDto;
+        }
+
+        [HttpGet("Bruger"), AllowAnonymous]
+        public async Task<ActionResult<Bruger>> Bruger(string email, string password)
+        {
+            //Validere om email og password findes i databasen for Bruger
+            var bruger = await _context.brugere
+                .FirstOrDefaultAsync(m => m.Email == email);
+            if (bruger.Email != email)
+            {
+                throw new Exception("The user does not exist in CC-database");
+            }
+            var validPwd = Verify(password, bruger.PwHash);
+            if (!validPwd)
+            {
+                throw new Exception("Incorrect user password");
+            }
+
+            return bruger;
         }
 
         [HttpPost("login"), AllowAnonymous]

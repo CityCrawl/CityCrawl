@@ -71,9 +71,9 @@ namespace CityCrawlApp.ViewModels
         {
             // dette skal udskiftes med post metode i API controller via HttpClient!!!
             User userInDB = new User();
-            userInDB.FirstName = firstName;
-            userInDB.LastName = lastName;
-            userInDB.Birthday = birthday;
+            userInDB.Fornavn = firstName;
+            userInDB.Efternavn = lastName;
+            userInDB.Foedselsdag = birthday;
             userInDB.Email = email;
             userInDB.Password = password;
 

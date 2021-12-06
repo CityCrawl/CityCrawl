@@ -22,23 +22,23 @@ namespace CC_Web.Controllers
         }
 
         // GET: api/ManageUser
-        [HttpGet]
-        public async Task<ActionResult<IEnumerable<Bruger>>> BrugerLogin(string email, string password)
-        {
-            //Validere om email og password findes i databasen for Bruger
-            var bruger = await _context.brugere
-                .FirstOrDefaultAsync(m => m.Email == email && m.PwHash == password);
-            if (bruger.Email != email)
-            {
-                throw new Exception("The user does not exist in CC-database");
-            }
-            if (bruger.PwHash != password)
-            {
-                throw new Exception("Incorrect user password");
-            }
+        //[HttpGet]
+        //public async Task<ActionResult<IEnumerable<Bruger>>> BrugerLogin(string email, string password)
+        //{
+        //    //Validere om email og password findes i databasen for Bruger
+        //    var bruger = await _context.brugere
+        //        .FirstOrDefaultAsync(m => m.Email == email && m.PwHash == password);
+        //    if (bruger.Email != email)
+        //    {
+        //        throw new Exception("The user does not exist in CC-database");
+        //    }
+        //    if (bruger.PwHash != HashPassword(password, BcryptWorkfactor))
+        //    {
+        //        throw new Exception("Incorrect user password");
+        //    }
 
-            return await _context.brugere.ToListAsync();
-        }
+        //    return await _context.brugere.ToListAsync();
+        //}
 
         // GET: api/ManageUser/5
         [HttpGet("{id}")]
@@ -102,10 +102,30 @@ namespace CC_Web.Controllers
         {
             User.Claims.Where(c => c.Type == "BrugerId")
                 .Select(c => c.Value).FirstOrDefault();
+
+            if (pubcrawl.PakkeNavn == "Pakke 1")
+            {
+
+                var bubbles = await _context.virksomheder
+                .FirstOrDefaultAsync(m => m.Virksomhedsnavn == "Bubbles");
+
+                bubbles.Pubcrawls.Add(pubcrawl);
+
+
+
+            }
+            else if(pubcrawl.PakkeNavn == "Pakke 2")
+            {
+
+            }
+
             _context.pubcrawls.Add(pubcrawl);
             await _context.SaveChangesAsync();
 
             return CreatedAtAction("GetPubcrawl", new { id = pubcrawl.PubcrawlId }, pubcrawl);
+
+            
+
         }
 
         // DELETE: api/ManageUser/5

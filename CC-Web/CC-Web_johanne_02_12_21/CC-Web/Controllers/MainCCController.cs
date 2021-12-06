@@ -53,7 +53,14 @@ namespace CC_Web.Controllers
             }
 
             var virksomhed = await _context.virksomheder.Include(v => v.Pubcrawls)
-                .FirstOrDefaultAsync(m => m.Virksomhedsnavn == id);
+                .FirstOrDefaultAsync(m => m.Email == id);
+
+            //var bubbles = new Pubcrawl { PakkeNavn = "Pakke 1", MoedeSted = "Parken" };
+
+            //virksomhed.Pubcrawls.Add(bubbles);
+
+            await _context.SaveChangesAsync();
+
             if (virksomhed == null)
             {
                 return NotFound();

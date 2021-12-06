@@ -77,12 +77,12 @@ namespace CityCrawlApp.ViewModels
             var user = httpClient.HttpClientGetUserFromServer(loggedInUser, userPassword);
             if (user != null)
             {
-                FirstName = user.FirstName;
-                LastName = user.LastName;
-                Birthday = user.Birthday;
+                FirstName = user.Fornavn;
+                LastName = user.Efternavn;
+                Birthday = user.Foedselsdag;
                 Email = user.Email;
 
-                foreach (var pubcrawl in user.PubCrawls)
+                foreach (var pubcrawl in user.pubcrawls)
                 {
                     this.Pubcrawls.Add(pubcrawl);
                 }

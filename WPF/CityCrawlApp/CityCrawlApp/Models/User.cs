@@ -8,12 +8,12 @@ namespace CityCrawlApp.Models
 {
     public class User
     {
-        public string FirstName { get; set; }
-        public string LastName { get; set; }
-        public string Birthday { get; set; }
+        public string Fornavn { get; set; }
+        public string Efternavn { get; set; }
+        public string Foedselsdag { get; set; }
         public string Email { get; set; }
         public string Password { get; set; }
-        public List<string> PubCrawls { get; set; } = new List<string>();
+        public List<string> pubcrawls { get; set; } = new List<string>();
 
     }
 }

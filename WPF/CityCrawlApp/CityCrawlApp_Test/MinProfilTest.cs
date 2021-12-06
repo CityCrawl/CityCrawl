@@ -32,9 +32,9 @@ namespace CityCrawlApp.Test
             user.LastName = "Test user lastname";
             user.Birthday = "09-09-1991";
             user.Email = "userEmail@email.dk";
-            user.PubCrawls = new List<string>();
-            user.PubCrawls.Add("Pakke 1");
-            user.PubCrawls.Add("Pakke 2");
+            user.pubcrawls = new List<string>();
+            user.pubcrawls.Add("Pakke 1");
+            user.pubcrawls.Add("Pakke 2");
 
             httpClientMock.HttpClientGetUserFromServer(loggedInUser, userPassword).Returns(user);
         }
@@ -52,8 +52,8 @@ namespace CityCrawlApp.Test
             Assert.That(uut.Birthday, Is.EqualTo(user.Birthday));
             Assert.That(uut.Email, Is.EqualTo(user.Email));
             
-            Assert.That(uut.Pubcrawls[0], Is.EqualTo(user.PubCrawls[0]));
-            Assert.That(uut.Pubcrawls[1], Is.EqualTo(user.PubCrawls[1]));
+            Assert.That(uut.Pubcrawls[0], Is.EqualTo(user.pubcrawls[0]));
+            Assert.That(uut.Pubcrawls[1], Is.EqualTo(user.pubcrawls[1]));
 
         }
 

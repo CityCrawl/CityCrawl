@@ -34,9 +34,11 @@
         <h1>Bookede pubcrawls</h1>
         @* Booked pubcrawl - foreach liste hvor der er kan iteres igennem pubcrawls *@
 
+        @*<p>@Html.DisplayFor(Model => Model.Pubcrawls) </p>*@
+
         @foreach (var pubcrawl in Model.Pubcrawls)
         {
-            <p>@pubcrawl.PakkeNavn Antal brugere: @pubcrawl.Brugere.Count()</p>
+            <p><span style="font-weight:bold;">Pakke type:</span> @Html.DisplayFor(Model => pubcrawl.PakkeNavn) <br /><span style="font-weight:bold;">Mødested:</span> @Html.DisplayFor(Model => pubcrawl.MoedeSted)<br /> <span style="font-weight:bold;">Dato:</span> @Html.DisplayFor(model => pubcrawl.MoedeTid)</p>
         }
 
 
