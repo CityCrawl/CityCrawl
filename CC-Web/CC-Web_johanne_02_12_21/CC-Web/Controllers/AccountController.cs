@@ -105,8 +105,7 @@ namespace CC_Web.Controllers
         [HttpPost("Pubcrawl")]
         public async Task<ActionResult> CreatePubcrawl(CreatePubcrawl createPubcrawl)
         {
-            //var user = User.Claims.Where(c => c.Type == "BrugerId")
-            //    .Select(c => c.Value).FirstOrDefault();
+            // mangler at oprette alle virksomheder der findes før API controlleren, så de kan findes her: kan evt gøre i Web GUI
 
             // Finder brugeren i databasen
             var user = await _context.brugere.Where(u =>
