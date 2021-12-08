@@ -74,7 +74,7 @@ namespace CityCrawlApp.Test
 
             // Assert
             httpClientMock.Received(1).HttpClientAddPubCrawls(Arg.Any<NewPubcrawlRequest>());
-            appControlServiceMock.Received(1).ShowMessageBox("PubCrawl booket: Pakke 1 d. 29-11-2021");
+            appControlServiceMock.Received(1).ShowMessageBox("PubCrawl booket: Pakke 1, d. 29-11-2021 00:00:00");
         }
 
         [Test]
@@ -103,7 +103,7 @@ namespace CityCrawlApp.Test
 
             // Assert
             httpClientMock.Received(1).HttpClientAddPubCrawls(Arg.Any<NewPubcrawlRequest>());
-            appControlServiceMock.Received(1).ShowMessageBox("PubCrawl booket: Pakke 2 d. 29-11-2021");
+            appControlServiceMock.Received(1).ShowMessageBox("PubCrawl booket: Pakke 2, d. 29-11-2021 00:00:00");
         }
 
         [Test]
