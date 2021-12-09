@@ -66,7 +66,7 @@ namespace CC_Web
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, ApplicationDbContext context)
         {
             if (env.IsDevelopment())
             {
@@ -94,6 +94,8 @@ namespace CC_Web
                     pattern: "{controller=MainCC}/{action=Index}/{id?}");
                 endpoints.MapRazorPages();
             });
+
+            SeedData.Seed(context);
         }
     }
 }
