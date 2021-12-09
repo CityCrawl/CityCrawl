@@ -125,15 +125,64 @@ namespace CC_Web.Controllers
             if (newPubcrawl.PakkeNavn == "Pakke 1")
             {
                 var bubbles = await _context.virksomheder
-                  .FirstOrDefaultAsync(m => m.Virksomhedsnavn == "Bubbles");
+                  .FirstOrDefaultAsync(m => m.Email == "bubbles@bubbles.dk");
+
+                var hildasbeerbar = await _context.virksomheder
+                    .FirstOrDefaultAsync(m => m.Email == "jytte@hildasbeerbar.dk");
+
+                var jazzitup = await _context.virksomheder
+                    .FirstOrDefaultAsync(m => m.Email == "info@jazzitup.com");
 
                 if (bubbles != null)
                 {
                     newPubcrawl.Virksomheder.Add(bubbles);
                 }
+
+                if (hildasbeerbar != null)
+                {
+                    newPubcrawl.Virksomheder.Add(hildasbeerbar);
+                }
+
+                if (jazzitup != null)
+                {
+                    newPubcrawl.Virksomheder.Add(jazzitup);
+                }
+
             }
             else if (newPubcrawl.PakkeNavn == "Pakke 2")
             {
+
+                var bubbles = await _context.virksomheder
+                    .FirstOrDefaultAsync(m => m.Email == "bubbles@bubbles.dk");
+
+                var hildasbeerbar = await _context.virksomheder
+                    .FirstOrDefaultAsync(m => m.Email == "jytte@hildasbeerbar.dk");
+
+                var jazzitup = await _context.virksomheder
+                    .FirstOrDefaultAsync(m => m.Email == "info@jazzitup.com");
+
+                var wineanddine = await _context.virksomheder
+                    .FirstOrDefaultAsync(m => m.Email == "wine@dine.com");
+
+                if (bubbles != null)
+                {
+                    newPubcrawl.Virksomheder.Add(bubbles);
+                }
+
+                if (hildasbeerbar != null)
+                {
+                    newPubcrawl.Virksomheder.Add(hildasbeerbar);
+                }
+
+                if (jazzitup != null)
+                {
+                    newPubcrawl.Virksomheder.Add(jazzitup);
+                }
+
+                if (wineanddine != null)
+                {
+                    newPubcrawl.Virksomheder.Add(wineanddine);
+                }
 
             }
 
