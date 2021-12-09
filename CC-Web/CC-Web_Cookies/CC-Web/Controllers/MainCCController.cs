@@ -138,6 +138,8 @@ namespace CC_Web.Controllers
             var virksomhed = await _context.virksomheder
                 .FirstOrDefaultAsync(m => m.Email == id);
 
+            virksomhed.Beskrivelse.Replace(virksomhed.Beskrivelse, beskrivelse);
+
             //var bubbles = new Pubcrawl { PakkeNavn = "Pakke 1", MoedeSted = "Parken" };
 
             //virksomhed.Pubcrawls.Add(bubbles);
@@ -161,6 +163,7 @@ namespace CC_Web.Controllers
             }
 
             var virksomhed = await _context.virksomheder.FindAsync(id);
+
             if (virksomhed == null)
             {
                 return NotFound();

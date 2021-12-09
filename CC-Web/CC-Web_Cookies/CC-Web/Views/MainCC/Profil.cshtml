@@ -15,19 +15,26 @@
         <p>Kontaktperson: @Html.DisplayFor(model => model.KontaktPerson)</p>
         <p>Virksomhedsbeskrivelse: @Html.DisplayFor(model => model.Beskrivelse)</p>
 
-        <!--<form asp-route-returnUrl="~/MainCC/Profil" method="post">-->
-            <!--<h4>Create a new account.</h4>-->
-            <!--<hr />
+        @*MULIGHED FOR AT SKIFTE BESKRIVELSE!!*@
+
+        @*<form asp-route-returnUrl="~/MainCC/Profil" method="post">
+            <h4>Create a new account.</h4>
+            <hr />
             <div asp-validation-summary="All" class="text-danger"></div>
+            <div class="form-group">
+                <label value="Email" class="generel_style_txt_box">Beskrivelse</label>
+                <input asp-for="Email" class="generel_style_txt_box" placeholder="Beskrivelse" />
+                <span asp-validation-for="Email" class="text-danger"></span>
+            </div>
             <div class="form-group">
                 <label asp-for="Beskrivelse" class="generel_style_txt_box">Beskrivelse</label>
                 <input asp-for="Beskrivelse" class="generel_style_txt_box" placeholder="Beskrivelse" />
                 <span asp-validation-for="Beskrivelse" class="text-danger"></span>
             </div>
             <button type="submit" class="PinkBtn" id="center_btn">Register</button>
-        </form>
+        </form>*@
 
-        <p>@Html.DisplayFor(model => model.Beskrivelse)</p>-->
+        @*<p>@Html.DisplayFor(model => model.Beskrivelse)</p>*@
 
         @*<form asp-action="EditBeskrivelse">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>

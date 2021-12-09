@@ -91,15 +91,16 @@ namespace CC_Web.Controllers
             Bruger user = new Bruger()
             {
                 Email = regUser.Email,
+                PwHash = regUser.Password,
                 Fornavn = regUser.Fornavn,
                 Efternavn = regUser.Efternavn,
                 Foedselsdag = regUser.Foedselsdag,
                 Pubcrawls = new List<Pubcrawl>()
             };
-            user.PwHash = HashPassword(regUser.Password, BcryptWorkfactor);
+            //user.PwHash = HashPassword(regUser.Password, BcryptWorkfactor);
             _context.brugere.Add(user);
             await _context.SaveChangesAsync();
-            return CreatedAtAction("Get", new { id = user.BrugerID }, GenerateToken(user));
+            return CreatedAtAction("Get", new { id = user.BrugerID }, new { password = user.PwHash });
         }
 
         [HttpPost("Pubcrawl")]
@@ -153,34 +154,34 @@ namespace CC_Web.Controllers
             if (user != null)
             {
                 var validPwd = Verify(login.Password, user.PwHash);
-                if (validPwd)
-                {
-                    var token = new TokenDto();
-                    token.JWT = GenerateToken(user);
-                    return token;
-                }
+                //if (validPwd)
+                //{
+                //    var token = new TokenDto();
+                //    token.JWT = GenerateToken(user);
+                //    return token;
+                //}
             }
             ModelState.AddModelError(string.Empty, "Forkert brugernavn eller password");
             return BadRequest(ModelState);
         }
 
-        private string GenerateToken(Bruger user)
-        {
-            var claims = new Claim[]
-            {
-                new Claim("Email", user.Email),
-                new Claim(JwtRegisteredClaimNames.GivenName, user.Fornavn),
-                new Claim("BrugerId", user.BrugerID.ToString()),
-                new Claim(JwtRegisteredClaimNames.Exp,
-                new DateTimeOffset(DateTime.Now.AddDays(1)).ToUnixTimeSeconds().ToString()),
-            };
-            var key = Encoding.ASCII.GetBytes(_appSettings.SecretKey);
-            var token = new JwtSecurityToken(
-            new JwtHeader(new SigningCredentials(
-            new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256)),
-            new JwtPayload(claims));
-            return new JwtSecurityTokenHandler().WriteToken(token);
-        }
+        //private string GenerateToken(Bruger user)
+        //{
+        //    var claims = new Claim[]
+        //    {
+        //        new Claim("Email", user.Email),
+        //        new Claim(JwtRegisteredClaimNames.GivenName, user.Fornavn),
+        //        new Claim("BrugerId", user.BrugerID.ToString()),
+        //        new Claim(JwtRegisteredClaimNames.Exp,
+        //        new DateTimeOffset(DateTime.Now.AddDays(1)).ToUnixTimeSeconds().ToString()),
+        //    };
+        //    var key = Encoding.ASCII.GetBytes(_appSettings.SecretKey);
+        //    var token = new JwtSecurityToken(
+        //    new JwtHeader(new SigningCredentials(
+        //    new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256)),
+        //    new JwtPayload(claims));
+        //    return new JwtSecurityTokenHandler().WriteToken(token);
+        //}
     }
 }
 
