@@ -84,7 +84,7 @@ namespace CityCrawlApp.ViewModels
 
                 foreach (var pubcrawl in user.Pubcrawls)
                 {
-                    var booketPubcrawl = pubcrawl.PakkeNavn + " d. " + pubcrawl.MoedeTid;
+                    var booketPubcrawl = pubcrawl.PakkeNavn + ", d. " + pubcrawl.MoedeTid;
                     this.Pubcrawls.Add(booketPubcrawl);
                 }
             }
