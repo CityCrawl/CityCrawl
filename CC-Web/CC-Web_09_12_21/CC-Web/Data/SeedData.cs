@@ -29,7 +29,8 @@ namespace CC_Web.Data
                     CVR = "42356789",
                     KontaktPerson = "Torben Jensen",
                     Email = "bubbles@bubbles.dk",
-                    Password = "Bubbles1!"
+                    Password = "Bubbles1!",
+                    Beskrivelse = "Bubbles er byens fedeste champange bar placeret i hjertet af Aarhus"
                 },
                 //Seed Hildas Beer Bar
                 new Virksomhed
@@ -38,7 +39,8 @@ namespace CC_Web.Data
                     CVR = "34127865",
                     KontaktPerson = "Jytte Sørensen",
                     Email ="jytte@hildsbeerbar.dfk",
-                    Password ="HildasBeer2!"
+                    Password ="HildasBeer2!",
+                    Beskrivelse = "Boobies and Beers"
                 },
                 //Seed Jaxx it up
                 new Virksomhed
@@ -47,7 +49,8 @@ namespace CC_Web.Data
                     CVR = "56349865",
                     KontaktPerson ="Simone Nielsen",
                     Email="info@jazzitup.com",
-                    Password = "Jazzitup3!"
+                    Password = "Jazzitup3!",
+                    Beskrivelse = "Jazz op dit liv"
                 },
                 //Seed Wine Dine
                 new Virksomhed
@@ -56,7 +59,8 @@ namespace CC_Web.Data
                     CVR = "67895432",
                     KontaktPerson ="Lars Clausen",
                     Email ="wine@dine.com",
-                    Password ="Wine&dine4"
+                    Password ="Wine&dine4",
+                    Beskrivelse = "Drik dig fuld, så kan du ikke smage vores mad"
                 }
                 );
             context.SaveChanges();

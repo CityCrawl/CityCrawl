@@ -71,6 +71,10 @@ namespace CC_Web.Areas.Identity.Pages.Account
             [Display(Name = "Email")]
             public string Email { get; set; }
 
+            [DataType(DataType.Text)]
+            [Display(Name = "Beskrivelse")]
+            public string Beskrivelse { get; set; }
+
             [Required]
             [StringLength(100, ErrorMessage = "The {0} must be at least {2} and at max {1} characters long.", MinimumLength = 6)]
             [DataType(DataType.Password)]
@@ -96,7 +100,7 @@ namespace CC_Web.Areas.Identity.Pages.Account
             if (ModelState.IsValid)
             {
                 var user = new IdentityUser { UserName = Input.Email, Email = Input.Email };
-                var vuser = new Virksomhed { CVR = Input.CVR, Virksomhedsnavn = Input.Virksomhedsnavn, KontaktPerson = Input.KontaktPerson, Email = Input.Email, Password = Input.Password };
+                var vuser = new Virksomhed { CVR = Input.CVR, Virksomhedsnavn = Input.Virksomhedsnavn, KontaktPerson = Input.KontaktPerson, Email = Input.Email, Password = Input.Password, Beskrivelse = Input.Beskrivelse };
                 var result = await _userManager.CreateAsync(user, Input.Password);
                 if (result.Succeeded)
                 {

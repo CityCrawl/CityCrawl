@@ -14,33 +14,14 @@
         <p>CVR-nummer: @Html.DisplayFor(model => model.CVR)</p>
         <p>Kontaktperson: @Html.DisplayFor(model => model.KontaktPerson)</p>
         <p>Virksomhedsbeskrivelse: @Html.DisplayFor(model => model.Beskrivelse)</p>
-
-        <textarea id="textareaV" style="width:350px;height:200px"></textarea>
-        <br />
-        <input type="submit" class="PinkBtn" value="Gem" style="margin-top: 5%" />
-
-        @*<form asp-action="EditBeskrivelse">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group">
-                <textarea asp-for="Beskrivelse" class="form-control" />
-                <span asp-validation-for="CVR" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <input type="submit" class="PinkBtn" value="Gem" style="margin-top:5%" />
-            </div>
-        </form>*@
     </div>
     <div class="col-md-4">
         <h1>Bookede pubcrawls</h1>
-        @* Booked pubcrawl - foreach liste hvor der er kan iteres igennem pubcrawls *@
-
-        @*<p>@Html.DisplayFor(Model => Model.Pubcrawls) </p>*@
 
         @foreach (var pubcrawl in Model.Pubcrawls)
         {
             <p><span style="font-weight:bold;">Pakke type:</span> @Html.DisplayFor(Model => pubcrawl.PakkeNavn) <br /><span style="font-weight:bold;">Mødested:</span> @Html.DisplayFor(Model => pubcrawl.MoedeSted)<br /> <span style="font-weight:bold;">Dato:</span> @Html.DisplayFor(model => pubcrawl.MoedeTid)</p>
         }
-
 
     </div>
 </div>

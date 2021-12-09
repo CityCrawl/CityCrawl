@@ -37,6 +37,11 @@
                 <input type="password" asp-for="Input.Password" class="generel_style_txt_box" placeholder="**********" />
                 <span asp-validation-for="Input.Password" class="text-danger"></span>
             </div>
+            <div class="form-group">
+                <label asp-for="Input.Beskrivelse" class="generel_style_txt_box">Beskrivelse</label>
+                <textarea asp-for="Input.Beskrivelse" class="generel_style_txt_box" style="width:225px;height:75px" placeholder="Beskrivelse"></textarea>
+                <span asp-validation-for="Input.Beskrivelse" class="text-danger"></span>
+            </div>
             <button type="submit" class="PinkBtn" id="center_btn">Register</button>
         </form>
     </div>
