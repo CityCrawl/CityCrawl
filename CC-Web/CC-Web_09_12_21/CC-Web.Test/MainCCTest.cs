@@ -17,7 +17,6 @@ namespace CC_Web.Test
 
         private ApplicationDbContext _context;
         private MainCCController _uut;
-        Virksomhed vuser;
 
         [SetUp]
         public void Init()
@@ -34,15 +33,15 @@ namespace CC_Web.Test
         }
 
         [Test]
-        public void Test_Of_Profil()
+        public async Task Test_Of_Profil()
         {
 
-            var model = _uut.Profil("test@test.test");
+            var model = await _uut.Profil("test@test.test") as ViewResult;
 
-            var virksomhed = _context.virksomheder
+            var virksomhed = await _context.virksomheder
                 .FirstOrDefaultAsync(m => m.Email == "test@test.test");
 
-            model.Equals(virksomhed);
+            Assert.That(model.Model == virksomhed);
 
         }
 
