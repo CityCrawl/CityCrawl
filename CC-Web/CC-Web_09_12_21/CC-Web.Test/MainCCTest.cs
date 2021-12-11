@@ -37,9 +37,12 @@ namespace CC_Web.Test
         public void Test_Of_Profil()
         {
 
-            var model = _uut.Profil("test@test.test").Result;
+            var model = _uut.Profil("test@test.test");
 
-            model.Equals(vuser);
+            var virksomhed = _context.virksomheder
+                .FirstOrDefaultAsync(m => m.Email == "test@test.test");
+
+            model.Equals(virksomhed);
 
         }
 
