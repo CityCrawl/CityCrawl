@@ -61,6 +61,16 @@ namespace CC_Web.Data
                     Email ="wine@dine.com",
                     Password ="Wine&dine4",
                     Beskrivelse = "Drik dig fuld, så kan du ikke smage vores mad"
+                },
+                //Seed Test
+                new Virksomhed
+                {
+                    Virksomhedsnavn = "Test Virksomhed",
+                    CVR = "TestCVR",
+                    KontaktPerson = "Test Person",
+                    Email = "test@test.test",
+                    Password = "Test123!",
+                    Beskrivelse = "Dette er en test af beskrivelse"
                 }
                 );
             context.SaveChanges();
