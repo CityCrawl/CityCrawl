@@ -45,7 +45,7 @@ namespace CC_Web.Controllers
 
         public IActionResult Welcome()
         {
-            return View("Welcome");
+            return View();
         }
 
         private bool VirksomhedExists(int id)
