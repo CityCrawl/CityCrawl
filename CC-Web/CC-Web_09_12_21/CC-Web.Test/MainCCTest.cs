@@ -28,7 +28,7 @@ namespace CC_Web.Test
             optionsBuilder.UseSqlServer(connectionstring);
 
             _context = new ApplicationDbContext(optionsBuilder.Options);
-
+            
             _uut = new MainCCController(_context);
 
         }
