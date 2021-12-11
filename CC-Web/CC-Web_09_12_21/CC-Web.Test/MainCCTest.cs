@@ -1,12 +1,8 @@
 using CC_Web.Controllers;
 using CC_Web.Data;
-using System;
-using CC_Web.Models.Data;
 using Microsoft.AspNetCore.Mvc;
 using NUnit.Framework;
 using System.Threading.Tasks;
-using Microsoft.Extensions.DependencyInjection;
-using static CC_Web.Startup;
 using Microsoft.EntityFrameworkCore;
 
 namespace CC_Web.Test
