@@ -17,10 +17,10 @@ namespace CityCrawlApp.ViewModels
 {
     public class LoginViewModel : BindableBase
     {
-        private IhttpClient httpClient;
+        private ICCHttpClient httpClient;
         private IDialogService dialogService;
 
-        public LoginViewModel(IhttpClient httpClient, IDialogService dialogService)
+        public LoginViewModel(ICCHttpClient httpClient, IDialogService dialogService)
         {
             this.httpClient = httpClient;
             this.dialogService = dialogService;

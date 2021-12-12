@@ -18,9 +18,9 @@ namespace CityCrawlApp.ViewModels
 {
     public class OpretBrugerViewModel : BindableBase
     {
-        private readonly IhttpClient httpClient;
+        private readonly ICCHttpClient httpClient;
 
-        public OpretBrugerViewModel(IhttpClient httpClient)
+        public OpretBrugerViewModel(ICCHttpClient httpClient)
         {
             this.httpClient = httpClient;
         }

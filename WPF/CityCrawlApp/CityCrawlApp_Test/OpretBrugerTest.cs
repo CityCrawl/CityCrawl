@@ -12,13 +12,13 @@ namespace CityCrawlApp.Test
     {
 
         private OpretBrugerViewModel uut;
-        private IhttpClient httpClientMock;
+        private ICCHttpClient httpClientMock;
         private Action<bool> closeActionMock;
 
         [SetUp]
         public void Setup()
         {
-            httpClientMock = Substitute.For<IhttpClient>();
+            httpClientMock = Substitute.For<ICCHttpClient>();
             closeActionMock = Substitute.For<Action<bool>>();
             uut = new OpretBrugerViewModel(httpClientMock);
             uut.CloseDialog = closeActionMock;

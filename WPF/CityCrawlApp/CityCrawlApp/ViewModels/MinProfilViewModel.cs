@@ -20,7 +20,7 @@ namespace CityCrawlApp.ViewModels
 {
     public class MinProfilViewModel : BindableBase
     {
-        private IhttpClient httpClient;
+        private ICCHttpClient httpClient;
         private IDialogService dialogService;
         private IAppControlService appControlService;
 
@@ -63,7 +63,7 @@ namespace CityCrawlApp.ViewModels
         private string userPassword;
 
         public MinProfilViewModel(string loggedInUser, string userPassword,
-                                IhttpClient httpClient, IDialogService dialogService,
+                                ICCHttpClient httpClient, IDialogService dialogService,
                                 IAppControlService appControlService)
         {
             this.loggedInUser = loggedInUser;

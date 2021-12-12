@@ -7,15 +7,15 @@ namespace CityCrawlApp.Models.Interfaces
     {
         bool ShowErrorDialog();
 
-        LoginViewModel ShowLoginDialog(IhttpClient httpClient);
+        LoginViewModel ShowLoginDialog(ICCHttpClient httpClient);
 
         bool ShowMinProfilDialog(string loginEmail, string loginPassword,
-                        IhttpClient httpClient, IDialogService dialogService,
+            ICCHttpClient httpClient, IDialogService dialogService,
                         IAppControlService appControlService);
 
-        OpretBrugerViewModel ShowOpretBrugerDialog(IhttpClient httpClient);
+        OpretBrugerViewModel ShowOpretBrugerDialog(ICCHttpClient httpClient);
 
         void ShowTilmeldPubcrawlDialog(string loggedInEmail, string loggedInPassword,
-            IhttpClient httpClient, IDialogService dialogService, IAppControlService appControlService);
+            ICCHttpClient httpClient, IDialogService dialogService, IAppControlService appControlService);
     }
 }

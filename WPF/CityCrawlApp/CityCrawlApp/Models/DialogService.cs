@@ -15,7 +15,7 @@ namespace CityCrawlApp.Models
             return dialogErrorLogin.ShowDialog() == true;
         }
 
-        public LoginViewModel ShowLoginDialog(IhttpClient httpClient)
+        public LoginViewModel ShowLoginDialog(ICCHttpClient httpClient)
         {
             var vmLogin = new LoginViewModel(httpClient, this);
             var dialog = new Login(vmLogin);
@@ -28,7 +28,7 @@ namespace CityCrawlApp.Models
         }
 
         public bool ShowMinProfilDialog(string loginEmail, string loginPassword,
-                                    IhttpClient httpClient, IDialogService dialogService,
+                                    ICCHttpClient httpClient, IDialogService dialogService,
                                     IAppControlService appControlService)
         {
             var vmMinProfil = new MinProfilViewModel(loginEmail, loginPassword, httpClient, dialogService, appControlService);
@@ -37,7 +37,7 @@ namespace CityCrawlApp.Models
             return dialogMinProfil.ShowDialog() == true;
         }
 
-        public OpretBrugerViewModel ShowOpretBrugerDialog(IhttpClient httpClient)
+        public OpretBrugerViewModel ShowOpretBrugerDialog(ICCHttpClient httpClient)
         {
             var vmOpretBruger = new OpretBrugerViewModel(httpClient);
             var dialog = new OpretBruger(vmOpretBruger);
@@ -50,7 +50,7 @@ namespace CityCrawlApp.Models
         }
 
         public void ShowTilmeldPubcrawlDialog(string loggedInEmail, string loggedInPassword,
-                                        IhttpClient httpClient, IDialogService dialogService, IAppControlService appControlService)
+                                        ICCHttpClient httpClient, IDialogService dialogService, IAppControlService appControlService)
         {
             var vmTilmeld = new TilmeldPubcrawlViewModel(loggedInEmail, loggedInPassword, httpClient, dialogService, appControlService);
             var dialog = new TilmeldPubcrawl(vmTilmeld);
