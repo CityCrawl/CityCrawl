@@ -16,11 +16,11 @@ namespace CityCrawlApp.ViewModels
 {
     public class MainWindowViewModel : BindableBase
     {
-        private IhttpClient httpClient;
+        private ICCHttpClient httpClient;
         private IDialogService dialogService;
         private IAppControlService appControlService;
 
-        public MainWindowViewModel(IhttpClient httpClient, IDialogService dialogService, IAppControlService appControlService)
+        public MainWindowViewModel(ICCHttpClient httpClient, IDialogService dialogService, IAppControlService appControlService)
         {
             this.httpClient = httpClient;
             this.dialogService = dialogService;

@@ -1,17 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net.Http;
-using System.Text;
-using System.Text.Json;
-using System.Threading.Tasks;
-using System.Windows;
-using System.Windows.Markup;
+﻿using CityCrawlApp.Models;
 using CityCrawlApp.Models.Interfaces;
-using CityCrawlApp.Models;
-using Prism.Mvvm;
 using Prism.Commands;
-using CityCrawlApp.Views;
+using Prism.Mvvm;
+using System;
 
 namespace CityCrawlApp.ViewModels
 {
@@ -19,13 +10,13 @@ namespace CityCrawlApp.ViewModels
     {
         private readonly string loggedInUser;
         private readonly string userPassword;
-        private IhttpClient httpClient;
+        private ICCHttpClient httpClient;
         private IDialogService dialogService;
         private IAppControlService appControlService;
         private Pubcrawl pubcrawl = new Pubcrawl();
 
         public TilmeldPubcrawlViewModel(string loggedInUser, string userPassword,
-            IhttpClient httpClient, IDialogService dialogService, IAppControlService appControlService)
+            ICCHttpClient httpClient, IDialogService dialogService, IAppControlService appControlService)
         {
             this.loggedInUser = loggedInUser;
             this.userPassword = userPassword;

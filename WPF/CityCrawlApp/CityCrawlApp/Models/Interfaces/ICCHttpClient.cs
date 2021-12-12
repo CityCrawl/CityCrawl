@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace CityCrawlApp.Models.Interfaces
 {
-    public interface IhttpClient
+    public interface ICCHttpClient
     {
         User HttpClientGetUserFromServer(string email, string password);
         public void HttpClientCreateUser(User user);

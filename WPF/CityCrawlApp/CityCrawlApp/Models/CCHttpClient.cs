@@ -10,7 +10,7 @@ using CityCrawlApp.Models.Interfaces;
 
 namespace CityCrawlApp.Models
 {
-    public class httpClient : IhttpClient
+    public class CCHttpClient : ICCHttpClient
     {
         public User HttpClientGetUserFromServer(string email, string password)
         {

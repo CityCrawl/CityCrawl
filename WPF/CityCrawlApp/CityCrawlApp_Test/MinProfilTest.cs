@@ -14,7 +14,7 @@ namespace CityCrawlApp.Test
     public class MinProfilTest
     {
         private MinProfilViewModel uut;
-        private IhttpClient httpClientMock;
+        private ICCHttpClient httpClientMock;
         private IDialogService dialogServiceMock;
         private IAppControlService appControlServiceMock;
         private string loggedInUser = "User@mail.dk";
@@ -24,7 +24,7 @@ namespace CityCrawlApp.Test
         [SetUp]
         public void Setup()
         {
-            httpClientMock = Substitute.For<IhttpClient>();
+            httpClientMock = Substitute.For<ICCHttpClient>();
             dialogServiceMock = Substitute.For<IDialogService>();
             appControlServiceMock = Substitute.For<IAppControlService>();
 
