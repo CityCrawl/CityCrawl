@@ -62,7 +62,6 @@ namespace CC_Web.Data
                     Password ="Wine&dine4",
                     Beskrivelse = "Drik dig fuld, så kan du ikke smage vores mad"
                 },
-                //Seed Test
                 new Virksomhed
                 {
                     Virksomhedsnavn = "Test Virksomhed",

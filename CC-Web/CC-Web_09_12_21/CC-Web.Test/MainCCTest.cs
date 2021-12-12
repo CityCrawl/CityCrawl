@@ -1,12 +1,8 @@
 using CC_Web.Controllers;
 using CC_Web.Data;
-using System;
-using CC_Web.Models.Data;
 using Microsoft.AspNetCore.Mvc;
 using NUnit.Framework;
 using System.Threading.Tasks;
-using Microsoft.Extensions.DependencyInjection;
-using static CC_Web.Startup;
 using Microsoft.EntityFrameworkCore;
 
 namespace CC_Web.Test
@@ -17,7 +13,6 @@ namespace CC_Web.Test
 
         private ApplicationDbContext _context;
         private MainCCController _uut;
-        Virksomhed vuser;
 
         [SetUp]
         public void Init()
@@ -28,18 +23,21 @@ namespace CC_Web.Test
             optionsBuilder.UseSqlServer(connectionstring);
 
             _context = new ApplicationDbContext(optionsBuilder.Options);
-
+            
             _uut = new MainCCController(_context);
 
         }
 
         [Test]
-        public void Test_Of_Profil()
+        public async Task Test_Of_Profil()
         {
 
-            var model = _uut.Profil("test@test.test").Result;
+            var model = await _uut.Profil("test@test.test") as ViewResult;
 
-            model.Equals(vuser);
+            var virksomhed = await _context.virksomheder
+                .FirstOrDefaultAsync(m => m.Email == "test@test.test");
+
+            Assert.That(model.Model == virksomhed);
 
         }
 
