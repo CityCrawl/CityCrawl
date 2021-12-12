@@ -38,7 +38,7 @@ namespace CC_Web.Data
                     Virksomhedsnavn ="Hildas Beer Bar",
                     CVR = "34127865",
                     KontaktPerson = "Jytte Sørensen",
-                    Email ="jytte@hildsbeerbar.dfk",
+                    Email ="jytte@hildsbeerbar.dk",
                     Password ="HildasBeer2!",
                     Beskrivelse = "Boobies and Beers"
                 },
