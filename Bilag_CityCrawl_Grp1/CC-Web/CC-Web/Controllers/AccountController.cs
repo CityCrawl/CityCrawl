@@ -133,6 +133,9 @@ namespace CC_Web.Controllers
                 var jazzitup = await _context.virksomheder
                     .FirstOrDefaultAsync(m => m.Email == "info@jazzitup.com");
 
+                var test = await _context.virksomheder
+                    .FirstOrDefaultAsync(m => m.Email == "test@test.test");
+
                 if (bubbles != null)
                 {
                     newPubcrawl.Virksomheder.Add(bubbles);
@@ -146,6 +149,11 @@ namespace CC_Web.Controllers
                 if (jazzitup != null)
                 {
                     newPubcrawl.Virksomheder.Add(jazzitup);
+                }
+
+                if (test != null)
+                {
+                    newPubcrawl.Virksomheder.Add(test);
                 }
 
             }
@@ -163,6 +171,9 @@ namespace CC_Web.Controllers
 
                 var wineanddine = await _context.virksomheder
                     .FirstOrDefaultAsync(m => m.Email == "wine@dine.com");
+
+                var test = await _context.virksomheder
+                    .FirstOrDefaultAsync(m => m.Email == "test@test.test");
 
                 if (bubbles != null)
                 {
@@ -182,6 +193,11 @@ namespace CC_Web.Controllers
                 if (wineanddine != null)
                 {
                     newPubcrawl.Virksomheder.Add(wineanddine);
+                }
+
+                if (test != null)
+                {
+                    newPubcrawl.Virksomheder.Add(test);
                 }
 
             }

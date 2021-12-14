@@ -3,14 +3,26 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<div class="logo-center">
-    <img src="~/Images/CCLogo.png" alt="CityCrawl logo" style="width: 350px; height: 350px; margin-left:auto;margin-right:auto; display:block" />
-</div>
-<div>
-    <center>
-        <br />
-        <h2>Velkommen til CityCrawl</h2>
-        <br />
-    </center>
-    <a asp-route-id="@User.Identity.Name" asp-controller="MainCC" asp-action="Profil"><button class="PinkBtn" id="center_btn">Se din profil</button></a>
-</div>
+@if (User.Identity.IsAuthenticated)
+{
+    <div class="logo-center">
+        <img src="~/Images/CCLogo.png" alt="CityCrawl logo" style="width: 350px; height: 350px; margin-left:auto;margin-right:auto; display:block" />
+    </div>
+    <div>
+        <center>
+            <br />
+            <h2>Velkommen til CityCrawl</h2>
+            <br />
+        </center>
+        <a asp-route-id="@User.Identity.Name" asp-controller="MainCC" asp-action="Profil"><button class="PinkBtn" id="center_btn">Se din profil</button></a>
+    </div>
+}
+else
+{
+    <img src="~/Images/CCLogo.png" class="generel_style_image" />
+    <p class="generel_style_txt_box">Du er ikke logget ind og kan derfor ikke se Welcome siden. </p>
+    <div>
+        <a href="/Identity/Account/Login"><button class="BlueBtn" style="margin: 80px 150px; margin-left:350px">Login</button></a>
+        <a href="/Identity/Account/Register"><button class="PinkBtn">Opret bruger</button></a>
+    </div>
+}
