@@ -11,14 +11,14 @@ namespace CityCrawlApp.Test
     public class MainWindowTest
     {
         private MainWindowViewModel uut;
-        private IhttpClient httpClientMock;
+        private ICCHttpClient httpClientMock;
         private IDialogService dialogServiceMock;
         private IAppControlService appControlServiceMock;
 
         [SetUp]
         public void Setup()
         {
-            httpClientMock = Substitute.For<IhttpClient>();
+            httpClientMock = Substitute.For<ICCHttpClient>();
             dialogServiceMock = Substitute.For<IDialogService>();
             appControlServiceMock = Substitute.For<IAppControlService>();
             uut = new MainWindowViewModel(httpClientMock, dialogServiceMock, appControlServiceMock);

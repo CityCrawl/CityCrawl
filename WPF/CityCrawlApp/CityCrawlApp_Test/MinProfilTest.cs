@@ -58,8 +58,8 @@ namespace CityCrawlApp.Test
             Assert.That(uut.Birthday, Is.EqualTo(user.Foedselsdag));
             Assert.That(uut.Email, Is.EqualTo(user.Email));
             
-            Assert.That(uut.Pubcrawls[0], Is.EqualTo("Pakke 1 d. 09-12-2021 00:00:00"));
-            Assert.That(uut.Pubcrawls[1], Is.EqualTo("Pakke 2 d. 10-12-2021 00:00:00"));
+            Assert.That(uut.Pubcrawls[0], Is.EqualTo("Pakke 1, d. 09-12-2021 00:00:00"));
+            Assert.That(uut.Pubcrawls[1], Is.EqualTo("Pakke 2, d. 10-12-2021 00:00:00"));
 
         }
 
