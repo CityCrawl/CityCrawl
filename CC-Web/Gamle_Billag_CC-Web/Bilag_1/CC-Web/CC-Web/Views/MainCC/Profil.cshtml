@@ -1,0 +1,29 @@
+﻿@model CC_Web.Models.Data.Virksomhed
+
+@{
+    ViewData["Title"] = "Profil";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<img src="~/Images/CCLogo.png" class="generel_style_image" />
+
+<div class="row">
+    <div class="col-md-1"></div>
+    <div class="col-md-7">
+        <h1>Virksomhedsprofil</h1>
+        <p>Virksomhedsnavn: @Html.DisplayFor(model => model.Virksomhedsnavn)</p>
+        <p>CVR-nummer: @Html.DisplayFor(model => model.CVR)</p>
+        <p>Kontaktperson: @Html.DisplayFor(model => model.KontaktPerson)</p>
+        <p>Virksomhedsbeskrivelse: @Html.DisplayFor(model => model.Beskrivelse)</p>
+    </div>
+    <div class="col-md-4">
+        <h1>Bookede pubcrawls</h1>
+
+        @foreach (var pubcrawl in Model.Pubcrawls)
+        {
+            <p><span style="font-weight:bold;">Pakke type:</span> @Html.DisplayFor(Model => pubcrawl.PakkeNavn) <br /><span style="font-weight:bold;">Mødested:</span> @Html.DisplayFor(Model => pubcrawl.MoedeSted)<br /> <span style="font-weight:bold;">Dato:</span> @Html.DisplayFor(model => pubcrawl.MoedeTid)</p>
+        }
+
+    </div>
+</div>
+
+<hr />
