@@ -13,7 +13,7 @@ namespace CityCrawlApp.Test
     {
 
         private LoginViewModel uut;
-        private IhttpClient httpClientMock;
+        private ICCHttpClient httpClientMock;
         private IDialogService dialogServiceMock;
         private Action<bool> closeActionMock;
 
@@ -21,7 +21,7 @@ namespace CityCrawlApp.Test
         [SetUp]
         public void Setup()
         {
-            httpClientMock = Substitute.For<IhttpClient>();
+            httpClientMock = Substitute.For<ICCHttpClient>();
             dialogServiceMock = Substitute.For<IDialogService>();
             closeActionMock = Substitute.For<Action<bool>>();
             uut = new LoginViewModel(httpClientMock, dialogServiceMock);
