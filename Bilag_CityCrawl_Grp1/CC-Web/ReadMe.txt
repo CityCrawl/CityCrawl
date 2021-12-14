@@ -1,17 +1,13 @@
-Data for virksomheder, der indeholder profil oplysninger, addes automatisk til database, i entiteten Virksomheder, ved programkørsel. 
+ Data for virksomheder, der indeholder profil oplysninger, addes automatisk til database, i entiteten Virksomheder, ved programkørsel. 
 
-Alle profilsider pre-defineret kan tilgås uden om login ved siderne:
+Den pre-defineret profilside for test kan tilgås uden at være logget ind:
 
-	/MainCC/Profil/bubbles@bubbles.dk
-	/MainCC/Profil/jytte@hildsbeerbar.dk
-	/MainCC/Profil/info@jazzitup.com
-	/MainCC/Profil/wine@dine.com
 	/MainCC/Profil/test@test.test
 
 Ved programkørelse bliver de pre-defineret virksomheder blot seeded i Virksomheder, men ikke i AspNetUsers og derfor skal virksomhedsoplysningerne manuelt oprettes i denne tabel.
-Dette gøres ved at oprette de pre-defineret virksomheder på hjemmesidens register.
+Dette gøres ved at oprette de pre-defineret virksomheder på hjemmesidens register. Der kan også oprettes nye virksomheds profiler. Dog er disse profiler ikke tilknyttet pubcrawl pakker.
 
-Oplysninger for pre-defineret virksomheder:
+Oplysninger for pre-defineret virksomheder (Kun Email skal være ens):
 
 Bubbles:
 	Virksomhedsnavn = "Bubbles",
@@ -25,7 +21,7 @@ Hildas Beer Bar:
 	Virksomhedsnavn ="Hildas Beer Bar",
 	CVR = "34127865",
 	KontaktPerson = "Jytte Sørensen",
-    	Email ="jytte@hildsbeerbar.dk",
+    	Email ="jytte@hildasbeerbar.dk",
 	Password ="HildasBeer2!",
 	Beskrivelse = "Boobies and Beers"
 

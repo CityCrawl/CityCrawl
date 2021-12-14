@@ -5,25 +5,37 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 <img src="~/Images/CCLogo.png" class="generel_style_image" />
+@if ((User.Identity.IsAuthenticated && User.Identity.Name == Model.Email) || Model.Email == "test@test.test")
+{
 
-<div class="row">
-    <div class="col-md-1"></div>
-    <div class="col-md-7">
-        <h1>Virksomhedsprofil</h1>
-        <p>Virksomhedsnavn: @Html.DisplayFor(model => model.Virksomhedsnavn)</p>
-        <p>CVR-nummer: @Html.DisplayFor(model => model.CVR)</p>
-        <p>Kontaktperson: @Html.DisplayFor(model => model.KontaktPerson)</p>
-        <p>Virksomhedsbeskrivelse: @Html.DisplayFor(model => model.Beskrivelse)</p>
+    <div class="row">
+        <div class="col-md-1"></div>
+        <div class="col-md-7">
+            <h1>Virksomhedsprofil</h1>
+            <p>Virksomhedsnavn: @Html.DisplayFor(model => model.Virksomhedsnavn)</p>
+            <p>CVR-nummer: @Html.DisplayFor(model => model.CVR)</p>
+            <p>Kontaktperson: @Html.DisplayFor(model => model.KontaktPerson)</p>
+            <p>Virksomhedsbeskrivelse: @Html.DisplayFor(model => model.Beskrivelse)</p>
+        </div>
+        <div class="col-md-4">
+            <h1>Bookede pubcrawls</h1>
+
+            @foreach (var pubcrawl in Model.Pubcrawls)
+            {
+                <p><span style="font-weight:bold;">Pakke type:</span> @Html.DisplayFor(Model => pubcrawl.PakkeNavn) <br /><span style="font-weight:bold;">Mødested:</span> @Html.DisplayFor(Model => pubcrawl.MoedeSted)<br /> <span style="font-weight:bold;">Dato:</span> @Html.DisplayFor(model => pubcrawl.MoedeTid)</p>
+            }
+
+        </div>
     </div>
-    <div class="col-md-4">
-        <h1>Bookede pubcrawls</h1>
+}
 
-        @foreach (var pubcrawl in Model.Pubcrawls)
-        {
-            <p><span style="font-weight:bold;">Pakke type:</span> @Html.DisplayFor(Model => pubcrawl.PakkeNavn) <br /><span style="font-weight:bold;">Mødested:</span> @Html.DisplayFor(Model => pubcrawl.MoedeSted)<br /> <span style="font-weight:bold;">Dato:</span> @Html.DisplayFor(model => pubcrawl.MoedeTid)</p>
-        }
-
+else
+{
+    <p class="generel_style_txt_box">Du er ikke logget ind på denne virksomhedsprofil. </p>
+    <div>
+        <a href="/Identity/Account/Login"><button class="BlueBtn" style="margin: 80px 150px; margin-left:350px">Login</button></a>
+        <a href="/Identity/Account/Register"><button class="PinkBtn">Opret bruger</button></a>
     </div>
-</div>
+}
 
 <hr />
