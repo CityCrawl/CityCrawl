@@ -14,16 +14,24 @@ namespace CityCrawlApp.Models
     {
         public User HttpClientGetUserFromServer(string email, string password)
         {
-            string url = $"{Settings.baseUrl}/Account/Bruger?email={email}&password={password}"; // tages fra app settings
-            HttpClient client = new HttpClient();
-        
-            Task<string> responseBody = client.GetStringAsync(url);
-            var options = new JsonSerializerOptions
+            try
             {
-                PropertyNameCaseInsensitive = true,
-            };
-            var user = JsonSerializer.Deserialize<User>(responseBody.Result, options);
-            return user;
+                string url =
+                    $"{Settings.baseUrl}/Account/Bruger?email={email}&password={password}"; // tages fra app settings
+                HttpClient client = new HttpClient();
+
+                Task<string> responseBody = client.GetStringAsync(url);
+                var options = new JsonSerializerOptions
+                {
+                    PropertyNameCaseInsensitive = true,
+                };
+                var user = JsonSerializer.Deserialize<User>(responseBody.Result, options);
+                return user;
+            }
+            catch (Exception)
+            {
+                return null;
+            }
         }
 
         public void HttpClientCreateUser(User user)
