@@ -8,6 +8,7 @@ Den pre-defineret profilside for test kan tilgås uden at være logget ind:
 
 Ved programkørelse bliver de pre-defineret virksomheder blot seeded i Virksomheder, men ikke i AspNetUsers og derfor skal virksomhedsoplysningerne manuelt oprettes i denne tabel.
 Dette gøres ved at oprette de pre-defineret virksomheder på hjemmesidens register. Der kan også oprettes nye virksomheds profiler. Dog er disse profiler ikke tilknyttet pubcrawl pakker.
+Der oprettes aldrig mere end en instans af en virksomhed, hverken i AspNetUsers eller Virksomheder, når der bruges samme mail.
 
 Oplysninger for pre-defineret virksomheder:
 
