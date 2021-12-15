@@ -1,0 +1,69 @@
+﻿<Window x:Class="CityCrawlApp.Views.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:CityCrawlApp.Views"
+        WindowStartupLocation="CenterScreen"
+        mc:Ignorable="d"
+        Title="CityCrawl" Height="350" Width="500"
+        DataContext="{Binding Source={StaticResource ViewModelLocator}, Path=ViewModel}"
+        Background="{DynamicResource ResourceKey=BackgroundColor}">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="2*"/>
+            <RowDefinition/>
+            <RowDefinition Height="0.244*"/>
+        </Grid.RowDefinitions>
+
+        <Image Grid.ColumnSpan="2"
+               HorizontalAlignment="Center"
+               Source="Images/CCLogo.png" 
+               Margin="0,30,0,10"
+        />
+        <Button Grid.Row="1"
+                Content="Login"
+                Background="#FF56F7FA"
+                Height="35"
+                Width="90"
+                HorizontalAlignment="Right"
+                Margin="0,0,20,45"
+                FontWeight="Bold"
+                x:Name="LoginButton"
+                Command="{Binding LoginBtn}"
+                Cursor="Hand"
+                />
+        <Button Grid.Row="1"
+                Grid.Column="1"
+                Content="Opret bruger"
+                Background="#FFE482E1"
+                Height="35"
+                Width="90"
+                HorizontalAlignment="Left"
+                Margin="20,0,0,45"
+                FontWeight="Bold"
+                x:Name="OpretBrugerButton"
+                Command="{Binding OpretBrugerBtn}"
+                Cursor="Hand"
+        />
+
+        <StatusBar Grid.Row="2" Grid.ColumnSpan="2" >
+            <StatusBar.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <Grid>
+                    </Grid>
+                </ItemsPanelTemplate>
+            </StatusBar.ItemsPanel>
+            <StatusBarItem Content="© 2021 - CityCrawl - Your local pubcrawl" HorizontalAlignment="Left"/>
+            <StatusBarItem Grid.Column="1" HorizontalAlignment="Right">
+                <TextBlock Text="4. Semester projekt, gruppe 1" />
+            </StatusBarItem>
+        </StatusBar>
+
+
+    </Grid>
+</Window>
