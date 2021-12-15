@@ -1,4 +1,6 @@
- Data for virksomheder, der indeholder profil oplysninger, addes automatisk til database, i entiteten Virksomheder, ved programkørsel. 
+Data for virksomheder, der indeholder profil oplysninger, addes automatisk til database, i entiteten Virksomheder, ved programkørsel. 
+
+Test kan køres med det samme da den relevante data bliver seeded.
 
 Den pre-defineret profilside for test kan tilgås uden at være logget ind:
 
@@ -7,7 +9,7 @@ Den pre-defineret profilside for test kan tilgås uden at være logget ind:
 Ved programkørelse bliver de pre-defineret virksomheder blot seeded i Virksomheder, men ikke i AspNetUsers og derfor skal virksomhedsoplysningerne manuelt oprettes i denne tabel.
 Dette gøres ved at oprette de pre-defineret virksomheder på hjemmesidens register. Der kan også oprettes nye virksomheds profiler. Dog er disse profiler ikke tilknyttet pubcrawl pakker.
 
-Oplysninger for pre-defineret virksomheder (Kun Email skal være ens):
+Oplysninger for pre-defineret virksomheder:
 
 Bubbles:
 	Virksomhedsnavn = "Bubbles",
