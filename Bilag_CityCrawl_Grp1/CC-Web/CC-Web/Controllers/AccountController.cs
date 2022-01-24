@@ -43,14 +43,14 @@ namespace CC_Web.Controllers
                 .Include(m => m.Pubcrawls)
                 .FirstOrDefault();
 
-            if (bruger.Email != email)
+            if (bruger == null)
             {
-                throw new Exception("The user does not exist in CC-database");
+                return null;
             }
             var validPwd = Verify(password, bruger.PwHash);
             if (!validPwd)
             {
-                throw new Exception("Incorrect user password");
+                return null;
             }
 
             // Fjerner uendelig rekursiv link mellem pubcrawl og brugere og virksomheder

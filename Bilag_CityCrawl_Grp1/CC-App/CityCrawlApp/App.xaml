@@ -1,0 +1,14 @@
+﻿<Application x:Class="CityCrawlApp.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:local="clr-namespace:CityCrawlApp.ViewModels"
+             StartupUri="Views/MainWindow.xaml"
+             ShutdownMode="OnLastWindowClose">
+    <Application.Resources>
+         <local:ViewModelLocator x:Key="ViewModelLocator"/>
+         <SolidColorBrush x:Key="BackgroundColor" Color="LightGray"/>
+         <SolidColorBrush x:Key="BackgroundLogin" Color="LightCyan"/>
+         <SolidColorBrush x:Key="BackgroundOpretBruger" Color="#FFF5C7FF"/>
+        <SolidColorBrush x:Key="LoginErrorText" Color="Red"/>
+    </Application.Resources>
+</Application>
